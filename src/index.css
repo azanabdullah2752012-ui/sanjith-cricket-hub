@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --sand-bg: #f5f2eb;
+    --bone-white: #ffffff;
+    --oat-card: #ece7de;
+    --sand-border: #ded7cb;
+    --earth-charcoal: #1c1917;
+    --earth-muted: #78716c;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: #f5f2eb;
+    color: #1c1917;
+    overflow-x: hidden;
+  }
+}
+
+.font-editorial {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.ald-card {
+  background-color: #ffffff;
+  border: 1px solid #ded7cb;
+  box-shadow: 0 4px 20px -2px rgba(28, 25, 23, 0.05);
+}
+
+.ald-pill {
+  background-color: #ece7de;
+  border: 1px solid #ded7cb;
+  color: #1c1917;
+}
