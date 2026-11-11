@@ -117,6 +117,8 @@ export const FieldingPage: React.FC = () => {
     pavilionAudio.playWillowCrack();
   };
 
+  const [saveSuccess, setSaveSuccess] = useState<string | null>(null);
+
   const saveCustomPlan = () => {
     if (!customPlanName.trim()) return;
     setSavedCustomPlans(prev => [
@@ -124,7 +126,8 @@ export const FieldingPage: React.FC = () => {
       ...prev
     ]);
     pavilionAudio.playBoundaryCheer();
-    alert(`Tactical Field "${customPlanName}" saved to Sanjith's Playbook!`);
+    setSaveSuccess(`Tactical Field "${customPlanName}" saved to Sanjith's Playbook!`);
+    setTimeout(() => setSaveSuccess(null), 4000);
   };
 
   const loadSavedCustomPlan = (saved: { name: string; fielders: EditableFielder[] }) => {
@@ -303,6 +306,12 @@ export const FieldingPage: React.FC = () => {
                 <span>Save</span>
               </button>
             </div>
+            {saveSuccess && (
+              <div className="mt-2 text-xs font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg flex items-center gap-1.5 animate-fade-in">
+                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <span>{saveSuccess}</span>
+              </div>
+            )}
           </div>
         </div>
 

@@ -23,7 +23,7 @@ export const SanjithBirthdayHero: React.FC<SanjithBirthdayHeroProps> = ({ onOpen
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1c1917] via-[#292524] to-[#1c1917] text-[#f5f2eb] p-6 md:p-8 border border-[#44403c] shadow-lg mb-8">
       {/* Subtle pitch watermark texture in background */}
       <div className="absolute right-0 top-0 bottom-0 w-96 opacity-5 pointer-events-none flex items-center justify-center font-editorial font-bold text-[180px] select-none">
-        22
+        18
       </div>
 
       <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

@@ -185,6 +185,17 @@ export const ALL_FIELDING_POSITIONS: FieldingPositionDetailed[] = [
 
 export const ICONIC_PLAYERS: PlayerProfileCard[] = [
   {
+    id: 'sanjith',
+    name: 'Captain Sanjith (The Skipper)',
+    country: 'Squad XI (Birthday Legend)',
+    role: 'All-Rounder',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    signatureStyle: 'Trademark High-Elbow Cover Drive & Unshakeable Match Leadership',
+    masteryMetric: { label: 'BIRTHDAY RUNS', value: '100* N.O.' },
+    technicalBreakdown: 'Perfect balance at the crease, fearless shot selection under pressure, and unmatched tactical vision from mid-off. Commands the entire field with authority and brings infectious energy to the dressing room.',
+    tacticalKey: 'Dispatches express bouncers into the stands, rallies the team through impossible chases, and always makes the clutch call.'
+  },
+  {
     id: 'kohli',
     name: 'Virat Kohli',
     country: 'India',
