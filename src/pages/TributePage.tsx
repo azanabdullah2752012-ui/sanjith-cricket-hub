@@ -1,5 +1,4 @@
 import React from 'react';
-import { ModernSoundboard } from '../components/ModernSoundboard';
 import { ModernGuestbook } from '../components/ModernGuestbook';
 import { Gift, Sparkles, Heart, Trophy, Award, Shield, Compass, Target, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -203,12 +202,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* 3. The Dressing Room Stadium Soundboard */}
-      <section>
-        <ModernSoundboard />
-      </section>
-
-      {/* 4. The Birthday Wishes Locker & Guestbook */}
+      {/* The Birthday Wishes Locker & Guestbook */}
       <section>
         <ModernGuestbook />
       </section>
