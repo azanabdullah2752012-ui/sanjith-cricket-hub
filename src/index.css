@@ -1,64 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --canvas-bg: #0e0f12;
-    --canvas-surface: #16181d;
-    --canvas-elevated: #1f2128;
-    --canvas-border: rgba(255, 255, 255, 0.08);
-    --canvas-border-hover: rgba(255, 255, 255, 0.16);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --text-muted: #64748b;
-    --rcb-red: #dc2626;
-    --rcb-red-glow: rgba(220, 38, 38, 0.2);
-    --rcb-gold: #d97706;
-  }
-
   body {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0c0d11;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #090a0f;
     color: #f8fafc;
     overflow-x: hidden;
   }
 }
 
-.font-editorial {
-  font-family: 'Cabinet Grotesk', system-ui, sans-serif;
-  letter-spacing: -0.035em;
-}
-
-.font-label {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-feature-settings: 'tnum' on, 'zero' on;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-/* Modern Tasteful Dark Panels */
-.ald-card {
-  background-color: #16181d;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.35);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.ald-card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
-.ald-subcard {
-  background-color: #121317;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.ald-pill {
-  background-color: #1e2027;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #f8fafc;
+.font-num {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
 }
