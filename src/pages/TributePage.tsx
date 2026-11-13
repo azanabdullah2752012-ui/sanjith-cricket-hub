@@ -147,11 +147,15 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
           </div>
 
           {/* Letter from Azan */}
-          <div className="p-5 rounded-lg bg-[#181a22] border-l-4 border-l-red-600 border border-white/[0.06]">
+          <div className="p-5 rounded-lg bg-[#181a22] border border-white/[0.08] shadow-sm">
+            <div className="flex items-center gap-1.5 mb-2 text-[11px] font-label text-red-400">
+              <Shield className="w-3.5 h-3.5" />
+              <span>DRESSING ROOM DISPATCH</span>
+            </div>
             <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed italic">
               "Whether you're setting crazy field placements, bowling yorkers in the final over like Mitchell Starc, or screaming for RCB with your whole heart—you're the leader of our squad. Proud to walk out to the crease with you, brother."
             </p>
-            <div className="text-xs font-bold text-white mt-2 text-right">
+            <div className="text-xs font-bold text-white mt-2.5 text-right font-editorial">
               — Azan & The Squad XI
             </div>
           </div>

@@ -79,8 +79,8 @@ export const InteractiveJerseyArtifact: React.FC = () => {
                 SANJITH
               </div>
 
-              {/* Giant Iconic #10 */}
-              <div className="font-editorial text-7xl sm:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-[#f8fafc] to-[#94a3b8] tracking-tighter leading-none mt-1 drop-shadow-[0_10px_20px_rgba(220,38,38,0.4)]">
+              {/* Giant Iconic #10 in Solid High-Contrast White */}
+              <div className="font-editorial text-7xl sm:text-8xl font-black text-white tracking-tighter leading-none mt-1 drop-shadow-[0_10px_20px_rgba(220,38,38,0.4)]">
                 10
               </div>
 
