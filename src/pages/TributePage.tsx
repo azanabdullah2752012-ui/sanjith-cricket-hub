@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModernGuestbook } from '../components/ModernGuestbook';
-import { Gift, Sparkles, Heart, Trophy, Target, ArrowRight, Flame, Zap, Shield, Compass } from 'lucide-react';
+import { Sparkles, Trophy, Target, ArrowUpRight, Flame, Zap, Shield, Compass, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface TributePageProps {
@@ -10,311 +10,345 @@ interface TributePageProps {
 export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
   const triggerBirthdayCheer = () => {
     confetti({
-      particleCount: 160,
-      spread: 110,
+      particleCount: 180,
+      spread: 120,
       origin: { y: 0.35 },
-      colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444']
+      colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444', '#f59e0b']
     });
   };
 
   return (
-    <div className="space-y-8 animate-fade-in">
-      {/* 1. Main Hero Banner */}
-      <div className="ald-card p-6 md:p-10 rounded-xl bg-gradient-to-br from-[#17181d] via-[#1a1518] to-[#17181d] border border-white/[0.08] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 relative overflow-hidden shadow-2xl">
-        {/* Subtle #10 Watermark */}
-        <div className="absolute right-4 -bottom-6 font-editorial font-bold text-[160px] text-white/[0.03] pointer-events-none select-none">
+    <div className="space-y-12 animate-fade-in">
+      {/* 1. Asymmetric Editorial Hero Showcase */}
+      <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#14151b] via-[#101115] to-[#0c0d10] border border-white/[0.08] shadow-2xl">
+        {/* Architectural Diagonal Slash Background Accent */}
+        <div className="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-red-600/[0.08] via-transparent to-transparent pointer-events-none" />
+        <div className="absolute -right-6 -bottom-10 font-editorial font-black text-[220px] leading-none text-white/[0.025] pointer-events-none select-none tracking-tighter">
           10
         </div>
 
-        <div className="relative z-10 space-y-3 max-w-2xl">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping" />
-            <span className="text-xs uppercase tracking-wider text-red-400 font-bold bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20">
-              HAPPY BIRTHDAY SANJITH • JERSEY #10 💥
-            </span>
-            <span className="text-xs text-[#94a3b8] font-medium">
-              RCB 12TH MAN ARMY
-            </span>
-          </div>
-
-          <h1 className="font-editorial text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
-            Happy Birthday, Skipper!
-          </h1>
-
-          <p className="text-sm md:text-base text-[#94a3b8] leading-relaxed">
-            Made this site just for you bro! You love your cricket, you never back down from a match, and nobody hits the wrist flick or bowls death yorkers quite like you. Raise your bat high—today you're 100* not out!
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4 pt-2 text-xs font-semibold text-white">
-            <span className="flex items-center gap-1.5 text-red-400">
-              <Heart className="w-4 h-4 fill-red-400" />
-              Made by Azan & the boys
-            </span>
-            <span className="text-[#64748b]">•</span>
-            <span className="flex items-center gap-1.5 text-amber-400">
-              <Trophy className="w-4 h-4" />
-              Team Captain & No. 1 Player
-            </span>
-          </div>
-        </div>
-
-        <div className="relative z-10 flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 w-full sm:w-auto">
-          <button
-            onClick={triggerBirthdayCheer}
-            className="px-6 py-4 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-lg shadow-lg transition-all flex items-center justify-center gap-2.5 cursor-pointer hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <Sparkles className="w-4 h-4 text-amber-300" />
-            <span>POP CONFETTI 🎉</span>
-          </button>
-
-          {onNavigate && (
-            <button
-              onClick={() => onNavigate('batting')}
-              className="px-5 py-3 bg-[#22242d] hover:bg-[#2c303c] text-white font-semibold text-xs rounded-lg border border-white/[0.08] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm"
-            >
-              <Target className="w-3.5 h-3.5 text-red-400" />
-              <span>Play Batting Game</span>
-              <ArrowRight className="w-3.5 h-3.5 ml-1 text-[#94a3b8]" />
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* 2. Sanjith's Player Card */}
-      <div className="ald-card p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-xl">
-        <div className="flex flex-col md:flex-row md:items-center justify-between pb-6 mb-6 border-b border-white/[0.08] gap-4">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <Trophy className="w-4 h-4 text-red-500" />
-              <span className="text-xs uppercase tracking-wider text-[#94a3b8] font-bold">
-                OFFICIAL SQUAD CARD
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 lg:p-12 items-center relative z-10">
+          {/* Left Column: Bold Editorial Typography */}
+          <div className="lg:col-span-8 space-y-5">
+            <div className="flex flex-wrap items-center gap-2.5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-red-600 text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm">
+                <Star className="w-3 h-3 fill-white" />
+                OFFICIAL COMMEMORATIVE EDITION
+              </span>
+              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20">
+                RCB 12TH MAN ARMY
               </span>
             </div>
-            <h2 className="font-editorial text-2xl md:text-3xl font-bold text-white">
-              Captain Sanjith (#10)
-            </h2>
-          </div>
 
-          <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-bold border border-red-500/20">
-              TEAM: RCB 💥
-            </span>
-            <span className="px-3 py-1 rounded-full bg-white/[0.08] text-white text-xs font-bold border border-white/[0.08]">
-              ROLE: ALL-ROUNDER
-            </span>
-          </div>
-        </div>
+            <h1 className="font-editorial text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
+              CAPTAIN <span className="text-red-500">SANJITH</span>
+            </h1>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Quick Stats Panel */}
-          <div className="lg:col-span-5 bg-[#121317] p-6 rounded-lg border border-white/[0.06] space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-[#94a3b8] uppercase font-bold">SHIRT NUMBER</span>
-              <span className="text-sm font-bold text-white">#10 (THE SKIPPER)</span>
-            </div>
+            <p className="text-base sm:text-lg text-[#cbd5e1] leading-relaxed max-w-2xl font-light">
+              Built with pride for our skipper. Channeling Virat’s Melbourne 82* chasing spirit, Mitchell Starc’s 150k toe-crushers, and your world-famous matchday shoelace knots. Today, you raise your bat at <span className="text-amber-400 font-bold">100* Not Out</span>.
+            </p>
 
-            <div className="h-px bg-white/[0.06]" />
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={triggerBirthdayCheer}
+                className="px-7 py-4 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-lg shadow-xl shadow-red-950/40 transition-all flex items-center gap-2.5 cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
+              >
+                <Sparkles className="w-4 h-4 text-amber-300" />
+                <span>POP CELEBRATION 🎉</span>
+              </button>
 
-            <div className="space-y-3">
-              <div>
-                <span className="text-[11px] text-[#64748b] uppercase block font-bold">CRICKET HEROES</span>
-                <span className="text-sm font-bold text-white">Virat Kohli & Mitchell Starc</span>
-              </div>
-
-              <div>
-                <span className="text-[11px] text-[#64748b] uppercase block font-bold">FAVORITE SHOT</span>
-                <span className="text-sm font-bold text-red-400">The Wrist Flick (whips it right over mid-wicket)</span>
-              </div>
-
-              <div>
-                <span className="text-[11px] text-[#64748b] uppercase block font-bold">BOWLING WEAPON</span>
-                <span className="text-sm font-bold text-white">Mitchell Starc-style fast yorker in the 20th over</span>
-              </div>
-
-              <div>
-                <span className="text-[11px] text-[#64748b] uppercase block font-bold">FAVORITE MATCHES</span>
-                <span className="text-sm font-bold text-amber-400">Virat 82* vs Pakistan & Stokes 135* vs Australia</span>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <div className="grid grid-cols-2 gap-3 text-center">
-                <div className="p-3 bg-[#1a1b22] rounded-xl border border-white/[0.06]">
-                  <span className="text-[10px] text-[#64748b] uppercase font-bold block">STRIKE RATE</span>
-                  <span className="text-xl font-editorial font-bold text-white">198.5</span>
-                </div>
-                <div className="p-3 bg-[#1a1b22] rounded-xl border border-white/[0.06]">
-                  <span className="text-[10px] text-[#64748b] uppercase font-bold block">TODAY'S SCORE</span>
-                  <span className="text-xl font-editorial font-bold text-red-500">100* N.O.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Letter from Azan & Shortcuts */}
-          <div className="lg:col-span-7 space-y-5">
-            <div className="p-6 bg-[#121317] rounded-lg border border-white/[0.06]">
-              <div className="flex items-center gap-2 mb-2 text-xs font-bold uppercase tracking-wider text-red-400">
-                <Shield className="w-4 h-4" />
-                Note From The Squad
-              </div>
-              <p className="text-sm text-[#cbd5e1] leading-relaxed italic">
-                "Whether you're setting crazy field placements, bowling yorkers in the final over like Mitchell Starc, or cheering for RCB with your whole heart—you're the leader of our squad. Hope you have an awesome birthday bro! We're lucky to play alongside you."
-              </p>
-              <div className="mt-3 text-xs font-bold text-white text-right">
-                — Azan & The Squad
-              </div>
-            </div>
-
-            {/* Simple Shortcuts */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {onNavigate && (
-                <>
-                  <button
-                    onClick={() => onNavigate('batting')}
-                    className="p-4 rounded-xl bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-red-500/40 transition-all text-left cursor-pointer group"
-                  >
-                    <Target className="w-4 h-4 text-red-500 mb-2 group-hover:scale-110 transition-transform" />
-                    <div className="text-xs font-bold text-white">Play Batting Game</div>
-                    <div className="text-[11px] text-[#94a3b8] mt-0.5">Hit your flick shot</div>
-                  </button>
-
-                  <button
-                    onClick={() => onNavigate('fielding')}
-                    className="p-4 rounded-xl bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-white/[0.2] transition-all text-left cursor-pointer group"
-                  >
-                    <Compass className="w-4 h-4 text-white mb-2 group-hover:scale-110 transition-transform" />
-                    <div className="text-xs font-bold text-white">Move Fielders</div>
-                    <div className="text-[11px] text-[#94a3b8] mt-0.5">Drag & drop field setup</div>
-                  </button>
-
-                  <button
-                    onClick={() => onNavigate('scores')}
-                    className="p-4 rounded-xl bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-amber-500/40 transition-all text-left cursor-pointer group"
-                  >
-                    <Trophy className="w-4 h-4 text-amber-500 mb-2 group-hover:scale-110 transition-transform" />
-                    <div className="text-xs font-bold text-white">Live Matches</div>
-                    <div className="text-[11px] text-[#94a3b8] mt-0.5">Check real scores</div>
-                  </button>
-                </>
+                <button
+                  onClick={() => onNavigate('batting')}
+                  className="px-6 py-4 bg-[#1b1d24] hover:bg-[#232630] text-white font-semibold text-sm rounded-lg border border-white/[0.1] transition-all flex items-center gap-2 cursor-pointer hover:border-red-500/50"
+                >
+                  <Target className="w-4 h-4 text-red-500" />
+                  <span>Face Starc in the Nets</span>
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8]" />
+                </button>
               )}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* 3. The Shoelace Story Card */}
-      <div className="ald-card p-6 md:p-8 rounded-xl bg-gradient-to-br from-[#181512] to-[#141418] border border-amber-500/20 shadow-xl relative overflow-hidden">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-amber-500/20">
-          <div className="flex items-center gap-2">
-            <span className="p-2 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <Zap className="w-5 h-5" />
-            </span>
-            <div>
-              <span className="text-[10px] uppercase font-bold tracking-widest text-amber-400">
-                TRUE CRICKET STORY
+          {/* Right Column: High-Impact Jersey #10 Plaque */}
+          <div className="lg:col-span-4 flex justify-center lg:justify-end">
+            <div className="w-full max-w-xs p-6 rounded-xl bg-[#171922] border-2 border-red-500/30 shadow-2xl relative overflow-hidden text-center">
+              <div className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold mb-1">
+                ROYAL CHALLENGERS BENGALURU
+              </div>
+              <div className="font-editorial text-7xl font-black text-white tracking-tighter my-2">
+                #10
+              </div>
+              <div className="text-xs uppercase font-bold text-white tracking-wider">
+                THE SKIPPER'S DOSSIER
+              </div>
+              <div className="mt-4 pt-4 border-t border-white/[0.08] grid grid-cols-2 gap-2 text-left text-xs">
+                <div>
+                  <span className="text-[10px] text-[#94a3b8] uppercase font-mono block">STRIKE RATE</span>
+                  <span className="font-bold text-white text-base font-editorial">198.5</span>
+                </div>
+                <div>
+                  <span className="text-[10px] text-[#94a3b8] uppercase font-mono block">CAREER STATUS</span>
+                  <span className="font-bold text-red-400 text-base font-editorial">100* N.O.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Asymmetric Magazine Bento Matrix */}
+      <section className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Bento: Technical Profile Breakdown (7 Cols) */}
+        <div className="lg:col-span-7 p-7 sm:p-8 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl flex flex-col justify-between space-y-6">
+          <div>
+            <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-red-500" />
+                <span className="text-xs uppercase tracking-wider text-red-400 font-bold font-mono">
+                  SQUAD PROFILE // RECORD #10
+                </span>
+              </div>
+              <span className="px-3 py-0.5 rounded text-[11px] font-mono font-bold bg-white/[0.06] text-white border border-white/[0.08]">
+                ALL-ROUNDER
               </span>
-              <h3 className="font-editorial text-2xl font-bold text-white">
-                The Time You Tied Your Shoelaces During a Match 😂
-              </h3>
+            </div>
+
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
+                <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold block mb-1">
+                  TRADEMARK SHOT
+                </span>
+                <div className="text-sm font-bold text-white flex items-baseline gap-1.5">
+                  The Wrist Flick
+                </div>
+                <p className="text-xs text-[#94a3b8] mt-1 leading-relaxed">
+                  Whacks length deliveries off his pads cleanly into the mid-wicket stands.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
+                <span className="text-[10px] font-mono uppercase text-red-400 font-bold block mb-1">
+                  20TH OVER WEAPON
+                </span>
+                <div className="text-sm font-bold text-white">
+                  Mitchell Starc 148k Yorker
+                </div>
+                <p className="text-xs text-[#94a3b8] mt-1 leading-relaxed">
+                  Fast inswinging toe-crusher at the base of off-stump to defend any target.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
+                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold block mb-1">
+                  CRICKET IDOLS
+                </span>
+                <div className="text-sm font-bold text-white">
+                  Virat Kohli & Mitchell Starc
+                </div>
+                <p className="text-xs text-[#94a3b8] mt-1 leading-relaxed">
+                  Defended with life in any debate. The fiercest chaser & the deadlier pacer.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
+                <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold block mb-1">
+                  ICONIC MATCHES
+                </span>
+                <div className="text-sm font-bold text-white">
+                  Melbourne 82* & Headingley 135*
+                </div>
+                <p className="text-xs text-[#94a3b8] mt-1 leading-relaxed">
+                  Virat’s straight six vs Pakistan & Stokes’ impossible Ashes comeback.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="flex items-center gap-2 bg-amber-500/10 px-3 py-1 rounded-full text-xs font-bold text-amber-400 border border-amber-500/20">
-            SHOES TIED: 100% • RUNS SAVED: 0
+
+          {/* Letter from Azan */}
+          <div className="p-5 rounded-lg bg-[#181a22] border-l-4 border-l-red-600 border border-white/[0.06]">
+            <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed italic">
+              "Whether you're setting crazy field placements, bowling yorkers in the final over like Mitchell Starc, or screaming for RCB with your whole heart—you're the leader of our squad. Proud to walk out to the crease with you, brother."
+            </p>
+            <div className="text-xs font-bold text-white mt-2 text-right">
+              — Azan & The Squad XI
+            </div>
           </div>
         </div>
 
-        <div className="mt-5 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-          <div className="md:col-span-8 space-y-3">
-            <p className="text-sm text-[#cbd5e1] leading-relaxed">
-              <strong>What happened:</strong> The bowler starts running in. The batsman gets ready to smack the ball. Meanwhile, there you are in the outfield, peacefully bending down to tie your shoelaces.
+        {/* Right Bento: Tactical Hub & Direct Actions (5 Cols) */}
+        <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
+          {/* Interactive Feature Cards */}
+          <div className="p-6 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4">
+            <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold tracking-wider block">
+              GROUND COMMAND & GAMES
+            </span>
+
+            {onNavigate && (
+              <div className="space-y-3">
+                <div
+                  onClick={() => onNavigate('batting')}
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-red-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-red-600/10 border border-red-500/20 flex items-center justify-center text-red-500 group-hover:scale-105 transition-transform">
+                      <Target className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white group-hover:text-red-400 transition-colors">
+                        Batting Challenge
+                      </h4>
+                      <p className="text-xs text-[#94a3b8]">Play your wrist flick against Mitchell Starc</p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+
+                <div
+                  onClick={() => onNavigate('fielding')}
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-emerald-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                      <Compass className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors">
+                        360° Turf Setup
+                      </h4>
+                      <p className="text-xs text-[#94a3b8]">Drag 11 fielders into death over traps</p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+
+                <div
+                  onClick={() => onNavigate('scores')}
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-amber-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
+                      <Trophy className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
+                        Live Match Radar
+                      </h4>
+                      <p className="text-xs text-[#94a3b8]">Real-time ball flight & wagon wheel</p>
+                    </div>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. The Shoelace Legend (Asymmetric Editorial Feature Plate) */}
+      <section className="relative overflow-hidden rounded-xl bg-[#14151b] border-2 border-amber-500/30 p-6 sm:p-8 lg:p-10 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-8 space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="p-1.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/30">
+                <Zap className="w-4 h-4" />
+              </span>
+              <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">
+                SQUAD FOLKLORE ARCHIVE // UNFORGOTTEN MOMENT
+              </span>
+            </div>
+
+            <h3 className="font-editorial text-2xl sm:text-4xl font-black text-white tracking-tight">
+              The Day You Tied Your Shoelaces During Live Play 😂
+            </h3>
+
+            <p className="text-sm sm:text-base text-[#cbd5e1] leading-relaxed">
+              Bowler runs in. Batsman gets set to pull. Meanwhile, there you are in the deep outfield, calmly bending down to fix your shoelaces. Bowler releases, batsman whacks it <em>directly</em> in your direction! But your head is down, 100% focused on tying that knot. The ball zips straight past you into the rope for four!
             </p>
-            <p className="text-sm text-[#cbd5e1] leading-relaxed">
-              The bowler doesn't see you and bowls the ball. The batsman whacks it <em>directly</em> at you! But your head is down, focusing 100% on your shoes. The ball zooms right past you and crosses the rope for four runs!
-            </p>
-            <p className="text-sm font-semibold text-amber-300 italic">
-              "Bowler didn't look, batsman took aim, and you secured your shoes. The funniest boundary in squad history."
+
+            <p className="text-xs sm:text-sm font-semibold text-amber-300 italic border-l-2 border-amber-400 pl-3">
+              "The bowler didn't see it, the batsman took aim, and you secured your footwear. Greatest boundary conceded in team history."
             </p>
           </div>
 
-          <div className="md:col-span-4 bg-[#121317] p-5 rounded-lg border border-amber-500/20 space-y-2 text-center">
-            <div className="text-3xl font-editorial font-bold text-white">
-              4 RUNS
-            </div>
-            <div className="text-xs text-[#94a3b8] uppercase font-semibold">
-              THE VERDICT
-            </div>
-            <div className="h-px bg-white/[0.06]" />
-            <div className="text-xs text-[#cbd5e1] font-medium leading-relaxed">
-              👟 Shoelaces: Tied tight<br/>
-              👀 Ball spotted: Not at all<br/>
-              👑 Confidence: 10/10
+          <div className="lg:col-span-4 flex justify-center">
+            <div className="w-full max-w-xs p-6 rounded-lg bg-[#0e0f13] border border-amber-500/30 text-center space-y-3">
+              <div className="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold">
+                OFFICIAL MATCH VERDICT
+              </div>
+              <div className="font-editorial text-5xl font-black text-white">
+                4 RUNS
+              </div>
+              <div className="h-px bg-white/[0.08]" />
+              <div className="text-xs text-[#cbd5e1] font-mono space-y-1 text-left">
+                <div>👟 Shoelaces: <strong className="text-white">Double-knotted (100%)</strong></div>
+                <div>👀 Ball tracked: <strong className="text-red-400">0.0%</strong></div>
+                <div>👑 Squad Laughs: <strong className="text-amber-400">Infinite</strong></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 4. Sanjith's Favorite Matches */}
-      <div className="ald-card p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-xl">
-        <div className="flex items-center gap-2 mb-1">
-          <Flame className="w-4 h-4 text-red-500" />
-          <span className="text-xs uppercase tracking-wider text-[#94a3b8] font-bold">
-            BEST GAMES EVER
-          </span>
+      {/* 4. The Two GOAT Finishes (Editorial Magazine Cards) */}
+      <section className="space-y-6">
+        <div className="flex items-center gap-2">
+          <Flame className="w-5 h-5 text-red-500" />
+          <h3 className="font-editorial text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Sanjith's Favorite Finishes of All Time
+          </h3>
         </div>
-        <h3 className="font-editorial text-2xl font-bold text-white mb-6">
-          Sanjith's Favorite Cricket Finishes
-        </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Match 1: Virat 82* */}
-          <div className="p-6 rounded-lg bg-[#121317] border border-white/[0.06] space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-red-400 bg-red-500/10 px-2.5 py-0.5 rounded-full border border-red-500/20">
-                MELBOURNE 2022
+          {/* Melbourne 82* Card */}
+          <div className="p-7 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4 relative overflow-hidden group hover:border-red-500/40 transition-colors">
+            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+              <span className="text-[11px] font-mono font-bold text-red-400 uppercase tracking-wider bg-red-500/10 px-2.5 py-0.5 rounded border border-red-500/20">
+                MELBOURNE 2022 • T20 WORLD CUP
               </span>
-              <span className="text-xs text-[#94a3b8] font-medium">T20 World Cup</span>
+              <span className="text-xs text-[#94a3b8] font-mono">INDIA VS PAKISTAN</span>
             </div>
 
-            <h4 className="font-editorial text-xl font-bold text-white">
-              Virat Kohli's 82* vs Pakistan
+            <h4 className="font-editorial text-2xl font-bold text-white group-hover:text-red-400 transition-colors">
+              Virat Kohli's 82* (53 balls)
             </h4>
 
-            <p className="text-xs text-[#94a3b8] leading-relaxed">
-              India was 31/4 and it looked like game over. Then King Kohli played the innings of his life—hitting that crazy straight six off Haris Rauf back over his head. Pure chills every single time.
+            <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+              India was 31/4 and dead in the water. Then King Kohli authored the greatest T20 chase ever—stepping back and dispatching Haris Rauf for that unfathomable straight six back over his head. Pure spine-tingling majesty.
             </p>
 
-            <div className="pt-2 text-xs font-semibold text-white">
-              ✦ Sanjith's take: <span className="text-[#94a3b8] font-normal">The greatest T20 chase of all time.</span>
+            <div className="pt-2 text-xs font-mono font-bold text-white flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
+              Sanjith's Take: "The greatest run-chase under pressure in cricket history."
             </div>
           </div>
 
-          {/* Match 2: Ben Stokes 135* */}
-          <div className="p-6 rounded-lg bg-[#121317] border border-white/[0.06] space-y-3">
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded-full border border-amber-500/20">
-                HEADINGLEY 2019
+          {/* Headingley 135* Card */}
+          <div className="p-7 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4 relative overflow-hidden group hover:border-amber-500/40 transition-colors">
+            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+              <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-2.5 py-0.5 rounded border border-amber-500/20">
+                HEADINGLEY 2019 • THE ASHES
               </span>
-              <span className="text-xs text-[#94a3b8] font-medium">The Ashes</span>
+              <span className="text-xs text-[#94a3b8] font-mono">ENGLAND VS AUSTRALIA</span>
             </div>
 
-            <h4 className="font-editorial text-xl font-bold text-white">
-              Ben Stokes' 135* vs Australia
+            <h4 className="font-editorial text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">
+              Ben Stokes' 135* (Last Wicket Heroics)
             </h4>
 
-            <p className="text-xs text-[#94a3b8] leading-relaxed">
-              Last wicket, 73 runs still needed to win. Stokes started smashing sixes all over the ground while Jack Leach kept cleaning his glasses at the other end. Never ever give up.
+            <p className="text-xs sm:text-sm text-[#94a3b8] leading-relaxed">
+              Last wicket standing, 73 runs still required with Jack Leach blocking and cleaning his glasses. Stokes launched an unrelenting six-hitting barrage to pull off the impossible Test miracle.
             </p>
 
-            <div className="pt-2 text-xs font-semibold text-white">
-              ✦ Sanjith's take: <span className="text-[#94a3b8] font-normal">Pure fight until the last ball.</span>
+            <div className="pt-2 text-xs font-mono font-bold text-white flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+              Sanjith's Take: "Pure heart. Proof that you never give up until the final ball."
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* 5. Birthday Wishes Board */}
+      {/* 5. Birthday Guestbook Message Board */}
       <section>
         <ModernGuestbook />
       </section>
