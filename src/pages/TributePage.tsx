@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModernGuestbook } from '../components/ModernGuestbook';
 import { InteractiveJerseyArtifact } from '../components/InteractiveJerseyArtifact';
-import { Sparkles, Trophy, Target, ArrowUpRight, Flame, Zap, Shield, Compass, Star } from 'lucide-react';
+import { Sparkles, Target, ArrowUpRight, Flame, Zap, Shield, Compass, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface TributePageProps {
@@ -32,11 +32,11 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
           {/* Left Column: Bold Editorial Typography */}
           <div className="lg:col-span-7 space-y-5">
             <div className="flex flex-wrap items-center gap-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-red-600 text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-red-600 text-white font-label text-[11px] shadow-sm">
                 <Star className="w-3 h-3 fill-white" />
                 OFFICIAL COMMEMORATIVE EDITION
               </span>
-              <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20">
+              <span className="text-xs font-label text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-md border border-amber-500/20">
                 RCB 12TH MAN ARMY
               </span>
             </div>
@@ -52,7 +52,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
             <div className="pt-2 flex flex-wrap items-center gap-4">
               <button
                 onClick={triggerBirthdayCheer}
-                className="px-7 py-4 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-lg shadow-xl shadow-red-950/40 transition-all flex items-center gap-2.5 cursor-pointer hover:-translate-y-0.5 active:translate-y-0"
+                className="px-7 py-4 bg-red-600 hover:bg-red-500 text-white font-bold text-sm rounded-lg shadow-xl shadow-red-950/40 transition-colors flex items-center gap-2.5 cursor-pointer active:bg-red-700"
               >
                 <Sparkles className="w-4 h-4 text-amber-300" />
                 <span>POP CELEBRATION 🎉</span>
@@ -61,7 +61,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               {onNavigate && (
                 <button
                   onClick={() => onNavigate('batting')}
-                  className="px-6 py-4 bg-[#1b1d24] hover:bg-[#232630] text-white font-semibold text-sm rounded-lg border border-white/[0.1] transition-all flex items-center gap-2 cursor-pointer hover:border-red-500/50"
+                  className="px-6 py-4 bg-[#1b1d24] hover:bg-[#232630] text-white font-semibold text-sm rounded-lg border border-white/[0.1] transition-colors flex items-center gap-2 cursor-pointer hover:border-red-500/50"
                 >
                   <Target className="w-4 h-4 text-red-500" />
                   <span>Face Starc in the Nets</span>
@@ -86,18 +86,18 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
             <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
               <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-red-500" />
-                <span className="text-xs uppercase tracking-wider text-red-400 font-bold font-mono">
+                <span className="text-xs text-red-400 font-label">
                   SQUAD PROFILE // RECORD #10
                 </span>
               </div>
-              <span className="px-3 py-0.5 rounded text-[11px] font-mono font-bold bg-white/[0.06] text-white border border-white/[0.08]">
+              <span className="px-3 py-0.5 rounded text-[11px] font-label bg-white/[0.06] text-white border border-white/[0.08]">
                 ALL-ROUNDER
               </span>
             </div>
 
             <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold block mb-1">
+                <span className="text-[10px] font-label text-[#94a3b8] block mb-1">
                   TRADEMARK SHOT
                 </span>
                 <div className="text-sm font-bold text-white flex items-baseline gap-1.5">
@@ -109,7 +109,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               </div>
 
               <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase text-red-400 font-bold block mb-1">
+                <span className="text-[10px] font-label text-red-400 block mb-1">
                   20TH OVER WEAPON
                 </span>
                 <div className="text-sm font-bold text-white">
@@ -121,7 +121,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               </div>
 
               <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold block mb-1">
+                <span className="text-[10px] font-label text-amber-400 block mb-1">
                   CRICKET IDOLS
                 </span>
                 <div className="text-sm font-bold text-white">
@@ -133,7 +133,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               </div>
 
               <div className="p-4 rounded-lg bg-[#0e0f13] border border-white/[0.06]">
-                <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold block mb-1">
+                <span className="text-[10px] font-label text-[#94a3b8] block mb-1">
                   ICONIC MATCHES
                 </span>
                 <div className="text-sm font-bold text-white">
@@ -161,7 +161,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
         <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
           {/* Interactive Feature Cards */}
           <div className="p-6 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4">
-            <span className="text-[10px] font-mono uppercase text-[#94a3b8] font-bold tracking-wider block">
+            <span className="text-[10px] font-label text-[#94a3b8] block">
               GROUND COMMAND & GAMES
             </span>
 
@@ -169,10 +169,10 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               <div className="space-y-3">
                 <div
                   onClick={() => onNavigate('batting')}
-                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-red-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-red-500/40 transition-colors cursor-pointer group flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-red-600/10 border border-red-500/20 flex items-center justify-center text-red-500 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-red-600/10 border border-red-500/20 flex items-center justify-center text-red-500">
                       <Target className="w-5 h-5" />
                     </div>
                     <div>
@@ -182,15 +182,15 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
                       <p className="text-xs text-[#94a3b8]">Play your wrist flick against Mitchell Starc</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8]" />
                 </div>
 
                 <div
                   onClick={() => onNavigate('fielding')}
-                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-emerald-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-emerald-500/40 transition-colors cursor-pointer group flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-600/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
                       <Compass className="w-5 h-5" />
                     </div>
                     <div>
@@ -200,16 +200,16 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
                       <p className="text-xs text-[#94a3b8]">Drag 11 fielders into death over traps</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8]" />
                 </div>
 
                 <div
                   onClick={() => onNavigate('scores')}
-                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-amber-500/40 transition-all cursor-pointer group flex items-center justify-between"
+                  className="p-4 rounded-lg bg-[#0e0f13] hover:bg-[#1b1d24] border border-white/[0.06] hover:border-amber-500/40 transition-colors cursor-pointer group flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-105 transition-transform">
-                      <Trophy className="w-5 h-5" />
+                    <div className="w-10 h-10 rounded-lg bg-amber-600/10 border border-amber-500/20 flex items-center justify-center text-amber-400">
+                      <Shield className="w-5 h-5" />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-white group-hover:text-amber-400 transition-colors">
@@ -218,7 +218,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
                       <p className="text-xs text-[#94a3b8]">Real-time ball flight & wagon wheel</p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 text-[#94a3b8]" />
                 </div>
               </div>
             )}
@@ -234,7 +234,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               <span className="p-1.5 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/30">
                 <Zap className="w-4 h-4" />
               </span>
-              <span className="text-xs font-mono uppercase tracking-widest text-amber-400 font-bold">
+              <span className="text-xs font-label text-amber-400">
                 SQUAD FOLKLORE ARCHIVE // UNFORGOTTEN MOMENT
               </span>
             </div>
@@ -254,14 +254,14 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
 
           <div className="lg:col-span-4 flex justify-center">
             <div className="w-full max-w-xs p-6 rounded-lg bg-[#0e0f13] border border-amber-500/30 text-center space-y-3">
-              <div className="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold">
+              <div className="text-[10px] font-label text-amber-400">
                 OFFICIAL MATCH VERDICT
               </div>
               <div className="font-editorial text-5xl font-black text-white">
                 4 RUNS
               </div>
               <div className="h-px bg-white/[0.08]" />
-              <div className="text-xs text-[#cbd5e1] font-mono space-y-1 text-left">
+              <div className="text-xs text-[#cbd5e1] space-y-1 text-left">
                 <div>👟 Shoelaces: <strong className="text-white">Double-knotted (100%)</strong></div>
                 <div>👀 Ball tracked: <strong className="text-red-400">0.0%</strong></div>
                 <div>👑 Squad Laughs: <strong className="text-amber-400">Infinite</strong></div>
@@ -284,10 +284,10 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
           {/* Melbourne 82* Card */}
           <div className="p-7 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4 relative overflow-hidden group hover:border-red-500/40 transition-colors">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-              <span className="text-[11px] font-mono font-bold text-red-400 uppercase tracking-wider bg-red-500/10 px-2.5 py-0.5 rounded border border-red-500/20">
+              <span className="text-[11px] font-label text-red-400 bg-red-500/10 px-2.5 py-0.5 rounded border border-red-500/20">
                 MELBOURNE 2022 • T20 WORLD CUP
               </span>
-              <span className="text-xs text-[#94a3b8] font-mono">INDIA VS PAKISTAN</span>
+              <span className="text-xs text-[#94a3b8] font-label">INDIA VS PAKISTAN</span>
             </div>
 
             <h4 className="font-editorial text-2xl font-bold text-white group-hover:text-red-400 transition-colors">
@@ -298,7 +298,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               India was 31/4 and dead in the water. Then King Kohli authored the greatest T20 chase ever—stepping back and dispatching Haris Rauf for that unfathomable straight six back over his head. Pure spine-tingling majesty.
             </p>
 
-            <div className="pt-2 text-xs font-mono font-bold text-white flex items-center gap-2">
+            <div className="pt-2 text-xs font-label text-white flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
               Sanjith's Take: "The greatest run-chase under pressure in cricket history."
             </div>
@@ -307,10 +307,10 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
           {/* Headingley 135* Card */}
           <div className="p-7 rounded-xl bg-[#14151b] border border-white/[0.08] shadow-xl space-y-4 relative overflow-hidden group hover:border-amber-500/40 transition-colors">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-              <span className="text-[11px] font-mono font-bold text-amber-400 uppercase tracking-wider bg-amber-500/10 px-2.5 py-0.5 rounded border border-amber-500/20">
+              <span className="text-[11px] font-label text-amber-400 bg-amber-500/10 px-2.5 py-0.5 rounded border border-amber-500/20">
                 HEADINGLEY 2019 • THE ASHES
               </span>
-              <span className="text-xs text-[#94a3b8] font-mono">ENGLAND VS AUSTRALIA</span>
+              <span className="text-xs text-[#94a3b8] font-label">ENGLAND VS AUSTRALIA</span>
             </div>
 
             <h4 className="font-editorial text-2xl font-bold text-white group-hover:text-amber-400 transition-colors">
@@ -321,7 +321,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
               Last wicket standing, 73 runs still required with Jack Leach blocking and cleaning his glasses. Stokes launched an unrelenting six-hitting barrage to pull off the impossible Test miracle.
             </p>
 
-            <div className="pt-2 text-xs font-mono font-bold text-white flex items-center gap-2">
+            <div className="pt-2 text-xs font-label text-white flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               Sanjith's Take: "Pure heart. Proof that you never give up until the final ball."
             </div>

@@ -17,15 +17,23 @@
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    background-color: #0e0f12;
+    background-color: #0c0d11;
     color: #f8fafc;
     overflow-x: hidden;
   }
 }
 
 .font-editorial {
-  font-family: 'Cabinet Grotesk', 'Space Grotesk', system-ui, sans-serif;
-  letter-spacing: -0.03em;
+  font-family: 'Cabinet Grotesk', system-ui, sans-serif;
+  letter-spacing: -0.035em;
+}
+
+.font-label {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-feature-settings: 'tnum' on, 'zero' on;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .perspective-1000 {
