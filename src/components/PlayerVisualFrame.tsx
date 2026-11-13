@@ -30,7 +30,7 @@ export const PlayerVisualFrame: React.FC<PlayerVisualFrameProps> = ({
   return (
     <div className="relative w-full aspect-[4/5] max-w-md mx-auto group">
       {/* Container */}
-      <div className="relative h-full w-full rounded-2xl overflow-hidden bg-[#ece7de] border border-[#ded7cb] shadow-sm flex flex-col justify-between p-6 transition-all">
+      <div className="relative h-full w-full rounded-lg overflow-hidden bg-[#ece7de] border border-[#ded7cb] shadow-sm flex flex-col justify-between p-6 transition-all">
         {/* Background Graphic or Real Photo */}
         {customPhoto ? (
           <div className="absolute inset-0 z-0">

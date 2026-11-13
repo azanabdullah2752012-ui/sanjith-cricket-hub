@@ -43,7 +43,7 @@ export const ModernSoundboard: React.FC = () => {
   };
 
   return (
-    <div className="ald-card p-6 md:p-10 rounded-2xl relative overflow-hidden">
+    <div className="ald-card p-6 md:p-10 rounded-lg relative overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[#ded7cb] gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">

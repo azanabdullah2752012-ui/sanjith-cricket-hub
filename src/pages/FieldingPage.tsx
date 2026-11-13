@@ -123,7 +123,7 @@ export const FieldingPage: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Header Banner */}
-      <div className="ald-card p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-[#17181d] via-[#1a1518] to-[#17181d] border border-white/[0.08] shadow-xl">
+      <div className="ald-card p-6 md:p-8 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-[#17181d] via-[#1a1518] to-[#17181d] border border-white/[0.08] shadow-xl">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
@@ -161,7 +161,7 @@ export const FieldingPage: React.FC = () => {
       {/* Main Interactive Field and Strategic Breakdown */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Stadium Turf */}
-        <div className="lg:col-span-7 ald-card p-6 md:p-8 rounded-3xl flex flex-col items-center relative bg-[#16181d] border border-white/[0.08] shadow-xl">
+        <div className="lg:col-span-7 ald-card p-6 md:p-8 rounded-xl flex flex-col items-center relative bg-[#16181d] border border-white/[0.08] shadow-xl">
           <div className="flex items-center justify-between w-full mb-4 pb-3 border-b border-white/[0.08]">
             <div>
               <span className="font-editorial text-sm uppercase font-bold text-white flex items-center gap-2">
@@ -290,7 +290,7 @@ export const FieldingPage: React.FC = () => {
         </div>
 
         {/* Right: Tactical Plan Details */}
-        <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-3xl flex flex-col justify-between space-y-6 bg-[#16181d] border border-white/[0.08] shadow-xl">
+        <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-xl flex flex-col justify-between space-y-6 bg-[#16181d] border border-white/[0.08] shadow-xl">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <span className="text-[10px] uppercase font-bold tracking-wider text-[#94a3b8]">
@@ -306,7 +306,7 @@ export const FieldingPage: React.FC = () => {
             </h3>
 
             {/* The Plan */}
-            <div className="mt-4 p-4 rounded-2xl bg-[#121317] border border-white/[0.06]">
+            <div className="mt-4 p-4 rounded-lg bg-[#121317] border border-white/[0.06]">
               <span className="text-[10px] text-[#94a3b8] uppercase font-bold block mb-1">
                 The Plan
               </span>
@@ -318,7 +318,7 @@ export const FieldingPage: React.FC = () => {
             </div>
 
             {/* How We Get Them Out */}
-            <div className="mt-4 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
+            <div className="mt-4 p-4 rounded-lg bg-amber-500/10 border border-amber-500/20">
               <span className="text-[10px] text-amber-400 uppercase font-bold block mb-1 flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5" />
                 How We Get Them Out
@@ -331,7 +331,7 @@ export const FieldingPage: React.FC = () => {
             </div>
 
             {/* Selected Fielder Details */}
-            <div className="mt-5 p-4 rounded-2xl bg-[#121317] border border-white/[0.06] shadow-sm">
+            <div className="mt-5 p-4 rounded-lg bg-[#121317] border border-white/[0.06] shadow-sm">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-[#94a3b8] uppercase font-bold block">
                   Selected Fielder: {selectedFielder.name}
@@ -382,7 +382,7 @@ export const FieldingPage: React.FC = () => {
       </div>
 
       {/* Field Positions Guide */}
-      <div className="ald-card p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-xl">
+      <div className="ald-card p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-xl">
         <div className="flex items-center justify-between pb-4 mb-6 border-b border-white/[0.08]">
           <div>
             <span className="text-[10px] uppercase font-bold tracking-wider text-[#94a3b8]">
@@ -399,7 +399,7 @@ export const FieldingPage: React.FC = () => {
           {ALL_FIELDING_POSITIONS.map((p) => (
             <div
               key={p.id}
-              className="p-4 rounded-2xl bg-[#121317] border border-white/[0.06] hover:border-white/[0.14] transition-all flex flex-col justify-between"
+              className="p-4 rounded-lg bg-[#121317] border border-white/[0.06] hover:border-white/[0.14] transition-all flex flex-col justify-between"
             >
               <div>
                 <div className="flex items-center justify-between pb-2 mb-2 border-b border-white/[0.06]">

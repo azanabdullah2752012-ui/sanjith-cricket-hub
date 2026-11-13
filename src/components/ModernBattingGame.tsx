@@ -239,7 +239,7 @@ export const ModernBattingGame: React.FC = () => {
   const strikeRate = balls > 0 ? ((runs / balls) * 100).toFixed(1) : '0.0';
 
   return (
-    <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-[#16181d] border border-white/[0.08] shadow-xl">
+    <div className="ald-card p-6 md:p-10 rounded-xl relative overflow-hidden bg-[#16181d] border border-white/[0.08] shadow-xl">
       {/* Header & Scoreboard */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-white/[0.08] gap-4">
         <div>
@@ -258,7 +258,7 @@ export const ModernBattingGame: React.FC = () => {
         </div>
 
         {/* Clean Modern Scorecard */}
-        <div className="flex items-center gap-3 sm:gap-4 bg-[#121317] px-4 py-2.5 rounded-2xl border border-white/[0.08]">
+        <div className="flex items-center gap-3 sm:gap-4 bg-[#121317] px-4 py-2.5 rounded-lg border border-white/[0.08]">
           <div>
             <span className="text-[10px] text-[#64748b] uppercase font-bold block">RUNS</span>
             <span className="text-lg font-bold text-white">{runs} <span className="text-xs text-[#94a3b8]">({wickets} out)</span></span>
@@ -290,7 +290,7 @@ export const ModernBattingGame: React.FC = () => {
 
       {/* Century / Half Century Alert */}
       {milestone && (
-        <div className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm font-semibold flex items-center justify-between gap-3 shadow-sm">
+        <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300 text-sm font-semibold flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-2">
             <Trophy className="w-5 h-5 text-red-400 shrink-0" />
             <span>{milestone}</span>
@@ -306,7 +306,7 @@ export const ModernBattingGame: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Incoming Ball Card */}
-        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06] text-center relative overflow-hidden">
+        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-lg border border-white/[0.06] text-center relative overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs text-red-400 font-bold bg-red-500/10 px-2.5 py-1 rounded-full border border-red-500/20">
               Bowler: {delivery.bowler}
@@ -346,7 +346,7 @@ export const ModernBattingGame: React.FC = () => {
             <button
               key={i}
               onClick={() => handleShot(opt)}
-              className="w-full text-left p-4 rounded-2xl bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-red-500/40 transition-all cursor-pointer group flex items-start justify-between gap-4"
+              className="w-full text-left p-4 rounded-lg bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-red-500/40 transition-all cursor-pointer group flex items-start justify-between gap-4"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">

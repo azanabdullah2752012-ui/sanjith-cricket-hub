@@ -18,7 +18,7 @@ export const SanjithBirthdayHero: React.FC<SanjithBirthdayHeroProps> = ({ onOpen
   };
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#17181d] via-[#1a1518] to-[#17181d] text-[#f8fafc] p-6 md:p-8 border border-white/[0.08] shadow-xl mb-8">
+    <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#17181d] via-[#1a1518] to-[#17181d] text-[#f8fafc] p-6 md:p-8 border border-white/[0.08] shadow-xl mb-8">
       {/* Background #10 Watermark */}
       <div className="absolute right-0 top-0 bottom-0 w-96 opacity-[0.03] pointer-events-none flex items-center justify-center font-editorial font-bold text-[180px] select-none text-white">
         10

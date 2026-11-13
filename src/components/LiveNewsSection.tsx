@@ -20,7 +20,7 @@ export const LiveNewsSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="ald-card p-6 md:p-8 rounded-2xl relative overflow-hidden">
+    <div className="ald-card p-6 md:p-8 rounded-lg relative overflow-hidden">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-[#ded7cb] gap-4">
         <div>

@@ -83,7 +83,7 @@ export const ModernGuestbook: React.FC = () => {
   };
 
   return (
-    <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-[#16181d] border border-white/[0.08]">
+    <div className="ald-card p-6 md:p-10 rounded-xl relative overflow-hidden bg-[#16181d] border border-white/[0.08]">
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-white/[0.08] gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
@@ -114,7 +114,7 @@ export const ModernGuestbook: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Form */}
-        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06] flex flex-col justify-between">
+        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-lg border border-white/[0.06] flex flex-col justify-between">
           <form onSubmit={handleSubmit} className="space-y-4">
             {submittedFeedback && (
               <div className="p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-2 animate-fade-in">
@@ -178,7 +178,7 @@ export const ModernGuestbook: React.FC = () => {
           {messages.map((m) => (
             <div
               key={m.id}
-              className="p-5 rounded-2xl bg-[#121317] border border-white/[0.06] hover:border-white/[0.12] transition-all space-y-3 relative group"
+              className="p-5 rounded-lg bg-[#121317] border border-white/[0.06] hover:border-white/[0.12] transition-all space-y-3 relative group"
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">

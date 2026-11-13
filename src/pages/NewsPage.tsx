@@ -26,7 +26,7 @@ export const NewsPage: React.FC = () => {
   return (
     <div className="space-y-10 animate-fade-in">
       {/* Top Newsroom Header */}
-      <div className="ald-card p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
+      <div className="ald-card p-6 md:p-8 rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
@@ -65,7 +65,7 @@ export const NewsPage: React.FC = () => {
               href={news[0].link}
               target="_blank"
               rel="noreferrer"
-              className="ald-card rounded-3xl overflow-hidden block group bg-white border border-[#ded7cb] hover:border-[#1c1917] transition-all hover:shadow-xl cursor-pointer"
+              className="ald-card rounded-xl overflow-hidden block group bg-white border border-[#ded7cb] hover:border-[#1c1917] transition-all hover:shadow-xl cursor-pointer"
             >
               {news[0].image && (
                 <div className="w-full h-72 sm:h-80 overflow-hidden bg-[#ece7de] relative">
@@ -118,7 +118,7 @@ export const NewsPage: React.FC = () => {
                 href={item.link}
                 target="_blank"
                 rel="noreferrer"
-                className="ald-card p-5 rounded-2xl block group bg-white border border-[#ded7cb] hover:border-[#1c1917] transition-all hover:shadow-md cursor-pointer"
+                className="ald-card p-5 rounded-lg block group bg-white border border-[#ded7cb] hover:border-[#1c1917] transition-all hover:shadow-md cursor-pointer"
               >
                 <div className="flex items-center justify-between text-[11px] text-[#78716c] font-mono mb-1.5">
                   <span className="font-bold text-[#1c1917]">{item.source}</span>
@@ -144,7 +144,7 @@ export const NewsPage: React.FC = () => {
       )}
 
       {/* Physics Laboratory & Technical Umpiring Guidelines */}
-      <div className="ald-card p-6 md:p-8 rounded-3xl bg-white border border-[#ded7cb]">
+      <div className="ald-card p-6 md:p-8 rounded-xl bg-white border border-[#ded7cb]">
         <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#ded7cb]">
           <div className="flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-[#1c1917]" />
@@ -157,7 +157,7 @@ export const NewsPage: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {PRACTICAL_CRICKET_RULES.map((r) => (
-            <div key={r.id} className="p-5 rounded-2xl bg-[#f7f5f0] border border-[#ded7cb] flex flex-col justify-between">
+            <div key={r.id} className="p-5 rounded-lg bg-[#f7f5f0] border border-[#ded7cb] flex flex-col justify-between">
               <div>
                 <span className="text-[10px] font-bold text-[#78716c] uppercase tracking-wider block mb-1">
                   {r.topic}

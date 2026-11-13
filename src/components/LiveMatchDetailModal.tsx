@@ -21,7 +21,7 @@ export const LiveMatchDetailModal: React.FC<LiveMatchModalProps> = ({ match, onC
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md overflow-y-auto animate-fade-in">
-      <div className="relative w-full max-w-6xl bg-[#f5f2eb] border border-[#ded7cb] rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col text-[#1c1917]">
+      <div className="relative w-full max-w-6xl bg-[#f5f2eb] border border-[#ded7cb] rounded-xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col text-[#1c1917]">
         {/* Modal Header */}
         <div className="p-6 md:p-8 bg-[#ece7de] border-b border-[#ded7cb] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
@@ -110,7 +110,7 @@ export const LiveMatchDetailModal: React.FC<LiveMatchModalProps> = ({ match, onC
         {/* Modal Scrollable Body */}
         <div className="flex-1 overflow-y-auto p-6 md:p-8 space-y-8">
           {/* Active Tactical Trap Alert */}
-          <div className="p-4 rounded-2xl bg-[#ece7de] border border-[#ded7cb] flex items-start gap-3">
+          <div className="p-4 rounded-lg bg-[#ece7de] border border-[#ded7cb] flex items-start gap-3">
             <Flame className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <span className="text-[10px] font-bold text-[#78716c] uppercase tracking-wider block">
@@ -125,7 +125,7 @@ export const LiveMatchDetailModal: React.FC<LiveMatchModalProps> = ({ match, onC
           {activeTab === 'field' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Left: Interactive 360 Field Placements with Real Players */}
-              <div className="lg:col-span-7 ald-card p-6 md:p-8 rounded-2xl flex flex-col items-center">
+              <div className="lg:col-span-7 ald-card p-6 md:p-8 rounded-lg flex flex-col items-center">
                 <div className="flex items-center justify-between w-full mb-4 pb-2 border-b border-[#ded7cb]">
                   <span className="text-xs font-mono text-[#78716c] uppercase">LIVE ON-FIELD POSITIONS ({match.playersOnField.length} PLAYERS)</span>
                   <span className="text-xs font-semibold text-[#1c1917] bg-[#ece7de] px-2 py-0.5 rounded">
@@ -200,7 +200,7 @@ export const LiveMatchDetailModal: React.FC<LiveMatchModalProps> = ({ match, onC
               </div>
 
               {/* Right: Selected Player Current Match State & Info */}
-              <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-2xl flex flex-col justify-between space-y-6">
+              <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-lg flex flex-col justify-between space-y-6">
                 <div>
                   <div className="flex items-center justify-between pb-3 border-b border-[#ded7cb]">
                     <span className="text-[10px] uppercase font-bold tracking-wider text-[#78716c]">

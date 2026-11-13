@@ -24,7 +24,7 @@ export const PlayersPage: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Page Header */}
-      <div className="p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
@@ -85,7 +85,7 @@ export const PlayersPage: React.FC = () => {
               <div
                 key={player.id}
                 onClick={() => handleSelectPlayer(player)}
-                className={`p-5 rounded-2xl border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
+                className={`p-5 rounded-lg border transition-all cursor-pointer group flex flex-col justify-between relative overflow-hidden ${
                   isSelected
                     ? 'bg-[#1b1e26] text-white border-red-500/70 shadow-xl shadow-red-950/20'
                     : 'bg-[#16181d] border-white/[0.08] hover:border-white/20 hover:bg-[#1a1c22]'
@@ -135,7 +135,7 @@ export const PlayersPage: React.FC = () => {
         </div>
 
         {/* Right: Selected Player Detail Card */}
-        <div className="lg:col-span-5 p-6 md:p-8 rounded-3xl space-y-6 bg-[#16181d] border border-white/[0.08] shadow-xl">
+        <div className="lg:col-span-5 p-6 md:p-8 rounded-xl space-y-6 bg-[#16181d] border border-white/[0.08] shadow-xl">
           <div className="flex items-center justify-between pb-4 border-b border-white/[0.08]">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-red-400">
@@ -163,7 +163,7 @@ export const PlayersPage: React.FC = () => {
           </div>
 
           {/* Signature Shot / Style */}
-          <div className="p-4 rounded-2xl bg-[#0e0f12] border border-white/[0.08]">
+          <div className="p-4 rounded-lg bg-[#0e0f12] border border-white/[0.08]">
             <span className="text-[10px] text-slate-400 uppercase tracking-wider block font-bold mb-1 flex items-center gap-1.5">
               <Trophy className="w-3.5 h-3.5 text-amber-400" />
               What They Do Best
@@ -174,7 +174,7 @@ export const PlayersPage: React.FC = () => {
           </div>
 
           {/* Why They're Great */}
-          <div className="p-4 rounded-2xl bg-[#1b1e26] border border-white/[0.08]">
+          <div className="p-4 rounded-lg bg-[#1b1e26] border border-white/[0.08]">
             <span className="text-[10px] text-red-400 uppercase tracking-wider block font-bold mb-1.5 flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-red-500" />
               Why They're So Good
@@ -185,7 +185,7 @@ export const PlayersPage: React.FC = () => {
           </div>
 
           {/* Match Winning Moment */}
-          <div className="p-4 rounded-2xl bg-[#0e0f12] border border-white/[0.08]">
+          <div className="p-4 rounded-lg bg-[#0e0f12] border border-white/[0.08]">
             <span className="text-[10px] text-amber-400 uppercase tracking-wider block font-bold mb-1.5 flex items-center gap-1.5">
               <Shield className="w-3.5 h-3.5 text-amber-500" />
               Match-Winning Impact

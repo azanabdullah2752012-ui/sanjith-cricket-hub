@@ -12,7 +12,7 @@ export const FieldingTacticsSection: React.FC = () => {
   };
 
   return (
-    <div className="ald-card p-6 md:p-8 rounded-2xl relative overflow-hidden">
+    <div className="ald-card p-6 md:p-8 rounded-lg relative overflow-hidden">
       {/* Header */}
       <div className="pb-6 mb-6 border-b border-[#ded7cb]">
         <div className="flex items-center gap-2 mb-1">

@@ -26,7 +26,7 @@ export const WagonWheel: React.FC = () => {
   };
 
   return (
-    <div className="pavilion-card p-6 md:p-8 rounded-2xl relative overflow-hidden">
+    <div className="pavilion-card p-6 md:p-8 rounded-lg relative overflow-hidden">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[#d4af37]/20 gap-4">
         <div>

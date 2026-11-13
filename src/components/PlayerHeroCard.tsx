@@ -16,7 +16,7 @@ export const PlayerHeroCard: React.FC = () => {
   };
 
   return (
-    <div className="relative rounded-3xl overflow-hidden border-2 border-[#d4af37]/40 shadow-2xl bg-gradient-to-b from-[#241a13] via-[#1a1410] to-[#120e0b]">
+    <div className="relative rounded-xl overflow-hidden border-2 border-[#d4af37]/40 shadow-2xl bg-gradient-to-b from-[#241a13] via-[#1a1410] to-[#120e0b]">
       {/* Decorative Ornate Corner Borders */}
       <div className="absolute top-3 left-3 w-8 h-8 border-t-2 border-l-2 border-[#d4af37]/60 pointer-events-none" />
       <div className="absolute top-3 right-3 w-8 h-8 border-t-2 border-r-2 border-[#d4af37]/60 pointer-events-none" />

@@ -27,7 +27,7 @@ export const LiveScoresPage: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Page Header */}
-      <div className="p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-lg flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
@@ -59,7 +59,7 @@ export const LiveScoresPage: React.FC = () => {
           <div
             key={match.id}
             onClick={() => handleOpenMatchStudio(match)}
-            className="p-6 rounded-2xl bg-[#16181d] border border-white/[0.08] hover:border-white/20 transition-all cursor-pointer group flex flex-col justify-between hover:shadow-xl hover:bg-[#1a1c22] relative overflow-hidden"
+            className="p-6 rounded-lg bg-[#16181d] border border-white/[0.08] hover:border-white/20 transition-all cursor-pointer group flex flex-col justify-between hover:shadow-xl hover:bg-[#1a1c22] relative overflow-hidden"
           >
             {/* Top Status Bar */}
             <div>
@@ -120,7 +120,7 @@ export const LiveScoresPage: React.FC = () => {
       </div>
 
       {/* Tactical Pitch Surface Guide */}
-      <div className="p-6 md:p-8 rounded-2xl bg-[#16181d] border border-white/[0.08]">
+      <div className="p-6 md:p-8 rounded-lg bg-[#16181d] border border-white/[0.08]">
         <div className="flex items-center gap-2 mb-4">
           <Zap className="w-4 h-4 text-amber-400" />
           <h3 className="text-base font-bold text-white">

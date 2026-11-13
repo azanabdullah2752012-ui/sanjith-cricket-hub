@@ -109,7 +109,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Real Data Notice */}
-      <div className="p-4 rounded-2xl bg-[#16181d] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-md">
+      <div className="p-4 rounded-lg bg-[#16181d] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-md">
         <div className="flex items-center gap-2">
           <Info className="w-4 h-4 text-red-500 shrink-0" />
           <span className="text-slate-300">
@@ -162,7 +162,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
       </div>
 
       {/* Match Banner Header */}
-      <div className="p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg">
+      <div className="p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-lg">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
@@ -189,7 +189,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
           </div>
 
           {/* Scores Display */}
-          <div className="flex items-center gap-6 bg-[#0e0f12] p-4 rounded-2xl border border-white/[0.08]">
+          <div className="flex items-center gap-6 bg-[#0e0f12] p-4 rounded-lg border border-white/[0.08]">
             <div className="flex items-center gap-3">
               <span className="text-2xl">{match.teamA.flag}</span>
               <div>
@@ -241,7 +241,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
       {/* Main Studio Arena Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: 360 Dynamic Field */}
-        <div className="lg:col-span-7 p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col items-center relative">
+        <div className="lg:col-span-7 p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col items-center relative">
           <div className="flex items-center justify-between w-full mb-4 pb-3 border-b border-white/[0.08]">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -348,7 +348,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
         </div>
 
         {/* Right: Selected Player Dossier Card */}
-        <div className="lg:col-span-5 p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col justify-between space-y-6">
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <span className="text-[10px] uppercase font-bold tracking-wider text-red-400">
@@ -367,7 +367,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             </div>
 
             {/* Current Position Badge */}
-            <div className="mt-4 p-4 bg-[#0e0f12] rounded-2xl border border-white/[0.08]">
+            <div className="mt-4 p-4 bg-[#0e0f12] rounded-lg border border-white/[0.08]">
               <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">
                 Current Position on the Field
               </span>
@@ -378,7 +378,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             </div>
 
             {/* Match Stats */}
-            <div className="mt-4 p-4 bg-[#1b1e26] rounded-2xl border border-white/[0.08]">
+            <div className="mt-4 p-4 bg-[#1b1e26] rounded-lg border border-white/[0.08]">
               <span className="text-[10px] text-slate-400 uppercase font-bold block mb-2">
                 Today's Match Stats
               </span>

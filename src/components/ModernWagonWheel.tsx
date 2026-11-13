@@ -22,7 +22,7 @@ export const ModernWagonWheel: React.FC = () => {
   };
 
   return (
-    <div className="p-6 md:p-10 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg relative overflow-hidden">
+    <div className="p-6 md:p-10 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-lg relative overflow-hidden">
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-white/[0.08] gap-4">
         <div>
@@ -161,7 +161,7 @@ export const ModernWagonWheel: React.FC = () => {
         </div>
 
         {/* Selected Vector Breakdown */}
-        <div className="lg:col-span-5 flex flex-col justify-between h-full bg-[#0e0f12] p-6 rounded-2xl border border-white/[0.08]">
+        <div className="lg:col-span-5 flex flex-col justify-between h-full bg-[#0e0f12] p-6 rounded-lg border border-white/[0.08]">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs uppercase tracking-wider text-red-400 font-bold">

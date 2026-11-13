@@ -133,7 +133,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
   };
 
   return (
-    <div className="p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg space-y-6">
+    <div className="p-6 md:p-8 rounded-xl bg-[#16181d] border border-white/[0.08] shadow-lg space-y-6">
       {/* Title & Filter Bar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 border-b border-white/[0.08] gap-4">
         <div>
@@ -260,7 +260,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
 
         {/* Right: Selected Ball Info */}
         <div className="md:col-span-6 space-y-4">
-          <div className="p-5 rounded-2xl bg-[#0e0f12] border border-white/[0.08] space-y-4">
+          <div className="p-5 rounded-lg bg-[#0e0f12] border border-white/[0.08] space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
               <div className="flex items-center gap-2.5">
                 <span className="w-8 h-8 rounded-lg bg-red-600 text-white font-mono text-sm font-bold flex items-center justify-center">
