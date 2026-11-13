@@ -20,52 +20,52 @@ export function App() {
 
   const triggerCelebration = () => {
     confetti({
-      particleCount: 140,
-      spread: 95,
-      origin: { y: 0.3 },
-      colors: ['#dc2626', '#b45309', '#1c1917', '#f5f2eb']
+      particleCount: 150,
+      spread: 100,
+      origin: { y: 0.35 },
+      colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444']
     });
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f2eb] text-[#1c1917] flex flex-col relative selection:bg-[#1c1917] selection:text-[#f5f2eb]">
-      {/* Clean Top Navigation Bar */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#f5f2eb]/90 border-b border-[#ded7cb] transition-all">
+    <div className="min-h-screen bg-[#0e0f12] text-[#f8fafc] flex flex-col relative selection:bg-red-600 selection:text-white">
+      {/* Floating Modern Header */}
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0e0f12]/85 border-b border-white/[0.08] transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Logo / Title */}
+          {/* Logo / Brand */}
           <div
             onClick={() => handleNavClick('tribute')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-10 h-10 rounded-xl bg-[#1c1917] flex items-center justify-center text-[#f5f2eb] font-editorial font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center text-white font-editorial font-bold text-lg shadow-sm group-hover:scale-105 transition-transform border border-red-500/30">
               10
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-editorial text-lg md:text-xl font-bold tracking-tight text-[#1c1917]">
+                <span className="font-editorial text-lg md:text-xl font-bold tracking-tight text-white">
                   SANJITH'S PAVILION
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-800 font-bold border border-red-200">
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-500/10 text-red-400 font-bold border border-red-500/20">
                   RCB #10
                 </span>
               </div>
-              <span className="text-[11px] text-[#78716c] block -mt-0.5">
+              <span className="text-[11px] text-[#94a3b8] block -mt-0.5">
                 Happy Birthday Sanjith • Made by Azan
               </span>
             </div>
           </div>
 
-          {/* Simple Tab Buttons */}
-          <nav className="hidden lg:flex items-center gap-1.5 bg-[#ece7de] p-1.5 rounded-full border border-[#ded7cb]">
+          {/* Clean Navigation Tabs */}
+          <nav className="hidden lg:flex items-center gap-1.5 bg-[#16181d] p-1.5 rounded-full border border-white/[0.08]">
             <button
               onClick={() => handleNavClick('tribute')}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'tribute'
-                  ? 'bg-[#1c1917] text-[#f5f2eb] shadow-sm'
-                  : 'text-[#78716c] hover:text-[#1c1917]'
+                  ? 'bg-white text-[#0e0f12] shadow-sm'
+                  : 'text-[#94a3b8] hover:text-white'
               }`}
             >
-              <Gift className="w-3.5 h-3.5 text-red-600" />
+              <Gift className="w-3.5 h-3.5 text-red-500" />
               <span>Birthday Hub</span>
             </button>
 
@@ -73,11 +73,11 @@ export function App() {
               onClick={() => handleNavClick('batting')}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'batting'
-                  ? 'bg-[#1c1917] text-[#f5f2eb] shadow-sm'
-                  : 'text-[#78716c] hover:text-[#1c1917]'
+                  ? 'bg-white text-[#0e0f12] shadow-sm'
+                  : 'text-[#94a3b8] hover:text-white'
               }`}
             >
-              <Target className="w-3.5 h-3.5 text-amber-600" />
+              <Target className="w-3.5 h-3.5 text-amber-500" />
               <span>Batting Game</span>
             </button>
 
@@ -85,8 +85,8 @@ export function App() {
               onClick={() => handleNavClick('fielding')}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'fielding'
-                  ? 'bg-[#1c1917] text-[#f5f2eb] shadow-sm'
-                  : 'text-[#78716c] hover:text-[#1c1917]'
+                  ? 'bg-white text-[#0e0f12] shadow-sm'
+                  : 'text-[#94a3b8] hover:text-white'
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
@@ -97,11 +97,11 @@ export function App() {
               onClick={() => handleNavClick('scores')}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'scores'
-                  ? 'bg-[#1c1917] text-[#f5f2eb] shadow-sm'
-                  : 'text-[#78716c] hover:text-[#1c1917]'
+                  ? 'bg-white text-[#0e0f12] shadow-sm'
+                  : 'text-[#94a3b8] hover:text-white'
               }`}
             >
-              <Radio className="w-3.5 h-3.5 text-red-600" />
+              <Radio className="w-3.5 h-3.5 text-red-500" />
               <span>Live Matches</span>
             </button>
 
@@ -109,8 +109,8 @@ export function App() {
               onClick={() => handleNavClick('players')}
               className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
                 currentPage === 'players'
-                  ? 'bg-[#1c1917] text-[#f5f2eb] shadow-sm'
-                  : 'text-[#78716c] hover:text-[#1c1917]'
+                  ? 'bg-white text-[#0e0f12] shadow-sm'
+                  : 'text-[#94a3b8] hover:text-white'
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -121,19 +121,19 @@ export function App() {
           {/* Celebration Button */}
           <button
             onClick={triggerCelebration}
-            className="px-3.5 py-1.5 bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] font-semibold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-semibold text-xs rounded-xl shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span className="hidden sm:inline">CELEBRATE 🎉</span>
           </button>
         </div>
 
         {/* Mobile Navigation */}
-        <div className="flex lg:hidden overflow-x-auto px-4 py-2 bg-[#ece7de] border-t border-[#ded7cb] gap-1.5 scrollbar-none">
+        <div className="flex lg:hidden overflow-x-auto px-4 py-2 bg-[#121317] border-t border-white/[0.08] gap-1.5 scrollbar-none">
           <button
             onClick={() => handleNavClick('tribute')}
             className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-semibold flex items-center gap-1 ${
-              currentPage === 'tribute' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
+              currentPage === 'tribute' ? 'bg-white text-[#0e0f12]' : 'text-[#94a3b8]'
             }`}
           >
             <Gift className="w-3 h-3 text-red-500" />
@@ -142,16 +142,16 @@ export function App() {
           <button
             onClick={() => handleNavClick('batting')}
             className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-semibold flex items-center gap-1 ${
-              currentPage === 'batting' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
+              currentPage === 'batting' ? 'bg-white text-[#0e0f12]' : 'text-[#94a3b8]'
             }`}
           >
-            <Target className="w-3 h-3 text-amber-600" />
+            <Target className="w-3 h-3 text-amber-500" />
             Batting Game
           </button>
           <button
             onClick={() => handleNavClick('fielding')}
             className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-semibold flex items-center gap-1 ${
-              currentPage === 'fielding' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
+              currentPage === 'fielding' ? 'bg-white text-[#0e0f12]' : 'text-[#94a3b8]'
             }`}
           >
             <Compass className="w-3 h-3" />
@@ -160,16 +160,16 @@ export function App() {
           <button
             onClick={() => handleNavClick('scores')}
             className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-semibold flex items-center gap-1 ${
-              currentPage === 'scores' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
+              currentPage === 'scores' ? 'bg-white text-[#0e0f12]' : 'text-[#94a3b8]'
             }`}
           >
-            <Radio className="w-3 h-3 text-red-600" />
+            <Radio className="w-3 h-3 text-red-500" />
             Live Matches
           </button>
           <button
             onClick={() => handleNavClick('players')}
             className={`px-3 py-1 rounded-full text-xs whitespace-nowrap font-semibold flex items-center gap-1 ${
-              currentPage === 'players' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
+              currentPage === 'players' ? 'bg-white text-[#0e0f12]' : 'text-[#94a3b8]'
             }`}
           >
             <Users className="w-3 h-3" />
@@ -178,9 +178,9 @@ export function App() {
         </div>
       </header>
 
-      {/* Main Page Area */}
+      {/* Main Content Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full">
-        {/* Banner shown on other pages */}
+        {/* Banner shown on non-tribute pages */}
         {currentPage !== 'tribute' && (
           <SanjithBirthdayHero onOpenTribute={() => handleNavClick('tribute')} />
         )}
@@ -194,19 +194,19 @@ export function App() {
         {currentPage === 'players' && <PlayersPage />}
       </main>
 
-      {/* Footer */}
-      <footer className="mt-20 border-t border-[#ded7cb] bg-[#ece7de] py-10 text-center text-xs text-[#78716c]">
+      {/* Clean Modern Footer */}
+      <footer className="mt-20 border-t border-white/[0.08] bg-[#121317] py-10 text-center text-xs text-[#94a3b8]">
         <div className="max-w-4xl mx-auto px-4 space-y-2">
-          <div className="font-editorial text-sm font-bold text-[#1c1917] flex items-center justify-center gap-2">
+          <div className="font-editorial text-sm font-bold text-white flex items-center justify-center gap-2">
             <span>SANJITH'S PAVILION</span>
             <span>•</span>
-            <span className="text-red-700">RCB #10 BIRTHDAY SPECIAL</span>
+            <span className="text-red-400">RCB #10 BIRTHDAY SPECIAL</span>
           </div>
-          <p className="text-[#78716c]">
-            Made with love for Sanjith by Azan. Live cricket scores, fun batting game, and memories that'll never fade.
+          <p className="text-[#94a3b8]">
+            Made with love for Sanjith by Azan. Dedicated to the 12th Man Army, the classic wrist flick, and memories that'll never fade.
           </p>
-          <div className="flex items-center justify-center gap-1.5 pt-2 text-[#1c1917] font-semibold">
-            <Heart className="w-3.5 h-3.5 text-red-600 fill-red-600" />
+          <div className="flex items-center justify-center gap-1.5 pt-2 text-white font-medium">
+            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
             <span>Happy Birthday Sanjith! Stay 100* Not Out forever.</span>
           </div>
         </div>

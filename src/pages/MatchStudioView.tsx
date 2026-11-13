@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DetailedMatch, MatchPlayer } from '../data/matchIntelligenceData';
 import { MATCH_LIVE_SIMULATION_FEED, LiveBallEvent } from '../data/liveSimulationData';
-import { ArrowLeft, Play, Pause, Compass, MapPin, Activity, Flame, Info, CheckCircle2, Crosshair, PieChart } from 'lucide-react';
-import { pavilionAudio } from '../utils/audioEngine';
+import { ArrowLeft, Play, Pause, Compass, MapPin, Info, CheckCircle2 } from 'lucide-react';
 import { InteractivePitchMap } from '../components/InteractivePitchMap';
 import { ModernWagonWheel } from '../components/ModernWagonWheel';
 
@@ -40,9 +39,6 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
     setTimeout(() => {
       setBallPos(event.ballTrajectory.batContact);
       setBallStage('struck');
-      if (event.runs > 0) {
-        pavilionAudio.playWillowCrack();
-      }
     }, 800);
 
     // Stage 4: Ball travels to final field destination (t = 1400ms)
@@ -61,10 +57,8 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
         const nextIdx = (prev + 1) % MATCH_LIVE_SIMULATION_FEED.length;
         const nextEvent = MATCH_LIVE_SIMULATION_FEED[nextIdx];
 
-        // Animate the red cricket ball across the pitch
         animateBallDelivery(nextEvent);
 
-        // Apply smooth player field movements
         setPlayers((prevPlayers) => {
           return prevPlayers.map((p) => {
             if (nextEvent.playerShifts[p.id]) {
@@ -88,7 +82,6 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
   const handleSelectPlayer = (p: MatchPlayer) => {
     setSelectedPlayer(p);
-    pavilionAudio.playWillowCrack();
   };
 
   const manualNextBall = () => {
@@ -115,24 +108,24 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
   return (
     <div className="space-y-8 animate-fade-in">
-      {/* Real Data Transparency Notice */}
-      <div className="p-4 rounded-2xl bg-white border border-[#ded7cb] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-sm">
+      {/* Real Data Notice */}
+      <div className="p-4 rounded-2xl bg-[#16181d] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-md">
         <div className="flex items-center gap-2">
-          <Info className="w-4 h-4 text-[#1c1917] shrink-0" />
-          <span className="text-[#1c1917]">
-            <strong>Data Integrity:</strong> Match scorecards, venue, session state & player rosters are <strong>100% verified real data from Cricinfo</strong>. The ball trajectory & field shift simulation models the tactical over in real time.
+          <Info className="w-4 h-4 text-red-500 shrink-0" />
+          <span className="text-stone-300">
+            <strong>Match Info:</strong> Real scorecards, grounds, and players from actual international cricket games.
           </span>
         </div>
-        <span className="font-mono text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300 font-bold flex items-center gap-1 shrink-0">
-          <CheckCircle2 className="w-3 h-3 text-emerald-700" /> VERIFIED CRICKET DATA
+        <span className="font-mono text-[10px] text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-800/40 font-bold flex items-center gap-1 shrink-0">
+          <CheckCircle2 className="w-3 h-3 text-emerald-400" /> OFFICIAL MATCH DATA
         </span>
       </div>
 
       {/* Top Breadcrumb & Control Bar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#ded7cb] gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-4">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white hover:bg-[#ece7de] text-[#1c1917] text-xs font-semibold border border-[#ded7cb] transition-colors cursor-pointer shadow-sm self-start"
+          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#16181d] hover:bg-[#1f222a] text-stone-200 text-xs font-semibold border border-white/[0.08] transition-colors cursor-pointer shadow-sm self-start"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to All Matches</span>
@@ -140,10 +133,10 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
         {/* Live Simulation Controls */}
         <div className="flex items-center gap-2.5">
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-[#ded7cb] text-xs">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#16181d] border border-white/[0.08] text-xs">
             <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping" />
-            <span className="font-mono text-[11px] font-bold text-red-700">
-              BALL TRAJECTORY & FIELD TRACKING
+            <span className="font-mono text-[11px] font-bold text-red-400">
+              LIVE BALL TRACKING
             </span>
           </div>
 
@@ -151,95 +144,95 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             onClick={() => setIsLiveAutoPlaying(!isLiveAutoPlaying)}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer border ${
               isLiveAutoPlaying
-                ? 'bg-[#1c1917] text-[#f5f2eb] border-[#1c1917]'
-                : 'bg-white text-[#1c1917] border-[#ded7cb]'
+                ? 'bg-red-600 text-white border-red-500'
+                : 'bg-[#16181d] text-stone-300 border-white/[0.08]'
             }`}
           >
             {isLiveAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
-            <span>{isLiveAutoPlaying ? 'Live Sync Active' : 'Paused'}</span>
+            <span>{isLiveAutoPlaying ? 'Live Running' : 'Paused'}</span>
           </button>
 
           <button
             onClick={manualNextBall}
-            className="px-3 py-1.5 rounded-xl bg-[#ece7de] hover:bg-[#ded7cb] text-[#1c1917] text-xs font-semibold border border-[#ded7cb] transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-[#1b1e26] hover:bg-[#232733] text-stone-200 text-xs font-semibold border border-white/[0.08] transition-colors cursor-pointer"
           >
-            <span>Bowl Next Delivery »</span>
+            <span>Bowl Next Ball »</span>
           </button>
         </div>
       </div>
 
       {/* Match Banner Header */}
-      <div className="ald-card p-6 md:p-8 rounded-3xl bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
+      <div className="p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-lg">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-200">
-                LIVE ON-FIELD TELEMETRY
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-red-950/50 text-red-400 border border-red-800/40">
+                LIVE ACTION
               </span>
-              <span className="text-xs text-[#78716c]">• {match.series}</span>
+              <span className="text-xs text-stone-400">• {match.series}</span>
             </div>
 
-            <h1 className="font-editorial text-3xl md:text-4xl font-bold text-[#1c1917] tracking-tight">
+            <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
               {match.matchTitle}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-[#78716c]">
+            <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-stone-400">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-[#1c1917]" />
+                <MapPin className="w-3.5 h-3.5 text-red-500" />
                 {match.venue}
               </span>
               <span>•</span>
-              <span className="font-mono text-[#1c1917] bg-[#ece7de] px-2 py-0.5 rounded font-semibold">
+              <span className="text-stone-300 bg-white/[0.06] px-2 py-0.5 rounded font-medium">
                 {match.daySessionStatus}
               </span>
             </div>
           </div>
 
           {/* Scores Display */}
-          <div className="flex items-center gap-6 bg-white p-4 rounded-2xl border border-[#ded7cb] shadow-sm">
+          <div className="flex items-center gap-6 bg-[#0e0f12] p-4 rounded-2xl border border-white/[0.08]">
             <div className="flex items-center gap-3">
               <span className="text-2xl">{match.teamA.flag}</span>
               <div>
-                <span className="font-editorial text-base font-bold text-[#1c1917] block">{match.teamA.name}</span>
-                <span className="font-mono text-sm text-[#78716c]">{match.teamA.score}</span>
+                <span className="text-sm font-bold text-white block">{match.teamA.name}</span>
+                <span className="font-mono text-sm text-stone-400">{match.teamA.score}</span>
               </div>
             </div>
 
-            <div className="h-8 w-px bg-[#ded7cb]" />
+            <div className="h-8 w-px bg-white/[0.1]" />
 
             <div className="flex items-center gap-3">
               <span className="text-2xl">{match.teamB.flag}</span>
               <div>
-                <span className="font-editorial text-base font-bold text-[#1c1917] block">{match.teamB.name}</span>
-                <span className="font-mono text-sm text-[#1c1917] font-bold">{match.teamB.score}</span>
+                <span className="text-sm font-bold text-white block">{match.teamB.name}</span>
+                <span className="font-mono text-sm text-red-400 font-bold">{match.teamB.score}</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Live Delivery Ticker & Speed Gun */}
-        <div className="mt-6 pt-5 border-t border-[#ded7cb] grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
-          <div className="md:col-span-3 flex items-center gap-3 bg-[#ece7de] p-3 rounded-xl border border-[#ded7cb]">
-            <span className="font-mono font-bold text-sm bg-[#1c1917] text-[#f5f2eb] px-2 py-1 rounded">
+        {/* Live Delivery Ticker */}
+        <div className="mt-6 pt-5 border-t border-white/[0.08] grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          <div className="md:col-span-3 flex items-center gap-3 bg-[#0e0f12] p-3 rounded-xl border border-white/[0.08]">
+            <span className="font-mono font-bold text-sm bg-red-600 text-white px-2 py-1 rounded">
               OV {currentEvent.overBall}
             </span>
             <div className="text-xs">
-              <span className="font-bold text-[#1c1917] block">{currentEvent.bowler}</span>
-              <span className="text-[10px] text-red-700 font-mono font-bold">{currentEvent.speed}</span>
+              <span className="font-bold text-white block">{currentEvent.bowler}</span>
+              <span className="text-[10px] text-red-400 font-mono font-bold">{currentEvent.speed}</span>
             </div>
           </div>
 
-          <div className="md:col-span-9 bg-white p-3 rounded-xl border border-[#ded7cb] text-xs">
-            <div className="flex items-center justify-between mb-0.5">
-              <span className="text-[10px] uppercase font-bold text-red-700 tracking-wider">
-                LIVE BALL ACTION & TACTICAL SHIFT
+          <div className="md:col-span-9 bg-[#0e0f12] p-3 rounded-xl border border-white/[0.08] text-xs">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] uppercase font-bold text-red-400 tracking-wider">
+                LATEST DELIVERY
               </span>
-              <span className="font-mono text-[10px] text-[#78716c]">
-                Ball Status: <strong className="text-[#1c1917] uppercase">{ballStage}</strong>
+              <span className="font-mono text-[10px] text-stone-400">
+                Ball Status: <strong className="text-white uppercase">{ballStage}</strong>
               </span>
             </div>
-            <p className="text-xs text-[#1c1917] leading-relaxed">
-              {currentEvent.eventText} <span className="font-bold text-[#78716c]">({currentEvent.fieldShiftDescription})</span>
+            <p className="text-xs text-stone-200 leading-relaxed">
+              {currentEvent.eventText} <span className="text-stone-400">({currentEvent.fieldShiftDescription})</span>
             </p>
           </div>
         </div>
@@ -247,30 +240,30 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
       {/* Main Studio Arena Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left: 360 Dynamic Field with Real-Time Ball & Player Movement */}
-        <div className="lg:col-span-7 ald-card p-6 md:p-8 rounded-3xl flex flex-col items-center relative">
-          <div className="flex items-center justify-between w-full mb-4 pb-3 border-b border-[#ded7cb]">
+        {/* Left: 360 Dynamic Field */}
+        <div className="lg:col-span-7 p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col items-center relative">
+          <div className="flex items-center justify-between w-full mb-4 pb-3 border-b border-white/[0.08]">
             <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
-              <span className="font-mono text-xs uppercase font-bold text-[#1c1917]">
-                LIVE 360° TURF • BALL TRACKER ACTIVE
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs uppercase font-bold text-white">
+                LIVE 360° GROUND
               </span>
             </div>
-            <span className="text-xs text-[#78716c] font-mono">
-              Red ball animates release ➔ bounce ➔ field
+            <span className="text-xs text-stone-400">
+              Red ball moves: bowler ➔ pitch ➔ fielder
             </span>
           </div>
 
-          {/* SVG Field with Animated Smooth Positions */}
-          <div className="relative w-full max-w-[480px] aspect-square rounded-full border-2 border-dashed border-[#1c1917] bg-[#f7f5f0] p-6 flex items-center justify-center shadow-inner select-none overflow-hidden">
+          {/* Oval Field Canvas */}
+          <div className="relative w-full max-w-[480px] aspect-square rounded-full border-2 border-dashed border-emerald-600/40 bg-gradient-to-b from-[#0c2014] to-[#08170e] p-6 flex items-center justify-center shadow-inner select-none overflow-hidden">
             {/* 30-Yard Circle */}
-            <div className="absolute inset-16 rounded-full border border-dashed border-[#ded7cb] pointer-events-none" />
+            <div className="absolute inset-16 rounded-full border border-dashed border-emerald-500/25 pointer-events-none" />
 
             {/* Pitch Strip */}
-            <div className="absolute w-10 h-36 bg-[#ece7de] border border-[#ded7cb] rounded-sm flex flex-col justify-between items-center py-2 shadow-sm pointer-events-none">
-              <div className="w-6 h-1 bg-[#1c1917]" />
-              <div className="text-[8px] font-mono text-[#78716c] uppercase -rotate-90 font-bold">22 YDS</div>
-              <div className="w-6 h-1 bg-[#1c1917]" />
+            <div className="absolute w-10 h-36 bg-[#2a261f] border border-amber-900/30 rounded-sm flex flex-col justify-between items-center py-2 shadow-sm pointer-events-none">
+              <div className="w-6 h-1 bg-stone-300" />
+              <div className="text-[8px] font-mono text-stone-400 uppercase -rotate-90 font-bold">22 YDS</div>
+              <div className="w-6 h-1 bg-stone-300" />
             </div>
 
             {/* REAL-TIME MOVING RED CRICKET BALL */}
@@ -283,15 +276,14 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               className="absolute -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none"
             >
               <div className="relative">
-                {/* Glowing beacon aura around the ball */}
-                <div className="absolute -inset-1.5 rounded-full bg-red-500/40 animate-ping" />
-                <div className="w-3.5 h-3.5 rounded-full bg-[#881337] border-2 border-white shadow-lg flex items-center justify-center">
-                  <div className="w-1.5 h-0.5 bg-yellow-200 rotate-45" /> {/* Seam line */}
+                <div className="absolute -inset-1.5 rounded-full bg-red-500/50 animate-ping" />
+                <div className="w-3.5 h-3.5 rounded-full bg-[#dc2626] border-2 border-white shadow-lg flex items-center justify-center">
+                  <div className="w-1.5 h-0.5 bg-yellow-200 rotate-45" />
                 </div>
               </div>
             </div>
 
-            {/* Dynamic Player Nodes (Transition positions smoothly over CSS) */}
+            {/* Dynamic Player Nodes */}
             {players.map((p) => {
               const isSelected = selectedPlayer.id === p.id;
               const isBatting = p.currentMatchStats.isBattingNow;
@@ -311,20 +303,19 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
                   }`}
                   title={`${p.name} • ${p.fieldingPositionCurrent}`}
                 >
-                  {/* Outer Pulsing Ring for Selected */}
                   {isSelected && (
-                    <div className="absolute -inset-1 rounded-full bg-[#1c1917]/20 animate-ping pointer-events-none" />
+                    <div className="absolute -inset-1 rounded-full bg-red-500/30 animate-ping pointer-events-none" />
                   )}
 
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-[10px] shadow-md border transition-all ${
                       isSelected
-                        ? 'bg-[#1c1917] text-[#f5f2eb] ring-4 ring-[#ded7cb]'
+                        ? 'bg-red-600 text-white ring-4 ring-red-500/30 border-white'
                         : isBatting
-                        ? 'bg-amber-400 text-black border-amber-600'
+                        ? 'bg-amber-400 text-stone-950 border-amber-300'
                         : isBowling
-                        ? 'bg-red-500 text-white border-red-700'
-                        : 'bg-white text-[#1c1917] border-[#1c1917]'
+                        ? 'bg-red-600 text-white border-red-400'
+                        : 'bg-[#1e2330] text-stone-200 border-white/20'
                     }`}
                   >
                     {p.name.charAt(0)}
@@ -332,8 +323,8 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
                   <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded whitespace-nowrap mt-1 shadow-sm transition-colors ${
                     isSelected
-                      ? 'bg-[#1c1917] text-white'
-                      : 'bg-white/95 text-[#1c1917] border border-[#ded7cb]'
+                      ? 'bg-red-600 text-white'
+                      : 'bg-[#0e0f12]/90 text-stone-300 border border-white/[0.08]'
                   }`}>
                     {p.name.split(' ')[0]}
                   </span>
@@ -343,78 +334,78 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
           </div>
 
           {/* Legend */}
-          <div className="w-full mt-6 pt-3 border-t border-[#ded7cb] flex flex-wrap items-center justify-between text-xs text-[#78716c] gap-2">
+          <div className="w-full mt-6 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-between text-xs text-stone-400 gap-2">
             <div className="flex items-center gap-3 text-[11px]">
-              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-[#881337] border border-white" /> Live Ball</span>
+              <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-600 border border-white" /> Cricket Ball</span>
               <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> Batsmen</span>
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-500" /> Bowler</span>
-              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-white border border-[#1c1917]" /> Fielders</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-600" /> Bowler</span>
+              <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-[#1e2330] border border-white/30" /> Fielders</span>
             </div>
-            <span className="text-[10px] font-mono text-[#1c1917] bg-[#ece7de] px-2 py-0.5 rounded">
-              Ball & Field update in tandem
+            <span className="text-[10px] text-stone-400 bg-white/[0.06] px-2 py-0.5 rounded">
+              Ball & Fielders move live
             </span>
           </div>
         </div>
 
         {/* Right: Selected Player Dossier Card */}
-        <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-3xl flex flex-col justify-between space-y-6">
+        <div className="lg:col-span-5 p-6 md:p-8 rounded-3xl bg-[#16181d] border border-white/[0.08] shadow-xl flex flex-col justify-between space-y-6">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-[#ded7cb]">
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#78716c]">
-                ACTIVE ON-FIELD DOSSIER
+            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+              <span className="text-[10px] uppercase font-bold tracking-wider text-red-400">
+                PLAYER PROFILE
               </span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[#ece7de] text-[#1c1917]">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-white/[0.06] text-stone-200">
                 {selectedPlayer.role}
               </span>
             </div>
 
-            <h2 className="font-editorial text-3xl font-bold text-[#1c1917] mt-3">
+            <h2 className="text-2xl font-bold text-white mt-3">
               {selectedPlayer.name}
             </h2>
-            <div className="text-xs text-[#78716c] mt-0.5">
+            <div className="text-xs text-stone-400 mt-0.5">
               {selectedPlayer.battingHand} {selectedPlayer.bowlingStyle ? `• ${selectedPlayer.bowlingStyle}` : ''}
             </div>
 
             {/* Current Position Badge */}
-            <div className="mt-4 p-4 bg-[#f7f5f0] rounded-2xl border border-[#ded7cb]">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold block mb-1">
-                Current Live Position On Turf
+            <div className="mt-4 p-4 bg-[#0e0f12] rounded-2xl border border-white/[0.08]">
+              <span className="text-[10px] text-stone-400 uppercase font-bold block mb-1">
+                Current Position on the Field
               </span>
-              <div className="text-base font-bold text-[#1c1917] flex items-center gap-2">
-                <Compass className="w-4 h-4 text-[#1c1917]" />
+              <div className="text-base font-bold text-white flex items-center gap-2">
+                <Compass className="w-4 h-4 text-red-500" />
                 {selectedPlayer.fieldingPositionCurrent}
               </div>
             </div>
 
             {/* Match Stats */}
-            <div className="mt-4 p-4 bg-white rounded-2xl border border-[#ded7cb] shadow-sm">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold block mb-2">
-                Match Record So Far
+            <div className="mt-4 p-4 bg-[#1b1e26] rounded-2xl border border-white/[0.08]">
+              <span className="text-[10px] text-stone-400 uppercase font-bold block mb-2">
+                Today's Match Stats
               </span>
 
               {selectedPlayer.currentMatchStats.runs !== undefined && (
                 <div className="flex items-baseline justify-between">
                   <div>
-                    <span className="text-3xl font-editorial font-bold text-[#1c1917]">
+                    <span className="text-3xl font-bold text-white font-mono">
                       {selectedPlayer.currentMatchStats.runs}*
                     </span>
-                    <span className="text-xs text-[#78716c] ml-1.5 font-mono">
+                    <span className="text-xs text-stone-400 ml-1.5 font-mono">
                       off {selectedPlayer.currentMatchStats.balls} balls
                     </span>
                   </div>
-                  <div className="text-right text-xs font-mono text-[#78716c]">
-                    {selectedPlayer.currentMatchStats.fours}x4 • {selectedPlayer.currentMatchStats.sixes}x6
+                  <div className="text-right text-xs font-mono text-stone-400">
+                    {selectedPlayer.currentMatchStats.fours} fours • {selectedPlayer.currentMatchStats.sixes} sixes
                   </div>
                 </div>
               )}
 
               {selectedPlayer.currentMatchStats.overs && (
-                <div className="mt-2 pt-2 border-t border-[#ded7cb] flex items-baseline justify-between text-xs">
-                  <span className="font-mono font-bold text-[#1c1917]">
-                    Spell: {selectedPlayer.currentMatchStats.overs} ov • {selectedPlayer.currentMatchStats.maidens}m • {selectedPlayer.currentMatchStats.runsConceded}r • {selectedPlayer.currentMatchStats.wickets}w
+                <div className="mt-2 pt-2 border-t border-white/[0.08] flex items-baseline justify-between text-xs">
+                  <span className="font-mono text-stone-300">
+                    {selectedPlayer.currentMatchStats.overs} overs • {selectedPlayer.currentMatchStats.wickets} wickets • {selectedPlayer.currentMatchStats.runsConceded} runs
                   </span>
                   {selectedPlayer.currentMatchStats.isBowlingNow && (
-                    <span className="text-[10px] px-2 py-0.5 rounded bg-red-100 text-red-700 font-bold">
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-red-950/60 border border-red-800 text-red-400 font-bold">
                       BOWLING NOW
                     </span>
                   )}
@@ -422,31 +413,31 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               )}
             </div>
 
-            {/* Tactical Weapon & Bio */}
+            {/* Bio */}
             <div className="mt-4 space-y-3">
-              <div className="p-3.5 bg-[#f7f5f0] rounded-xl border border-[#ded7cb]">
-                <span className="text-[10px] text-[#78716c] uppercase font-bold block">Career Style</span>
-                <p className="text-xs text-[#44403c] mt-0.5 leading-relaxed">
+              <div className="p-3.5 bg-[#0e0f12] rounded-xl border border-white/[0.08]">
+                <span className="text-[10px] text-stone-400 uppercase font-bold block">Style of Play</span>
+                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
                   {selectedPlayer.profileBio}
                 </p>
               </div>
 
-              <div className="p-3.5 bg-[#f7f5f0] rounded-xl border border-[#ded7cb]">
-                <span className="text-[10px] text-[#78716c] uppercase font-bold block">Signature Weapon</span>
-                <p className="text-xs text-[#1c1917] font-semibold mt-0.5">
+              <div className="p-3.5 bg-[#0e0f12] rounded-xl border border-white/[0.08]">
+                <span className="text-[10px] text-stone-400 uppercase font-bold block">Special Shot or Ball</span>
+                <p className="text-xs text-white font-semibold mt-1">
                   {selectedPlayer.signatureWeapon}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-[#ded7cb] flex items-center justify-between text-xs text-[#78716c]">
-            <span>Click any node on the turf to inspect</span>
+          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-stone-400">
+            <span>Tap any fielder on the ground to inspect</span>
             <button
               onClick={manualNextBall}
-              className="text-xs font-bold text-[#1c1917] hover:underline cursor-pointer"
+              className="text-xs font-bold text-red-400 hover:text-red-300 cursor-pointer"
             >
-              Bowl Next Ball »
+              Next Ball »
             </button>
           </div>
         </div>
@@ -457,7 +448,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
         <InteractivePitchMap activeBowler="Shaheen Afridi" />
       </section>
 
-      {/* 360 Wagon Wheel & Shot Dispersion Section */}
+      {/* 360 Wagon Wheel Section */}
       <section className="pt-4">
         <ModernWagonWheel />
       </section>

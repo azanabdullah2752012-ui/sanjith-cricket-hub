@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Heart, Trash2, Sparkles } from 'lucide-react';
-import { pavilionAudio } from '../utils/audioEngine';
+import { Send, Heart, Trash2, Sparkles, MessageSquare } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface WishMessage {
@@ -22,7 +21,7 @@ const INITIAL_MESSAGES: WishMessage[] = [
   {
     id: '2',
     sender: "The Dressing Room Squad",
-    badge: "RCB & SQUAD XI",
+    badge: "RCB 12TH MAN ARMY",
     message: "To Skipper Sanjith: Channeling King Kohli's Melbourne 82* fire, Mitchell Starc's 150k toe-crushers, and holding the team together from the front. May this milestone year bring endless boundaries, match-winning spells, and an undefeated century!",
     timestamp: "TODAY"
   }
@@ -65,12 +64,11 @@ export const ModernGuestbook: React.FC = () => {
     setName('');
     setText('');
 
-    pavilionAudio.playBoundaryCheer();
     confetti({
       particleCount: 100,
-      spread: 90,
+      spread: 70,
       origin: { y: 0.6 },
-      colors: ['#1c1917', '#78716c', '#ece7de']
+      colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444']
     });
   };
 
@@ -79,132 +77,131 @@ export const ModernGuestbook: React.FC = () => {
   };
 
   return (
-    <div className="ald-card p-6 md:p-10 rounded-2xl relative overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-[#ded7cb] gap-4">
+    <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-[#16181d] border border-white/[0.08]">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-white/[0.08] gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-[#1c1917]" />
-            <span className="text-xs uppercase tracking-widest text-[#78716c] font-semibold">
-              ATHLETICS TRIBUTE LEDGER
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-xs uppercase tracking-wider text-red-400 font-bold flex items-center gap-1.5">
+              <MessageSquare className="w-3.5 h-3.5 text-red-400" />
+              SQUAD MESSAGE BOARD
             </span>
           </div>
-          <h3 className="font-editorial text-2xl md:text-3xl text-[#1c1917] font-bold tracking-tight">
-            Dressing Room Birthday Messages
+          <h3 className="font-editorial text-2xl md:text-3xl text-white font-bold tracking-tight">
+            Birthday Wishes for Sanjith
           </h3>
-          <p className="text-sm text-[#78716c] mt-1">
-            Leave a permanent personal tribute for Sanjith. All messages persist automatically.
+          <p className="text-sm text-[#94a3b8] mt-1">
+            Leave a birthday note for the skipper. Messages stay saved on the board.
           </p>
         </div>
 
         <button
           onClick={() => {
-            pavilionAudio.playBoundaryCheer();
-            confetti({ particleCount: 80, spread: 100, origin: { y: 0.5 }, colors: ['#1c1917', '#78716c', '#ece7de'] });
+            confetti({ particleCount: 80, spread: 90, origin: { y: 0.5 }, colors: ['#dc2626', '#d97706', '#f8fafc'] });
           }}
-          className="px-4 py-2 bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] font-bold text-xs rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-sm self-start md:self-auto"
+          className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white font-semibold text-xs rounded-xl transition-all flex items-center gap-2 cursor-pointer shadow-md self-start md:self-auto"
         >
-          <Sparkles className="w-4 h-4" />
-          <span>FIRE CONFETTI CANNON</span>
+          <Sparkles className="w-4 h-4 text-amber-300" />
+          <span>Cheer 🎉</span>
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Form */}
-        <div className="lg:col-span-5 bg-[#f7f5f0] p-6 rounded-xl border border-[#ded7cb]">
+        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06]">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-[11px] text-[#78716c] uppercase tracking-wider mb-1 font-semibold">
-                Your Name / Calling Sign
+              <label className="block text-[11px] text-[#94a3b8] uppercase tracking-wider mb-1 font-semibold">
+                Your Name
               </label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="e.g. Azan, Skipper, Coach..."
-                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#ded7cb] text-[#1c1917] text-xs focus:outline-none focus:border-[#1c1917] transition-colors"
+                placeholder="e.g. Azan, Teammate..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1a1b22] border border-white/[0.08] text-white text-xs placeholder:text-[#64748b] focus:outline-none focus:border-red-500 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] text-[#78716c] uppercase tracking-wider mb-1 font-semibold">
-                Title / Locker Room Badge
+              <label className="block text-[11px] text-[#94a3b8] uppercase tracking-wider mb-1 font-semibold">
+                Nickname / Role
               </label>
               <input
                 type="text"
                 value={badge}
                 onChange={(e) => setBadge(e.target.value)}
-                placeholder="e.g. Opening Partner, Slip Cordon..."
-                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#ded7cb] text-[#1c1917] text-xs focus:outline-none focus:border-[#1c1917] transition-colors"
+                placeholder="e.g. Opening Partner, RCB Fan..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1a1b22] border border-white/[0.08] text-white text-xs placeholder:text-[#64748b] focus:outline-none focus:border-red-500 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-[11px] text-[#78716c] uppercase tracking-wider mb-1 font-semibold">
-                Personal Birthday Wish
+              <label className="block text-[11px] text-[#94a3b8] uppercase tracking-wider mb-1 font-semibold">
+                Your Birthday Message
               </label>
               <textarea
                 required
                 rows={4}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                placeholder="Write your birthday memory, match moment, or message for Sanjith..."
-                className="w-full px-3.5 py-2.5 rounded-lg bg-white border border-[#ded7cb] text-[#1c1917] text-xs focus:outline-none focus:border-[#1c1917] transition-colors resize-none"
+                placeholder="Drop a birthday wish or inside joke for Sanjith..."
+                className="w-full px-3.5 py-2.5 rounded-xl bg-[#1a1b22] border border-white/[0.08] text-white text-xs placeholder:text-[#64748b] focus:outline-none focus:border-red-500 transition-colors resize-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full py-3 bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] font-editorial font-bold text-sm tracking-wide rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-xs font-bold transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Send className="w-4 h-4" />
-              <span>TRANSMIT TRIBUTE</span>
+              <Send className="w-3.5 h-3.5" />
+              <span>Post Message</span>
             </button>
           </form>
         </div>
 
-        {/* Message Stream */}
-        <div className="lg:col-span-7 flex flex-col gap-4 max-h-[500px] overflow-y-auto pr-1">
+        {/* Messages List */}
+        <div className="lg:col-span-7 space-y-4 max-h-[500px] overflow-y-auto pr-2 scrollbar-thin">
           {messages.map((m) => (
             <div
               key={m.id}
-              className="p-5 bg-[#f7f5f0] rounded-xl border border-[#ded7cb] hover:border-[#1c1917] transition-colors relative group"
+              className="p-5 rounded-2xl bg-[#121317] border border-white/[0.06] hover:border-white/[0.12] transition-all space-y-3 relative group"
             >
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-[#1c1917] text-[#f5f2eb] flex items-center justify-center font-editorial font-bold text-sm">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-7 h-7 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 font-bold text-xs flex items-center justify-center">
                     {m.sender.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <h4 className="font-editorial font-bold text-sm text-[#1c1917]">
+                    <span className="font-editorial text-sm font-bold text-white block">
                       {m.sender}
-                    </h4>
-                    <span className="text-[10px] text-[#78716c] uppercase tracking-wider font-semibold">
+                    </span>
+                    <span className="text-[10px] text-red-400 font-semibold tracking-wider uppercase block">
                       {m.badge}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-[#78716c] font-mono">{m.timestamp}</span>
-                  <button
-                    onClick={() => handleDelete(m.id)}
-                    title="Delete wish"
-                    className="opacity-0 group-hover:opacity-100 text-[#78716c] hover:text-red-600 transition-opacity p-1 cursor-pointer"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
+                  <span className="text-[10px] text-[#64748b] font-mono">
+                    {m.timestamp}
+                  </span>
+                  {m.id !== '1' && m.id !== '2' && (
+                    <button
+                      onClick={() => handleDelete(m.id)}
+                      className="opacity-0 group-hover:opacity-100 p-1 text-[#64748b] hover:text-red-400 transition-all cursor-pointer"
+                      title="Delete"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  )}
                 </div>
               </div>
 
-              <p className="mt-3 text-xs md:text-sm text-[#44403c] leading-relaxed">
-                "{m.message}"
+              <p className="text-xs text-[#cbd5e1] leading-relaxed pl-9">
+                {m.message}
               </p>
-
-              <div className="mt-3 flex items-center gap-1.5 text-[10px] text-[#78716c]">
-                <Heart className="w-3 h-3 text-red-500 fill-red-500" />
-                <span className="font-medium">VERIFIED TEAMMATE TRIBUTE</span>
-              </div>
             </div>
           ))}
         </div>

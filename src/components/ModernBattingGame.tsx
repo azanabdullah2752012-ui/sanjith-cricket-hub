@@ -196,7 +196,7 @@ export const ModernBattingGame: React.FC = () => {
           particleCount: 120,
           spread: 90,
           origin: { y: 0.5 },
-          colors: ['#dc2626', '#b45309', '#1c1917', '#f5f2eb']
+          colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444']
         });
       } else if (runs < 100 && nextRuns >= 100) {
         setMilestone("🏆 100* RUNS! CENTURY FOR SANJITH! Take a bow, what an innings!");
@@ -204,7 +204,7 @@ export const ModernBattingGame: React.FC = () => {
           particleCount: 220,
           spread: 120,
           origin: { y: 0.4 },
-          colors: ['#dc2626', '#b45309', '#d97706', '#1c1917', '#ffffff']
+          colors: ['#dc2626', '#d97706', '#f8fafc', '#ffffff']
         });
       }
 
@@ -213,7 +213,7 @@ export const ModernBattingGame: React.FC = () => {
           particleCount: 70,
           spread: 80,
           origin: { y: 0.7 },
-          colors: ['#dc2626', '#b45309', '#1c1917']
+          colors: ['#dc2626', '#d97706', '#f8fafc']
         });
         setFeedback(`💥 HUGE SIX! ${shot.name}`);
       } else if (shot.outcome === 'FOUR') {
@@ -239,49 +239,49 @@ export const ModernBattingGame: React.FC = () => {
   const strikeRate = balls > 0 ? ((runs / balls) * 100).toFixed(1) : '0.0';
 
   return (
-    <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-white border border-[#ded7cb] shadow-sm">
-      {/* Simple Header & Scoreboard */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#ded7cb] gap-4">
+    <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-[#16181d] border border-white/[0.08] shadow-xl">
+      {/* Header & Scoreboard */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-white/[0.08] gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-xs uppercase tracking-wider text-red-800 font-bold">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-xs uppercase tracking-wider text-red-400 font-bold">
               SANJITH (#10) AT BAT
             </span>
           </div>
-          <h3 className="font-editorial text-2xl md:text-3xl text-[#1c1917] font-bold tracking-tight">
+          <h3 className="font-editorial text-2xl md:text-3xl text-white font-bold tracking-tight">
             Face The Bowler • Pick Your Shot
           </h3>
-          <p className="text-sm text-[#78716c] mt-1">
+          <p className="text-sm text-[#94a3b8] mt-1">
             Read where the ball is coming, pick your shot, and score as many runs as you can!
           </p>
         </div>
 
-        {/* Clean Scorecard */}
-        <div className="flex items-center gap-3 sm:gap-4 bg-[#ece7de] px-4 py-2.5 rounded-2xl border border-[#ded7cb]">
+        {/* Clean Modern Scorecard */}
+        <div className="flex items-center gap-3 sm:gap-4 bg-[#121317] px-4 py-2.5 rounded-2xl border border-white/[0.08]">
           <div>
-            <span className="text-[10px] text-[#78716c] uppercase font-bold block">RUNS</span>
-            <span className="text-lg font-bold text-[#1c1917]">{runs} <span className="text-xs text-[#78716c]">({wickets} out)</span></span>
+            <span className="text-[10px] text-[#64748b] uppercase font-bold block">RUNS</span>
+            <span className="text-lg font-bold text-white">{runs} <span className="text-xs text-[#94a3b8]">({wickets} out)</span></span>
           </div>
-          <div className="h-7 w-px bg-[#ded7cb]" />
+          <div className="h-7 w-px bg-white/[0.08]" />
           <div>
-            <span className="text-[10px] text-[#78716c] uppercase font-bold block">BALLS</span>
-            <span className="text-lg font-bold text-[#1c1917]">{balls}</span>
+            <span className="text-[10px] text-[#64748b] uppercase font-bold block">BALLS</span>
+            <span className="text-lg font-bold text-white">{balls}</span>
           </div>
-          <div className="h-7 w-px bg-[#ded7cb]" />
+          <div className="h-7 w-px bg-white/[0.08]" />
           <div>
-            <span className="text-[10px] text-[#78716c] uppercase font-bold block">STRIKE RATE</span>
-            <span className="text-lg font-bold text-red-700">{strikeRate}</span>
+            <span className="text-[10px] text-[#64748b] uppercase font-bold block">STRIKE RATE</span>
+            <span className="text-lg font-bold text-red-400">{strikeRate}</span>
           </div>
-          <div className="h-7 w-px bg-[#ded7cb]" />
+          <div className="h-7 w-px bg-white/[0.08]" />
           <div>
-            <span className="text-[10px] text-[#78716c] uppercase font-bold block">POINTS</span>
-            <span className="text-lg font-bold text-[#1c1917]">{score}</span>
+            <span className="text-[10px] text-[#64748b] uppercase font-bold block">POINTS</span>
+            <span className="text-lg font-bold text-white">{score}</span>
           </div>
           <button
             onClick={handleReset}
             title="Start Over"
-            className="p-1.5 rounded-lg bg-white hover:bg-[#ded7cb] text-[#78716c] hover:text-[#1c1917] transition-colors cursor-pointer border border-[#ded7cb] ml-1"
+            className="p-1.5 rounded-lg bg-[#1a1b22] hover:bg-[#252834] text-[#94a3b8] hover:text-white transition-colors cursor-pointer border border-white/[0.08] ml-1"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -290,14 +290,14 @@ export const ModernBattingGame: React.FC = () => {
 
       {/* Century / Half Century Alert */}
       {milestone && (
-        <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-300 text-red-900 text-sm font-semibold flex items-center justify-between gap-3 shadow-sm">
+        <div className="mb-6 p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-300 text-sm font-semibold flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-2">
-            <Trophy className="w-5 h-5 text-red-600 shrink-0" />
+            <Trophy className="w-5 h-5 text-red-400 shrink-0" />
             <span>{milestone}</span>
           </div>
           <button
             onClick={() => setMilestone(null)}
-            className="text-xs text-red-700 hover:text-red-900 underline cursor-pointer shrink-0"
+            className="text-xs text-red-400 hover:text-red-300 underline cursor-pointer shrink-0"
           >
             Close
           </button>
@@ -305,73 +305,73 @@ export const ModernBattingGame: React.FC = () => {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* The Incoming Ball */}
-        <div className="lg:col-span-5 bg-[#f7f5f0] p-6 rounded-2xl border border-[#ded7cb] text-center relative overflow-hidden">
+        {/* Incoming Ball Card */}
+        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06] text-center relative overflow-hidden">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs text-red-700 font-bold bg-red-100 px-2.5 py-1 rounded-full border border-red-200">
+            <span className="text-xs text-red-400 font-bold bg-red-500/10 px-2.5 py-1 rounded-full border border-red-500/20">
               Bowler: {delivery.bowler}
             </span>
-            <span className="text-xs px-2.5 py-1 rounded-full bg-[#1c1917] text-[#f5f2eb] font-bold">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-white/[0.08] text-white font-bold">
               {delivery.speed}
             </span>
           </div>
 
-          <div className="w-16 h-16 mx-auto rounded-full bg-[#ece7de] flex items-center justify-center border border-[#ded7cb] my-3">
-            <Activity className="w-8 h-8 text-[#1c1917]" />
+          <div className="w-16 h-16 mx-auto rounded-full bg-[#1a1b22] flex items-center justify-center border border-white/[0.08] my-3">
+            <Activity className="w-8 h-8 text-white" />
           </div>
 
-          <div className="text-[11px] text-[#78716c] uppercase tracking-wider font-bold">BALL #{((balls % DELIVERIES.length) + 1)}</div>
-          <h4 className="font-editorial text-xl font-bold text-[#1c1917] mt-1">
+          <div className="text-[11px] text-[#64748b] uppercase tracking-wider font-bold">BALL #{((balls % DELIVERIES.length) + 1)}</div>
+          <h4 className="font-editorial text-xl font-bold text-white mt-1">
             {delivery.name}
           </h4>
 
-          <div className="mt-3 inline-block px-3 py-1 bg-white rounded-full text-xs text-[#78716c] border border-[#ded7cb]">
-            Where it lands: <span className="font-bold text-[#1c1917]">{delivery.length}</span>
+          <div className="mt-3 inline-block px-3 py-1 bg-[#1a1b22] rounded-full text-xs text-[#94a3b8] border border-white/[0.06]">
+            Where it lands: <span className="font-bold text-white">{delivery.length}</span>
           </div>
 
           {feedback && (
-            <div className="mt-5 p-3.5 rounded-xl bg-white border border-[#ded7cb] text-xs text-[#1c1917] text-left leading-relaxed shadow-sm font-medium">
+            <div className="mt-5 p-3.5 rounded-xl bg-[#1a1b22] border border-white/[0.08] text-xs text-white text-left leading-relaxed shadow-sm font-medium">
               {feedback}
             </div>
           )}
         </div>
 
-        {/* Shot Selection */}
+        {/* Shot Selection Options */}
         <div className="lg:col-span-7 space-y-3">
-          <div className="text-xs uppercase tracking-wider text-[#1c1917] font-bold flex items-center gap-2 mb-2">
-            <Target className="w-4 h-4 text-red-600" /> CHOOSE YOUR SHOT:
+          <div className="text-xs uppercase tracking-wider text-white font-bold flex items-center gap-2 mb-2">
+            <Target className="w-4 h-4 text-red-500" /> CHOOSE YOUR SHOT:
           </div>
 
           {delivery.shotOptions.map((opt, i) => (
             <button
               key={i}
               onClick={() => handleShot(opt)}
-              className="w-full text-left p-4 rounded-2xl bg-[#f7f5f0] hover:bg-[#ece7de] border border-[#ded7cb] hover:border-[#1c1917] transition-all cursor-pointer group flex items-start justify-between gap-4"
+              className="w-full text-left p-4 rounded-2xl bg-[#121317] hover:bg-[#1a1b22] border border-white/[0.06] hover:border-red-500/40 transition-all cursor-pointer group flex items-start justify-between gap-4"
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-[#78716c] font-bold">
+                  <span className="text-xs text-[#64748b] font-bold">
                     #{i + 1}
                   </span>
-                  <h5 className="font-editorial text-base font-bold text-[#1c1917] group-hover:text-red-700 transition-colors">
+                  <h5 className="font-editorial text-base font-bold text-white group-hover:text-red-400 transition-colors">
                     {opt.name}
                   </h5>
                 </div>
-                <p className="text-xs text-[#78716c] mt-1 pl-5 leading-relaxed">
+                <p className="text-xs text-[#94a3b8] mt-1 pl-5 leading-relaxed">
                   {opt.description}
                 </p>
               </div>
 
               <div className="text-right flex flex-col items-end shrink-0">
                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded border ${
-                  opt.outcome === 'SIX' ? 'bg-[#1c1917] text-[#f5f2eb] border-[#1c1917]' :
-                  opt.outcome === 'FOUR' ? 'bg-red-100 text-red-900 border-red-300' :
-                  opt.outcome === 'TWO' ? 'bg-white text-[#1c1917] border-[#ded7cb]' :
-                  'bg-red-50 text-red-700 border-red-200'
+                  opt.outcome === 'SIX' ? 'bg-red-500/20 text-red-400 border-red-500/30' :
+                  opt.outcome === 'FOUR' ? 'bg-amber-500/20 text-amber-400 border-amber-500/30' :
+                  opt.outcome === 'TWO' ? 'bg-white/10 text-white border-white/20' :
+                  'bg-red-950/40 text-red-400 border-red-800/40'
                 }`}>
                   {opt.outcome === 'SIX' ? '6 RUNS' : opt.outcome === 'FOUR' ? '4 RUNS' : opt.outcome === 'TWO' ? '2 RUNS' : 'OUT'}
                 </span>
-                <span className="text-[10px] text-[#78716c] mt-1 font-bold">+{opt.points} pts</span>
+                <span className="text-[10px] text-[#64748b] mt-1 font-bold">+{opt.points} pts</span>
               </div>
             </button>
           ))}
