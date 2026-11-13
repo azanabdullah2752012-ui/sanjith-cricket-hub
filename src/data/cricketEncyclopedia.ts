@@ -186,25 +186,36 @@ export const ALL_FIELDING_POSITIONS: FieldingPositionDetailed[] = [
 export const ICONIC_PLAYERS: PlayerProfileCard[] = [
   {
     id: 'sanjith',
-    name: 'Captain Sanjith (The Skipper)',
-    country: 'Squad XI (Birthday Legend)',
+    name: 'Captain Sanjith (#10)',
+    country: 'RCB & Squad XI (The Skipper)',
     role: 'All-Rounder',
     image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
-    signatureStyle: 'Trademark High-Elbow Cover Drive & Unshakeable Match Leadership',
-    masteryMetric: { label: 'BIRTHDAY RUNS', value: '100* N.O.' },
-    technicalBreakdown: 'Perfect balance at the crease, fearless shot selection under pressure, and unmatched tactical vision from mid-off. Commands the entire field with authority and brings infectious energy to the dressing room.',
-    tacticalKey: 'Dispatches express bouncers into the stands, rallies the team through impossible chases, and always makes the clutch call.'
+    signatureStyle: 'The Sublime Wrist Flick & Mitchell Starc 148k Death Yorker',
+    masteryMetric: { label: 'JERSEY #10', value: '100* N.O.' },
+    technicalBreakdown: 'Combines Virat Kohli’s fierce chasing discipline with Mitchell Starc’s toe-crushing reverse-swinging yorker. Punches length deliveries off his pads with an effortless wrist flick into the mid-wicket grandstand. Renowned for unflappable composure, clutch finishes, and world-class shoelace knotting under pressure.',
+    tacticalKey: 'Entrusted with the ball when 6 runs are needed in the 20th over. Spearheads the batting chase from ball one.'
   },
   {
     id: 'kohli',
     name: 'Virat Kohli',
-    country: 'India',
+    country: 'India / RCB (Sanjith’s GOAT)',
     role: 'Batsman',
     image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
-    signatureStyle: 'High-Elbow Cover Drive & Relentless Chasing Engine',
+    signatureStyle: 'High-Elbow Cover Drive & Relentless Chasing Engine (82* Melbourne Hero)',
     masteryMetric: { label: 'RUN CHASE AVG', value: '64.8' },
     technicalBreakdown: 'Flawless head position directly over the ball, zero preliminary trigger shuffle, transferring 100% bodyweight into the stroke.',
     tacticalKey: 'Unlocks off-side fields by piercing the gap between cover and mid-off with millimeter placement.'
+  },
+  {
+    id: 'starc',
+    name: 'Mitchell Starc',
+    country: 'Australia (Sanjith’s Bowling Idol)',
+    role: 'Fast Bowler',
+    image: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80',
+    signatureStyle: '150 km/h Inswinging Laser Yorker & White-Ball World Cup Demolisher',
+    masteryMetric: { label: 'WORLD CUP WKTS', value: '65 Wkts' },
+    technicalBreakdown: 'High-arm left-arm sling action generating late reverse swing into right-handers’ base of off-stump at 148+ km/h.',
+    tacticalKey: 'The undisputed final-over specialist. Bowls unhittable yorkers at the death to defend any target.'
   },
   {
     id: 'bumrah',

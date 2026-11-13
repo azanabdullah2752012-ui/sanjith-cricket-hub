@@ -23,18 +23,18 @@ export const SanjithBirthdayHero: React.FC<SanjithBirthdayHeroProps> = ({ onOpen
     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#1c1917] via-[#292524] to-[#1c1917] text-[#f5f2eb] p-6 md:p-8 border border-[#44403c] shadow-lg mb-8">
       {/* Subtle pitch watermark texture in background */}
       <div className="absolute right-0 top-0 bottom-0 w-96 opacity-5 pointer-events-none flex items-center justify-center font-editorial font-bold text-[180px] select-none">
-        18
+        10
       </div>
 
       <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px] font-mono uppercase font-bold tracking-widest flex items-center gap-1.5">
-              <Gift className="w-3 h-3 text-amber-400" />
-              SPECIAL BIRTHDAY EDITION • DEDICATED TO SANJITH
+            <span className="px-2.5 py-0.5 rounded-full bg-red-600/20 text-red-300 border border-red-500/30 text-[10px] font-mono uppercase font-bold tracking-widest flex items-center gap-1.5">
+              <Gift className="w-3 h-3 text-red-400" />
+              RCB SQUAD SKIPPER • JERSEY #10 💥
             </span>
             <span className="text-xs text-[#a8a29e] font-mono">
-              CAPTAINCY CLASS OF 2026
+              VIRAT & STARC DISCIPLE
             </span>
           </div>
 
@@ -43,7 +43,7 @@ export const SanjithBirthdayHero: React.FC<SanjithBirthdayHeroProps> = ({ onOpen
           </h2>
 
           <p className="text-xs md:text-sm text-[#d6d3d1] leading-relaxed">
-            Welcome to your personal VIP Cricket Command Terminal. From verified ESPNcricinfo live scores to Hawkeye pitch maps and the custom Drag & Drop Fielding Architect—everything here is built for your love of the game.
+            Welcome to your personal VIP Cricket Command Terminal. Channeling Virat's Melbourne 82* fire and Starc's laser-guided death yorkers—with zero dropped catches (unless tying shoelaces).
           </p>
 
           <div className="flex items-center gap-4 pt-1 text-xs text-[#a8a29e]">

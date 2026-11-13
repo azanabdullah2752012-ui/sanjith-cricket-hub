@@ -15,15 +15,15 @@ const INITIAL_MESSAGES: WishMessage[] = [
   {
     id: '1',
     sender: "Azan",
-    badge: "OPENING PARTNER",
-    message: "Happy Birthday Sanjith! Another year, another century in the game of life. Keep dispatching every bouncer straight over deep square leg. Proud to share the crease with you, brother!",
-    timestamp: "LIVE"
+    badge: "OPENING PARTNER & BROTHER",
+    message: "Happy Birthday Sanjith (#10)! Another year, another century in the game of life. Keep whipping that trademark wrist flick over mid-wicket and spearing those Starc yorkers at the death! And promise me you'll never stop tying your shoelaces mid-over while the ball flies to the boundary 😂. Proud to share the crease with you, brother! RCB for life 💥",
+    timestamp: "PINNED"
   },
   {
     id: '2',
     sender: "The Dressing Room Squad",
-    badge: "FIRST XI",
-    message: "To our premier all-rounder: that cover drive is pure artistry. May this year bring endless boundaries, match-winning spells, and countless trophies!",
+    badge: "RCB & SQUAD XI",
+    message: "To Skipper Sanjith: Channeling King Kohli's Melbourne 82* fire, Mitchell Starc's 150k toe-crushers, and holding the team together from the front. May this milestone year bring endless boundaries, match-winning spells, and an undefeated century!",
     timestamp: "TODAY"
   }
 ];

@@ -42,15 +42,16 @@ export function App() {
             className="flex items-center gap-3 cursor-pointer group"
           >
             <div className="w-10 h-10 rounded-xl bg-[#1c1917] flex items-center justify-center text-[#f5f2eb] font-editorial font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-              18
+              10
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <span className="font-editorial text-lg md:text-xl font-bold tracking-tight text-[#1c1917]">
                   SANJITH'S PAVILION
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold border border-amber-300">
-                  BIRTHDAY EDITION
+                <span className="text-[10px] px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold border border-red-300 flex items-center gap-1">
+                  <span>RCB</span>
+                  <span>#10</span>
                 </span>
               </div>
               <span className="text-[11px] text-[#78716c] block -mt-0.5">
