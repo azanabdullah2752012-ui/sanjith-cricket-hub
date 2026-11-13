@@ -7,36 +7,32 @@ import { PlayersPage } from './pages/PlayersPage';
 import { SanjithBirthdayHero } from './components/SanjithBirthdayHero';
 import { Gift, Target, Compass, Radio, Users, Sparkles, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { pavilionAudio } from './utils/audioEngine';
 
 export type NavPage = 'tribute' | 'batting' | 'fielding' | 'scores' | 'players';
 
 export function App() {
-  // Start on Sanjith's Tribute page as the default home view
   const [currentPage, setCurrentPage] = useState<NavPage>('tribute');
 
   const handleNavClick = (page: NavPage) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    pavilionAudio.playWillowCrack();
   };
 
   const triggerCelebration = () => {
-    pavilionAudio.playBoundaryCheer();
     confetti({
       particleCount: 140,
       spread: 95,
       origin: { y: 0.3 },
-      colors: ['#1c1917', '#b45309', '#f5f2eb', '#d97706']
+      colors: ['#dc2626', '#b45309', '#1c1917', '#f5f2eb']
     });
   };
 
   return (
     <div className="min-h-screen bg-[#f5f2eb] text-[#1c1917] flex flex-col relative selection:bg-[#1c1917] selection:text-[#f5f2eb]">
-      {/* Top Header Navigation */}
+      {/* Clean Top Navigation Bar */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[#f5f2eb]/90 border-b border-[#ded7cb] transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          {/* Brand Identity: Dedicated to Sanjith */}
+          {/* Logo / Title */}
           <div
             onClick={() => handleNavClick('tribute')}
             className="flex items-center gap-3 cursor-pointer group"
@@ -49,18 +45,17 @@ export function App() {
                 <span className="font-editorial text-lg md:text-xl font-bold tracking-tight text-[#1c1917]">
                   SANJITH'S PAVILION
                 </span>
-                <span className="text-[10px] px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold border border-red-300 flex items-center gap-1">
-                  <span>RCB</span>
-                  <span>#10</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-100 text-red-800 font-bold border border-red-200">
+                  RCB #10
                 </span>
               </div>
               <span className="text-[11px] text-[#78716c] block -mt-0.5">
-                THE SKIPPER'S CRICKET RETREAT • CRAFTED BY AZAN
+                Happy Birthday Sanjith • Made by Azan
               </span>
             </div>
           </div>
 
-          {/* Dedicated Page Tabs */}
+          {/* Simple Tab Buttons */}
           <nav className="hidden lg:flex items-center gap-1.5 bg-[#ece7de] p-1.5 rounded-full border border-[#ded7cb]">
             <button
               onClick={() => handleNavClick('tribute')}
@@ -70,8 +65,8 @@ export function App() {
                   : 'text-[#78716c] hover:text-[#1c1917]'
               }`}
             >
-              <Gift className="w-3.5 h-3.5 text-amber-500" />
-              <span>The Pavilion</span>
+              <Gift className="w-3.5 h-3.5 text-red-600" />
+              <span>Birthday Hub</span>
             </button>
 
             <button
@@ -83,7 +78,7 @@ export function App() {
               }`}
             >
               <Target className="w-3.5 h-3.5 text-amber-600" />
-              <span>Batting Arena</span>
+              <span>Batting Game</span>
             </button>
 
             <button
@@ -95,7 +90,7 @@ export function App() {
               }`}
             >
               <Compass className="w-3.5 h-3.5" />
-              <span>Fielding Tactics</span>
+              <span>Field Setup</span>
             </button>
 
             <button
@@ -107,7 +102,7 @@ export function App() {
               }`}
             >
               <Radio className="w-3.5 h-3.5 text-red-600" />
-              <span>Live Scores</span>
+              <span>Live Matches</span>
             </button>
 
             <button
@@ -119,21 +114,21 @@ export function App() {
               }`}
             >
               <Users className="w-3.5 h-3.5" />
-              <span>Cricket Legends</span>
+              <span>Cricket GOATs</span>
             </button>
           </nav>
 
-          {/* Quick Celebration Trigger */}
+          {/* Celebration Button */}
           <button
             onClick={triggerCelebration}
-            className="px-3.5 py-1.5 bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] font-editorial font-bold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-3.5 py-1.5 bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] font-semibold text-xs rounded-xl shadow-sm transition-all flex items-center gap-1.5 cursor-pointer"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="hidden sm:inline">CELEBRATE</span>
+            <span className="hidden sm:inline">CELEBRATE 🎉</span>
           </button>
         </div>
 
-        {/* Mobile Sub-Navigation Bar */}
+        {/* Mobile Navigation */}
         <div className="flex lg:hidden overflow-x-auto px-4 py-2 bg-[#ece7de] border-t border-[#ded7cb] gap-1.5 scrollbar-none">
           <button
             onClick={() => handleNavClick('tribute')}
@@ -141,8 +136,8 @@ export function App() {
               currentPage === 'tribute' ? 'bg-[#1c1917] text-[#f5f2eb]' : 'text-[#78716c]'
             }`}
           >
-            <Gift className="w-3 h-3 text-amber-500" />
-            The Pavilion
+            <Gift className="w-3 h-3 text-red-500" />
+            Birthday Hub
           </button>
           <button
             onClick={() => handleNavClick('batting')}
@@ -151,7 +146,7 @@ export function App() {
             }`}
           >
             <Target className="w-3 h-3 text-amber-600" />
-            Batting Arena
+            Batting Game
           </button>
           <button
             onClick={() => handleNavClick('fielding')}
@@ -160,7 +155,7 @@ export function App() {
             }`}
           >
             <Compass className="w-3 h-3" />
-            Fielding Map
+            Field Setup
           </button>
           <button
             onClick={() => handleNavClick('scores')}
@@ -169,7 +164,7 @@ export function App() {
             }`}
           >
             <Radio className="w-3 h-3 text-red-600" />
-            Live Scores
+            Live Matches
           </button>
           <button
             onClick={() => handleNavClick('players')}
@@ -178,14 +173,14 @@ export function App() {
             }`}
           >
             <Users className="w-3 h-3" />
-            Legends
+            GOATs
           </button>
         </div>
       </header>
 
-      {/* Main View Area */}
+      {/* Main Page Area */}
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 w-full">
-        {/* Birthday Header Banner if not on the main tribute page */}
+        {/* Banner shown on other pages */}
         {currentPage !== 'tribute' && (
           <SanjithBirthdayHero onOpenTribute={() => handleNavClick('tribute')} />
         )}
@@ -199,20 +194,20 @@ export function App() {
         {currentPage === 'players' && <PlayersPage />}
       </main>
 
-      {/* Bespoke Gift Footer */}
+      {/* Footer */}
       <footer className="mt-20 border-t border-[#ded7cb] bg-[#ece7de] py-10 text-center text-xs text-[#78716c]">
         <div className="max-w-4xl mx-auto px-4 space-y-2">
           <div className="font-editorial text-sm font-bold text-[#1c1917] flex items-center justify-center gap-2">
             <span>SANJITH'S PAVILION</span>
             <span>•</span>
-            <span className="text-amber-800">DEDICATED BIRTHDAY EDITION</span>
+            <span className="text-red-700">RCB #10 BIRTHDAY SPECIAL</span>
           </div>
           <p className="text-[#78716c]">
-            A handcrafted digital cricket gift created with brotherhood by Azan. Featuring real live ESPNcricinfo scores, the Hawkeye 3D corridor, tactical fielding architect, and the Skipper's batting arena.
+            Made with love for Sanjith by Azan. Live cricket scores, fun batting game, and memories that'll never fade.
           </p>
           <div className="flex items-center justify-center gap-1.5 pt-2 text-[#1c1917] font-semibold">
             <Heart className="w-3.5 h-3.5 text-red-600 fill-red-600" />
-            <span>Happy Birthday Sanjith! May your score in the game of life remain 100* Not Out.</span>
+            <span>Happy Birthday Sanjith! Stay 100* Not Out forever.</span>
           </div>
         </div>
       </footer>

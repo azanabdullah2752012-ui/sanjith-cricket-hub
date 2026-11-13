@@ -30,29 +30,29 @@ export const LiveScoresPage: React.FC = () => {
   return (
     <div className="space-y-10 animate-fade-in">
       {/* Page Header */}
-      <div className="ald-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="ald-card p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
-            <span className="text-xs uppercase tracking-widest text-red-700 font-bold flex items-center gap-1.5 font-mono">
+            <span className="text-xs uppercase tracking-wider text-red-800 font-bold flex items-center gap-1.5">
               <Radio className="w-3.5 h-3.5 text-red-600" />
-              LIVE TELEMETRY FEED • CLICK ANY MATCH FOR LIVE FIELD SHIFTS
+              REAL-TIME CRICKET SCORES ⚡
             </span>
           </div>
           <h1 className="font-editorial text-3xl md:text-4xl font-bold text-[#1c1917] tracking-tight">
-            Live Matches & On-Field Intelligence
+            Live Cricket Matches
           </h1>
           <p className="text-sm text-[#78716c] mt-1 max-w-2xl">
-            Select a live match below to open its **Live Match Studio**: watch player positions shift live delivery-by-delivery on the 360° turf with full individual player statistics and technical dossiers.
+            Tap any match below to see live scores, the 3D pitch map, and wagon wheel!
           </p>
         </div>
 
         <button
           onClick={handleRefresh}
-          className="px-3.5 py-2 rounded-xl bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] text-xs font-semibold flex items-center gap-2 cursor-pointer transition-all shadow-sm shrink-0"
+          className="px-4 py-2.5 rounded-xl bg-[#1c1917] hover:bg-[#292524] text-[#f5f2eb] text-xs font-semibold flex items-center gap-2 cursor-pointer transition-all shadow-sm shrink-0"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
-          <span>{isRefreshing ? 'Syncing...' : 'Refresh Match Feed'}</span>
+          <span>{isRefreshing ? 'Checking...' : 'Refresh Scores'}</span>
         </button>
       </div>
 

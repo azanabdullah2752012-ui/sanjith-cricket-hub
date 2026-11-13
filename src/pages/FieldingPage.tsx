@@ -143,17 +143,17 @@ export const FieldingPage: React.FC = () => {
       <div className="ald-card p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
         <div>
           <div className="flex items-center gap-2 mb-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#1c1917]" />
-            <span className="text-xs uppercase tracking-widest text-[#78716c] font-bold flex items-center gap-1.5 font-mono">
-              <Compass className="w-4 h-4 text-[#1c1917]" />
-              CAPTAIN SANJITH'S TACTICAL BOARD • DRAG & DROP FIELD BUILDER
+            <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="text-xs uppercase tracking-wider text-red-800 font-bold flex items-center gap-1.5">
+              <Compass className="w-4 h-4 text-red-600" />
+              CAPTAIN SANJITH'S FIELD BOARD 💥
             </span>
           </div>
           <h1 className="font-editorial text-3xl md:text-4xl font-bold text-[#1c1917] tracking-tight">
-            Captaincy Masterplans & Field Architect
+            Set Your Field • Move Any Player
           </h1>
           <p className="text-sm text-[#78716c] mt-1 max-w-2xl">
-            Inspect international dismissal traps or <strong className="text-[#1c1917]">drag and drop any of the 11 fielders anywhere on the turf</strong> to design Sanjith's custom bowling trap.
+            Pick a ready-made field below, or <strong className="text-[#1c1917]">drag and drop any of the 11 fielders</strong> anywhere on the pitch to set your own trap!
           </p>
         </div>
 
@@ -165,7 +165,7 @@ export const FieldingPage: React.FC = () => {
               onClick={() => handleSelectPlan(plan)}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
                 activePlan.id === plan.id && !isCustomMode
-                  ? 'bg-[#1c1917] text-[#f5f2eb] border-[#1c1917] shadow-sm scale-102'
+                  ? 'bg-[#1c1917] text-[#f5f2eb] border-[#1c1917] shadow-sm'
                   : 'bg-white hover:bg-[#ece7de] text-[#1c1917] border-[#ded7cb]'
               }`}
             >
@@ -320,10 +320,10 @@ export const FieldingPage: React.FC = () => {
           <div>
             <div className="flex items-center justify-between pb-3 border-b border-[#ded7cb]">
               <span className="text-[10px] uppercase font-bold tracking-wider text-[#78716c]">
-                {isCustomMode ? "SANJITH'S CUSTOM ARCHITECTURE" : 'DISMISSAL TRAP ANATOMY'}
+                {isCustomMode ? "SANJITH'S CUSTOM FIELD" : 'HOW THIS FIELD WORKS'}
               </span>
               <span className="text-xs font-semibold px-2 py-0.5 rounded bg-[#ece7de] text-[#1c1917]">
-                {activePlan.bowlerType}
+                Bowler: {activePlan.bowlerType}
               </span>
             </div>
 
@@ -334,11 +334,11 @@ export const FieldingPage: React.FC = () => {
             {/* Captain's Objective */}
             <div className="mt-4 p-4 rounded-2xl bg-[#f7f5f0] border border-[#ded7cb]">
               <span className="text-[10px] text-[#78716c] uppercase font-bold block mb-1">
-                Strategic Captaincy Objective
+                The Plan
               </span>
               <p className="text-xs md:text-sm text-[#1c1917] leading-relaxed">
                 {isCustomMode
-                  ? "Custom tactical placement authored by Captain Sanjith. Fielders are calibrated to suffocate scoring arcs and induce false stroke mechanics."
+                  ? "Your custom setup. Fielders are placed to stop easy singles and force the batsman to take big risks."
                   : activePlan.captaincyObjective}
               </p>
             </div>
@@ -347,11 +347,11 @@ export const FieldingPage: React.FC = () => {
             <div className="mt-4 p-4 rounded-2xl bg-amber-50/60 border border-amber-200">
               <span className="text-[10px] text-amber-900 uppercase font-bold block mb-1 flex items-center gap-1.5">
                 <Flame className="w-3.5 h-3.5 text-amber-700" />
-                How the Batsman Gets Trapped
+                How We Get Them Out
               </span>
               <p className="text-xs text-[#44403c] leading-relaxed">
                 {isCustomMode
-                  ? `With fielders positioned dynamically, the batsman faces restricted single options and is forced into risky boundary attempts against tight lines.`
+                  ? "The batsman gets frustrated by tight fielding and tries a risky shot, leading straight to a catch!"
                   : activePlan.dismissalTrapDescription}
               </p>
             </div>
@@ -360,18 +360,18 @@ export const FieldingPage: React.FC = () => {
             <div className="mt-5 p-4 rounded-2xl bg-white border border-[#ded7cb] shadow-sm">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] text-[#78716c] uppercase font-bold block">
-                  Active Station: {selectedFielder.name}
+                  Selected Fielder: {selectedFielder.name}
                 </span>
-                <span className="text-[10px] font-mono text-[#78716c]">
-                  Coords: {selectedFielder.coordinates.x}%, {selectedFielder.coordinates.y}%
+                <span className="text-[10px] text-[#78716c]">
+                  Position: {selectedFielder.coordinates.x}%, {selectedFielder.coordinates.y}%
                 </span>
               </div>
               <p className="text-sm font-bold text-[#1c1917] mt-1">
                 {selectedFielder.role}
               </p>
               {selectedFielder.isKeyCatcher && (
-                <span className="inline-block mt-2 text-[10px] font-bold text-red-700 bg-red-100 border border-red-300 px-2 py-0.5 rounded">
-                  ★ PRIMARY TRAP CATCHER
+                <span className="inline-block mt-2 text-[10px] font-bold text-red-700 bg-red-100 border border-red-200 px-2.5 py-0.5 rounded-full">
+                  ★ Main Catcher
                 </span>
               )}
             </div>

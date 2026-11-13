@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Target, RotateCcw, Activity, Trophy, Flame } from 'lucide-react';
+import { Target, RotateCcw, Activity, Trophy } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface DeliveryType {
@@ -18,28 +18,28 @@ interface DeliveryType {
 
 const DELIVERIES: DeliveryType[] = [
   {
-    name: "150 km/h Mitchell Starc Inswinging Missile",
+    name: "150 km/h Fast Inswinging Yorker",
     speed: "150 KM/H",
-    length: "Blockhole Toe-Crusher",
+    length: "Right at your toes",
     bowler: "Mitchell Starc",
     shotOptions: [
       { 
-        name: "Sanjith Signature Sublime Wrist Flick", 
-        description: "Flicks wrists with surgical timing off his toes, sending Starc's 150k missile 98m into the mid-wicket crowd!", 
+        name: "Sanjith's Signature Wrist Flick", 
+        description: "Flick your wrists off your toes and send it 98 meters into the crowd for SIX!", 
         outcome: 'SIX', 
         runs: 6, 
-        points: 350 
+        points: 300 
       },
       { 
-        name: "The Legendary Shoelace Tie at the Crease", 
-        description: "Bends down to tie shoelaces mid-delivery! Ball misses the batsman, nutmegs the keeper, and races to the boundary!", 
+        name: "Tie Your Shoelaces Right Now 😂", 
+        description: "You bend down to tie your shoes! The ball misses you, nutmegs the keeper, and races for 4!", 
         outcome: 'FOUR', 
         runs: 4, 
         points: 250 
       },
       { 
-        name: "Cross-Bat Swat Against Starc Pace", 
-        description: "Late on the 150k lightning pace, off-stump cartwheels out of the ground!", 
+        name: "Wild Slog Across the Line", 
+        description: "Way too late on 150 km/h pace! Middle stump goes flying out of the ground.", 
         outcome: 'WICKET', 
         runs: 0, 
         points: -50 
@@ -47,115 +47,115 @@ const DELIVERIES: DeliveryType[] = [
     ]
   },
   {
-    name: "145 km/h Hostile Length Ball on Off (Haris Rauf Melbourne Scenario)",
+    name: "145 km/h Bouncer Outside Off",
     speed: "145 KM/H",
-    length: "Back of a Length",
+    length: "Chest-high bouncer",
     bowler: "Haris Rauf",
     shotOptions: [
       { 
-        name: "King Kohli Melbourne Back-Foot Straight Loft", 
-        description: "Punches off back foot with high elbows straight back over the bowler's head into the MCG grandstand!", 
-        outcome: 'SIX', 
-        runs: 6, 
-        points: 340 
-      },
-      { 
-        name: "Sanjith Trademark Wrist Flick Off Hip", 
-        description: "Soft hands, rolls the wrists, pierces square leg and deep mid-wicket for a razor four", 
-        outcome: 'FOUR', 
-        runs: 4, 
-        points: 220 
-      },
-      { 
-        name: "Blind Slog Outside Off", 
-        description: "Thick outside edge carried cleanly to first slip", 
-        outcome: 'WICKET', 
-        runs: 0, 
-        points: -50 
-      }
-    ]
-  },
-  {
-    name: "142 km/h Searing Yorker on Middle Stump (Final Over Defense)",
-    speed: "142 KM/H",
-    length: "Laser Blockhole",
-    bowler: "Death Overs Specialist",
-    shotOptions: [
-      { 
-        name: "Sanjith Helicopter Wrist Snap", 
-        description: "Digs underneath the dipping yorker with pure forearm power, launching it over long-on for a maximum", 
-        outcome: 'SIX', 
-        runs: 6, 
-        points: 310 
-      },
-      { 
-        name: "Vertical Blade Jam & Scramble", 
-        description: "Deadens the thunderous pace directly into the turf, hustles for 2 clutch runs", 
-        outcome: 'TWO', 
-        runs: 2, 
-        points: 100 
-      },
-      { 
-        name: "Planting Front Foot Blindly", 
-        description: "Plumb in front! Roaring LBW appeal, umpire raises the finger", 
-        outcome: 'WICKET', 
-        runs: 0, 
-        points: -50 
-      }
-    ]
-  },
-  {
-    name: "149 km/h Fiery Chin Bouncer (Ben Stokes Headingley Atmosphere)",
-    speed: "149 KM/H",
-    length: "Aggressive Short Pitch",
-    bowler: "Pat Cummins",
-    shotOptions: [
-      { 
-        name: "Stokes-Inspired Ramp Over Keeper's Helmet", 
-        description: "Arching back, uses 149k pace to glide the ball softly over the third-man boundary rope", 
-        outcome: 'FOUR', 
-        runs: 4, 
-        points: 240 
-      },
-      { 
-        name: "Controlled Rolling Hook Over Deep Square Leg", 
-        description: "Rolls top wrist down to keep it soaring flat for a thunderous 95m maximum", 
-        outcome: 'SIX', 
-        runs: 6, 
-        points: 330 
-      },
-      { 
-        name: "Awkward Chest Fend", 
-        description: "Gloves it straight into silly mid-off's waiting hands", 
-        outcome: 'WICKET', 
-        runs: 0, 
-        points: -50 
-      }
-    ]
-  },
-  {
-    name: "116 km/h Back-of-the-Hand Deceptive Slower Ball",
-    speed: "116 KM/H",
-    length: "Good Length Outside Off",
-    bowler: "RCB Death Master",
-    shotOptions: [
-      { 
-        name: "Skipper Sanjith Patience Step & Straight Launch", 
-        description: "Waits back, holds the pose, and pumps it high over long-off into the second tier", 
+        name: "King Kohli Straight Six (Melbourne Style)", 
+        description: "Punch it off the back foot straight over the bowler’s head for a huge SIX!", 
         outcome: 'SIX', 
         runs: 6, 
         points: 320 
       },
       { 
-        name: "Soft-Hand Push Through Extra Cover Gap", 
-        description: "Reads the lack of pace, pierces the ring, walks 2 easy runs", 
+        name: "Crisp Flick Behind Square", 
+        description: "Roll the wrists and guide the ball through the gap for a clean four.", 
+        outcome: 'FOUR', 
+        runs: 4, 
+        points: 200 
+      },
+      { 
+        name: "Blind Swing with Eyes Closed", 
+        description: "Big edge straight into the keeper's gloves. You're out!", 
+        outcome: 'WICKET', 
+        runs: 0, 
+        points: -50 
+      }
+    ]
+  },
+  {
+    name: "142 km/h Straight Fast Yorker",
+    speed: "142 KM/H",
+    length: "Base of middle stump",
+    bowler: "Death Overs Bowler",
+    shotOptions: [
+      { 
+        name: "Helicopter Shot", 
+        description: "Dig it out with quick wrists and launch it high over long-on for a MAXIMUM!", 
+        outcome: 'SIX', 
+        runs: 6, 
+        points: 310 
+      },
+      { 
+        name: "Block Straight Down and Run 2", 
+        description: "Solid straight bat into the grass, sprint fast and steal 2 runs.", 
         outcome: 'TWO', 
         runs: 2, 
         points: 100 
       },
       { 
-        name: "Through The Shot Way Too Early", 
-        description: "Leading edge skies straight up into the clouds, keeper takes an easy catch", 
+        name: "Step Across Stumps", 
+        description: "Trapped right in front of the stumps! Umpire raises the finger: OUT LBW.", 
+        outcome: 'WICKET', 
+        runs: 0, 
+        points: -50 
+      }
+    ]
+  },
+  {
+    name: "148 km/h Short Pitch Chin Music",
+    speed: "148 KM/H",
+    length: "Short ball at your helmet",
+    bowler: "Pat Cummins",
+    shotOptions: [
+      { 
+        name: "Ben Stokes Ramp Over Keeper", 
+        description: "Arch your back, use the bowler's speed, and flip it over the keeper for 4 runs!", 
+        outcome: 'FOUR', 
+        runs: 4, 
+        points: 220 
+      },
+      { 
+        name: "Pull Shot Into Mid-Wicket", 
+        description: "Rock back on your heels and pull it flat into the stands for SIX!", 
+        outcome: 'SIX', 
+        runs: 6, 
+        points: 300 
+      },
+      { 
+        name: "Panic Poke", 
+        description: "Ball hits the handle of the bat and pops up for an easy catch.", 
+        outcome: 'WICKET', 
+        runs: 0, 
+        points: -50 
+      }
+    ]
+  },
+  {
+    name: "115 km/h Slower Ball",
+    speed: "115 KM/H",
+    length: "Tempting full toss",
+    bowler: "Death Overs Master",
+    shotOptions: [
+      { 
+        name: "Wait Back and Smash Over Long-On", 
+        description: "Spot the slower ball early, wait for it, and smash it into the top tier for SIX!", 
+        outcome: 'SIX', 
+        runs: 6, 
+        points: 310 
+      },
+      { 
+        name: "Soft Touch for 2 Runs", 
+        description: "Tap it gently into the vacant field and jog an easy two.", 
+        outcome: 'TWO', 
+        runs: 2, 
+        points: 100 
+      },
+      { 
+        name: "Swing Way Too Early", 
+        description: "Tricked by the slow pace! Skied high into the air and caught.", 
         outcome: 'WICKET', 
         runs: 0, 
         points: -50 
@@ -191,7 +191,7 @@ export const ModernBattingGame: React.FC = () => {
 
       // Milestone celebrations
       if (runs < 50 && nextRuns >= 50) {
-        setMilestone("🎉 50 UP! HALF-CENTURY FOR SKIPPER SANJITH! The entire RCB pavilion rises in ovation!");
+        setMilestone("🎉 50 RUNS! Half-century for Sanjith! Great batting skipper!");
         confetti({
           particleCount: 120,
           spread: 90,
@@ -199,7 +199,7 @@ export const ModernBattingGame: React.FC = () => {
           colors: ['#dc2626', '#b45309', '#1c1917', '#f5f2eb']
         });
       } else if (runs < 100 && nextRuns >= 100) {
-        setMilestone("🏆 100*! THE BIRTHDAY CENTURY! Sanjith removes his helmet, raises the willow to the crowd!");
+        setMilestone("🏆 100* RUNS! CENTURY FOR SANJITH! Take a bow, what an innings!");
         confetti({
           particleCount: 220,
           spread: 120,
@@ -215,11 +215,11 @@ export const ModernBattingGame: React.FC = () => {
           origin: { y: 0.7 },
           colors: ['#dc2626', '#b45309', '#1c1917']
         });
-        setFeedback(`✦ 98m MAXIMUM! ${shot.name}`);
+        setFeedback(`💥 HUGE SIX! ${shot.name}`);
       } else if (shot.outcome === 'FOUR') {
-        setFeedback(`✦ RAZOR BOUNDARY! ${shot.name}`);
+        setFeedback(`⚡ FOUR RUNS! ${shot.name}`);
       } else {
-        setFeedback(`✦ CLUTCH RUNS: 2 runs added to the tally.`);
+        setFeedback(`🏃 2 RUNS! Good running between the wickets.`);
       }
     }
 
@@ -240,28 +240,28 @@ export const ModernBattingGame: React.FC = () => {
 
   return (
     <div className="ald-card p-6 md:p-10 rounded-3xl relative overflow-hidden bg-white border border-[#ded7cb] shadow-sm">
-      {/* Header & HUD */}
+      {/* Simple Header & Scoreboard */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-[#ded7cb] gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-red-600" />
-            <span className="text-xs uppercase tracking-widest text-red-800 font-bold">
-              CAPTAIN SANJITH (#10) AT THE CREASE • RCB BATTING CHASE
+            <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="text-xs uppercase tracking-wider text-red-800 font-bold">
+              SANJITH (#10) AT BAT
             </span>
           </div>
           <h3 className="font-editorial text-2xl md:text-3xl text-[#1c1917] font-bold tracking-tight">
-            Chasing The Birthday Century • Face Starc & Express Pace
+            Face The Bowler • Pick Your Shot
           </h3>
           <p className="text-sm text-[#78716c] mt-1">
-            Read line and length, execute Sanjith's signature wrist flick, or channel King Kohli's Melbourne straight lift.
+            Read where the ball is coming, pick your shot, and score as many runs as you can!
           </p>
         </div>
 
-        {/* Live Score HUD */}
+        {/* Clean Scorecard */}
         <div className="flex items-center gap-3 sm:gap-4 bg-[#ece7de] px-4 py-2.5 rounded-2xl border border-[#ded7cb]">
           <div>
             <span className="text-[10px] text-[#78716c] uppercase font-bold block">RUNS</span>
-            <span className="text-lg font-bold text-[#1c1917]">{runs} <span className="text-xs text-[#78716c]">({wickets} wkt)</span></span>
+            <span className="text-lg font-bold text-[#1c1917]">{runs} <span className="text-xs text-[#78716c]">({wickets} out)</span></span>
           </div>
           <div className="h-7 w-px bg-[#ded7cb]" />
           <div>
@@ -280,7 +280,7 @@ export const ModernBattingGame: React.FC = () => {
           </div>
           <button
             onClick={handleReset}
-            title="Reset Innings"
+            title="Start Over"
             className="p-1.5 rounded-lg bg-white hover:bg-[#ded7cb] text-[#78716c] hover:text-[#1c1917] transition-colors cursor-pointer border border-[#ded7cb] ml-1"
           >
             <RotateCcw className="w-4 h-4" />
@@ -288,7 +288,7 @@ export const ModernBattingGame: React.FC = () => {
         </div>
       </div>
 
-      {/* Milestone Notification Banner */}
+      {/* Century / Half Century Alert */}
       {milestone && (
         <div className="mb-6 p-4 rounded-2xl bg-red-50 border border-red-300 text-red-900 text-sm font-semibold flex items-center justify-between gap-3 shadow-sm">
           <div className="flex items-center gap-2">
@@ -299,17 +299,19 @@ export const ModernBattingGame: React.FC = () => {
             onClick={() => setMilestone(null)}
             className="text-xs text-red-700 hover:text-red-900 underline cursor-pointer shrink-0"
           >
-            Dismiss
+            Close
           </button>
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        {/* Incoming Ball Card */}
+        {/* The Incoming Ball */}
         <div className="lg:col-span-5 bg-[#f7f5f0] p-6 rounded-2xl border border-[#ded7cb] text-center relative overflow-hidden">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs text-red-700 font-mono font-bold bg-red-100 px-2 py-0.5 rounded">BOWLER: {delivery.bowler}</span>
-            <span className="text-xs px-2.5 py-0.5 rounded-full bg-[#1c1917] text-[#f5f2eb] font-bold font-mono">
+            <span className="text-xs text-red-700 font-bold bg-red-100 px-2.5 py-1 rounded-full border border-red-200">
+              Bowler: {delivery.bowler}
+            </span>
+            <span className="text-xs px-2.5 py-1 rounded-full bg-[#1c1917] text-[#f5f2eb] font-bold">
               {delivery.speed}
             </span>
           </div>
@@ -318,26 +320,26 @@ export const ModernBattingGame: React.FC = () => {
             <Activity className="w-8 h-8 text-[#1c1917]" />
           </div>
 
-          <div className="text-[11px] text-[#78716c] uppercase tracking-wider font-bold">INCOMING DELIVERY #{((balls % DELIVERIES.length) + 1)}</div>
+          <div className="text-[11px] text-[#78716c] uppercase tracking-wider font-bold">BALL #{((balls % DELIVERIES.length) + 1)}</div>
           <h4 className="font-editorial text-xl font-bold text-[#1c1917] mt-1">
             {delivery.name}
           </h4>
 
           <div className="mt-3 inline-block px-3 py-1 bg-white rounded-full text-xs text-[#78716c] border border-[#ded7cb]">
-            ZONE: <span className="font-bold text-[#1c1917]">{delivery.length}</span>
+            Where it lands: <span className="font-bold text-[#1c1917]">{delivery.length}</span>
           </div>
 
           {feedback && (
-            <div className="mt-5 p-3.5 rounded-xl bg-white border border-[#ded7cb] text-xs text-[#1c1917] text-left leading-relaxed shadow-sm">
+            <div className="mt-5 p-3.5 rounded-xl bg-white border border-[#ded7cb] text-xs text-[#1c1917] text-left leading-relaxed shadow-sm font-medium">
               {feedback}
             </div>
           )}
         </div>
 
-        {/* Shot Selection Options */}
+        {/* Shot Selection */}
         <div className="lg:col-span-7 space-y-3">
           <div className="text-xs uppercase tracking-wider text-[#1c1917] font-bold flex items-center gap-2 mb-2">
-            <Target className="w-4 h-4 text-red-600" /> SELECT SKIPPER SANJITH'S RESPONSE:
+            <Target className="w-4 h-4 text-red-600" /> CHOOSE YOUR SHOT:
           </div>
 
           {delivery.shotOptions.map((opt, i) => (
@@ -348,14 +350,14 @@ export const ModernBattingGame: React.FC = () => {
             >
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-[#78716c] font-mono font-bold">
-                    0{i + 1}.
+                  <span className="text-xs text-[#78716c] font-bold">
+                    #{i + 1}
                   </span>
                   <h5 className="font-editorial text-base font-bold text-[#1c1917] group-hover:text-red-700 transition-colors">
                     {opt.name}
                   </h5>
                 </div>
-                <p className="text-xs text-[#78716c] mt-1 pl-6 leading-relaxed">
+                <p className="text-xs text-[#78716c] mt-1 pl-5 leading-relaxed">
                   {opt.description}
                 </p>
               </div>
@@ -367,9 +369,9 @@ export const ModernBattingGame: React.FC = () => {
                   opt.outcome === 'TWO' ? 'bg-white text-[#1c1917] border-[#ded7cb]' :
                   'bg-red-50 text-red-700 border-red-200'
                 }`}>
-                  {opt.outcome}
+                  {opt.outcome === 'SIX' ? '6 RUNS' : opt.outcome === 'FOUR' ? '4 RUNS' : opt.outcome === 'TWO' ? '2 RUNS' : 'OUT'}
                 </span>
-                <span className="text-[10px] text-[#78716c] mt-1 font-mono font-semibold">+{opt.points} PTS</span>
+                <span className="text-[10px] text-[#78716c] mt-1 font-bold">+{opt.points} pts</span>
               </div>
             </button>
           ))}

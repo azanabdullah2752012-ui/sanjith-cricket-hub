@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ICONIC_PLAYERS, PlayerProfileCard } from '../data/cricketEncyclopedia';
-import { Shield, Award, Activity, User, Search, Filter } from 'lucide-react';
-import { pavilionAudio } from '../utils/audioEngine';
+import { Shield, Award, Activity, User, Search } from 'lucide-react';
 
 export const PlayersPage: React.FC = () => {
   const [selectedRole, setSelectedRole] = useState<string>('All');
@@ -20,26 +19,25 @@ export const PlayersPage: React.FC = () => {
 
   const handleSelectPlayer = (player: PlayerProfileCard) => {
     setActivePlayer(player);
-    pavilionAudio.playWillowCrack();
   };
 
   return (
     <div className="space-y-10 animate-fade-in">
       {/* Page Header */}
-      <div className="ald-card p-6 md:p-8 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="ald-card p-6 md:p-8 rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-gradient-to-br from-white via-[#f7f5f0] to-white border border-[#ded7cb]">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-[#1c1917]" />
-            <span className="text-xs uppercase tracking-widest text-[#78716c] font-semibold flex items-center gap-1.5">
-              <User className="w-3.5 h-3.5 text-[#1c1917]" />
-              MODERN MASTERS & TECHNICAL PROFILES
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-600 animate-pulse" />
+            <span className="text-xs uppercase tracking-wider text-red-800 font-bold flex items-center gap-1.5">
+              <User className="w-4 h-4 text-red-600" />
+              CRICKET HEROES & GOATS 💥
             </span>
           </div>
           <h1 className="font-editorial text-3xl md:text-4xl font-bold text-[#1c1917] tracking-tight">
-            International Cricket Player Dossiers
+            The Greatest Players (And Sanjith!)
           </h1>
           <p className="text-sm text-[#78716c] mt-1 max-w-2xl">
-            Technical breakdowns of world-class cricketers: biomechanics, signature masterstrokes, and tactical deployment keys.
+            The legends Sanjith defends in every cricket debate: King Kohli, Mitchell Starc, and our very own skipper.
           </p>
         </div>
 
@@ -51,7 +49,7 @@ export const PlayersPage: React.FC = () => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search player or country..."
+              placeholder="Search player or team..."
               className="w-full pl-9 pr-3 py-2 rounded-xl bg-white border border-[#ded7cb] text-xs text-[#1c1917] focus:outline-none focus:border-[#1c1917] transition-colors"
             />
           </div>
@@ -75,7 +73,7 @@ export const PlayersPage: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left: Player Grid Catalog */}
+        {/* Left: Player Cards Grid */}
         <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {filteredPlayers.map((player) => {
             const isSelected = activePlayer.id === player.id;
@@ -119,10 +117,10 @@ export const PlayersPage: React.FC = () => {
                 <div className={`mt-5 pt-3 border-t flex items-center justify-between text-xs ${
                   isSelected ? 'border-white/15' : 'border-[#ded7cb]'
                 }`}>
-                  <span className={`font-mono text-[10px] uppercase ${isSelected ? 'text-[#ded7cb]' : 'text-[#78716c]'}`}>
+                  <span className={`text-[10px] uppercase font-bold ${isSelected ? 'text-[#ded7cb]' : 'text-[#78716c]'}`}>
                     {player.masteryMetric.label}
                   </span>
-                  <span className={`font-mono font-bold ${isSelected ? 'text-[#f5f2eb]' : 'text-[#1c1917]'}`}>
+                  <span className={`font-bold ${isSelected ? 'text-[#f5f2eb]' : 'text-[#1c1917]'}`}>
                     {player.masteryMetric.value}
                   </span>
                 </div>
@@ -131,18 +129,18 @@ export const PlayersPage: React.FC = () => {
           })}
         </div>
 
-        {/* Right: Selected Player Masterclass Profile */}
-        <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-2xl space-y-6">
+        {/* Right: Selected Player Detail Card */}
+        <div className="lg:col-span-5 ald-card p-6 md:p-8 rounded-3xl space-y-6 bg-white border border-[#ded7cb] shadow-sm">
           <div className="flex items-center justify-between pb-4 border-b border-[#ded7cb]">
             <div>
               <span className="text-[10px] font-bold uppercase tracking-wider text-[#78716c]">
-                TECHNICAL DOSSIER
+                PLAYER PROFILE
               </span>
               <h2 className="font-editorial text-3xl font-bold text-[#1c1917]">
                 {activePlayer.name}
               </h2>
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-xs font-semibold text-[#1c1917] px-2.5 py-0.5 rounded bg-[#ece7de]">
+                <span className="text-xs font-semibold text-[#1c1917] px-2.5 py-0.5 rounded-full bg-[#ece7de]">
                   {activePlayer.country}
                 </span>
                 <span className="text-xs text-[#78716c] font-medium">
@@ -152,39 +150,39 @@ export const PlayersPage: React.FC = () => {
             </div>
 
             <div className="text-right">
-              <span className="text-[10px] text-[#78716c] uppercase font-mono block">BENCHMARK</span>
-              <span className="font-editorial text-2xl font-bold text-[#1c1917]">
+              <span className="text-[10px] text-[#78716c] uppercase font-bold block">KEY STAT</span>
+              <span className="font-editorial text-2xl font-bold text-red-600">
                 {activePlayer.masteryMetric.value}
               </span>
             </div>
           </div>
 
-          {/* Signature Style Quote */}
-          <div className="p-4 rounded-xl bg-[#f7f5f0] border border-[#ded7cb]">
+          {/* Signature Shot / Style */}
+          <div className="p-4 rounded-2xl bg-[#f7f5f0] border border-[#ded7cb]">
             <span className="text-[10px] text-[#78716c] uppercase tracking-wider block font-bold mb-1">
-              Signature Hallmark & Craft
+              What They Do Best
             </span>
             <p className="font-editorial text-base font-bold text-[#1c1917]">
               "{activePlayer.signatureStyle}"
             </p>
           </div>
 
-          {/* Biomechanical Breakdown */}
-          <div className="p-4 rounded-xl bg-white border border-[#ded7cb] shadow-sm">
+          {/* Why They're Great */}
+          <div className="p-4 rounded-2xl bg-white border border-[#ded7cb] shadow-sm">
             <span className="text-[10px] text-[#78716c] uppercase tracking-wider block font-bold mb-1.5 flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-[#1c1917]" />
-              Biomechanical & Technical Mechanics
+              <Activity className="w-3.5 h-3.5 text-red-600" />
+              Why They're So Good
             </span>
             <p className="text-xs md:text-sm text-[#44403c] leading-relaxed">
               {activePlayer.technicalBreakdown}
             </p>
           </div>
 
-          {/* Tactical Exploitation Key */}
-          <div className="p-4 rounded-xl bg-[#f7f5f0] border border-[#ded7cb]">
+          {/* Match Winning Moment */}
+          <div className="p-4 rounded-2xl bg-[#f7f5f0] border border-[#ded7cb]">
             <span className="text-[10px] text-[#78716c] uppercase tracking-wider block font-bold mb-1.5 flex items-center gap-1.5">
-              <Shield className="w-3.5 h-3.5 text-[#1c1917]" />
-              Tactical Execution & Field Threat
+              <Shield className="w-3.5 h-3.5 text-amber-600" />
+              Match-Winning Impact
             </span>
             <p className="text-xs md:text-sm text-[#1c1917] leading-relaxed">
               {activePlayer.tacticalKey}
