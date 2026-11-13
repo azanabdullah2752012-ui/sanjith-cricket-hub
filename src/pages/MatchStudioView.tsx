@@ -112,7 +112,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
       <div className="p-4 rounded-2xl bg-[#16181d] border border-white/[0.08] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs shadow-md">
         <div className="flex items-center gap-2">
           <Info className="w-4 h-4 text-red-500 shrink-0" />
-          <span className="text-stone-300">
+          <span className="text-slate-300">
             <strong>Match Info:</strong> Real scorecards, grounds, and players from actual international cricket games.
           </span>
         </div>
@@ -125,9 +125,9 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/[0.08] gap-4">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#16181d] hover:bg-[#1f222a] text-stone-200 text-xs font-semibold border border-white/[0.08] transition-colors cursor-pointer shadow-sm self-start"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1e2027] hover:bg-[#282b36] hover:border-white/20 text-white text-xs font-semibold border border-white/[0.12] transition-all cursor-pointer shadow-sm self-start group active:scale-95"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3.5 h-3.5 text-slate-400 group-hover:-translate-x-0.5 group-hover:text-white transition-all" />
           <span>Back to All Matches</span>
         </button>
 
@@ -145,7 +145,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer border ${
               isLiveAutoPlaying
                 ? 'bg-red-600 text-white border-red-500'
-                : 'bg-[#16181d] text-stone-300 border-white/[0.08]'
+                : 'bg-[#16181d] text-slate-300 border-white/[0.08]'
             }`}
           >
             {isLiveAutoPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
@@ -154,7 +154,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
           <button
             onClick={manualNextBall}
-            className="px-3 py-1.5 rounded-xl bg-[#1b1e26] hover:bg-[#232733] text-stone-200 text-xs font-semibold border border-white/[0.08] transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-[#1b1e26] hover:bg-[#232733] text-slate-200 text-xs font-semibold border border-white/[0.08] transition-colors cursor-pointer"
           >
             <span>Bowl Next Ball »</span>
           </button>
@@ -169,20 +169,20 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-red-950/50 text-red-400 border border-red-800/40">
                 LIVE ACTION
               </span>
-              <span className="text-xs text-stone-400">• {match.series}</span>
+              <span className="text-xs text-slate-400">• {match.series}</span>
             </div>
 
             <h1 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
               {match.matchTitle}
             </h1>
 
-            <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-stone-400">
+            <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-slate-400">
               <span className="flex items-center gap-1">
                 <MapPin className="w-3.5 h-3.5 text-red-500" />
                 {match.venue}
               </span>
               <span>•</span>
-              <span className="text-stone-300 bg-white/[0.06] px-2 py-0.5 rounded font-medium">
+              <span className="text-slate-300 bg-white/[0.06] px-2 py-0.5 rounded font-medium">
                 {match.daySessionStatus}
               </span>
             </div>
@@ -194,7 +194,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               <span className="text-2xl">{match.teamA.flag}</span>
               <div>
                 <span className="text-sm font-bold text-white block">{match.teamA.name}</span>
-                <span className="font-mono text-sm text-stone-400">{match.teamA.score}</span>
+                <span className="font-mono text-sm text-slate-400">{match.teamA.score}</span>
               </div>
             </div>
 
@@ -227,12 +227,12 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               <span className="text-[10px] uppercase font-bold text-red-400 tracking-wider">
                 LATEST DELIVERY
               </span>
-              <span className="font-mono text-[10px] text-stone-400">
+              <span className="font-mono text-[10px] text-slate-400">
                 Ball Status: <strong className="text-white uppercase">{ballStage}</strong>
               </span>
             </div>
-            <p className="text-xs text-stone-200 leading-relaxed">
-              {currentEvent.eventText} <span className="text-stone-400">({currentEvent.fieldShiftDescription})</span>
+            <p className="text-xs text-slate-200 leading-relaxed">
+              {currentEvent.eventText} <span className="text-slate-400">({currentEvent.fieldShiftDescription})</span>
             </p>
           </div>
         </div>
@@ -249,7 +249,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
                 LIVE 360° GROUND
               </span>
             </div>
-            <span className="text-xs text-stone-400">
+            <span className="text-xs text-slate-400">
               Red ball moves: bowler ➔ pitch ➔ fielder
             </span>
           </div>
@@ -261,9 +261,9 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
             {/* Pitch Strip */}
             <div className="absolute w-10 h-36 bg-[#2a261f] border border-amber-900/30 rounded-sm flex flex-col justify-between items-center py-2 shadow-sm pointer-events-none">
-              <div className="w-6 h-1 bg-stone-300" />
-              <div className="text-[8px] font-mono text-stone-400 uppercase -rotate-90 font-bold">22 YDS</div>
-              <div className="w-6 h-1 bg-stone-300" />
+              <div className="w-6 h-1 bg-white/60" />
+              <div className="text-[8px] font-mono text-slate-400 uppercase -rotate-90 font-bold">22 YDS</div>
+              <div className="w-6 h-1 bg-white/60" />
             </div>
 
             {/* REAL-TIME MOVING RED CRICKET BALL */}
@@ -312,10 +312,10 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
                       isSelected
                         ? 'bg-red-600 text-white ring-4 ring-red-500/30 border-white'
                         : isBatting
-                        ? 'bg-amber-400 text-stone-950 border-amber-300'
+                        ? 'bg-amber-400 text-slate-950 border-amber-300'
                         : isBowling
                         ? 'bg-red-600 text-white border-red-400'
-                        : 'bg-[#1e2330] text-stone-200 border-white/20'
+                        : 'bg-[#1e2330] text-slate-200 border-white/20'
                     }`}
                   >
                     {p.name.charAt(0)}
@@ -324,7 +324,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
                   <span className={`text-[9px] font-semibold px-1.5 py-0.5 rounded whitespace-nowrap mt-1 shadow-sm transition-colors ${
                     isSelected
                       ? 'bg-red-600 text-white'
-                      : 'bg-[#0e0f12]/90 text-stone-300 border border-white/[0.08]'
+                      : 'bg-[#0e0f12]/90 text-slate-300 border border-white/[0.08]'
                   }`}>
                     {p.name.split(' ')[0]}
                   </span>
@@ -334,14 +334,14 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
           </div>
 
           {/* Legend */}
-          <div className="w-full mt-6 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-between text-xs text-stone-400 gap-2">
+          <div className="w-full mt-6 pt-3 border-t border-white/[0.08] flex flex-wrap items-center justify-between text-xs text-slate-400 gap-2">
             <div className="flex items-center gap-3 text-[11px]">
               <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-red-600 border border-white" /> Cricket Ball</span>
               <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-amber-400" /> Batsmen</span>
               <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-red-600" /> Bowler</span>
               <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-full bg-[#1e2330] border border-white/30" /> Fielders</span>
             </div>
-            <span className="text-[10px] text-stone-400 bg-white/[0.06] px-2 py-0.5 rounded">
+            <span className="text-[10px] text-slate-400 bg-white/[0.06] px-2 py-0.5 rounded">
               Ball & Fielders move live
             </span>
           </div>
@@ -354,7 +354,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
               <span className="text-[10px] uppercase font-bold tracking-wider text-red-400">
                 PLAYER PROFILE
               </span>
-              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-white/[0.06] text-stone-200">
+              <span className="text-xs font-semibold px-2 py-0.5 rounded bg-white/[0.06] text-slate-200">
                 {selectedPlayer.role}
               </span>
             </div>
@@ -362,13 +362,13 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             <h2 className="text-2xl font-bold text-white mt-3">
               {selectedPlayer.name}
             </h2>
-            <div className="text-xs text-stone-400 mt-0.5">
+            <div className="text-xs text-slate-400 mt-0.5">
               {selectedPlayer.battingHand} {selectedPlayer.bowlingStyle ? `• ${selectedPlayer.bowlingStyle}` : ''}
             </div>
 
             {/* Current Position Badge */}
             <div className="mt-4 p-4 bg-[#0e0f12] rounded-2xl border border-white/[0.08]">
-              <span className="text-[10px] text-stone-400 uppercase font-bold block mb-1">
+              <span className="text-[10px] text-slate-400 uppercase font-bold block mb-1">
                 Current Position on the Field
               </span>
               <div className="text-base font-bold text-white flex items-center gap-2">
@@ -379,7 +379,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
             {/* Match Stats */}
             <div className="mt-4 p-4 bg-[#1b1e26] rounded-2xl border border-white/[0.08]">
-              <span className="text-[10px] text-stone-400 uppercase font-bold block mb-2">
+              <span className="text-[10px] text-slate-400 uppercase font-bold block mb-2">
                 Today's Match Stats
               </span>
 
@@ -389,11 +389,11 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
                     <span className="text-3xl font-bold text-white font-mono">
                       {selectedPlayer.currentMatchStats.runs}*
                     </span>
-                    <span className="text-xs text-stone-400 ml-1.5 font-mono">
+                    <span className="text-xs text-slate-400 ml-1.5 font-mono">
                       off {selectedPlayer.currentMatchStats.balls} balls
                     </span>
                   </div>
-                  <div className="text-right text-xs font-mono text-stone-400">
+                  <div className="text-right text-xs font-mono text-slate-400">
                     {selectedPlayer.currentMatchStats.fours} fours • {selectedPlayer.currentMatchStats.sixes} sixes
                   </div>
                 </div>
@@ -401,7 +401,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
 
               {selectedPlayer.currentMatchStats.overs && (
                 <div className="mt-2 pt-2 border-t border-white/[0.08] flex items-baseline justify-between text-xs">
-                  <span className="font-mono text-stone-300">
+                  <span className="font-mono text-slate-300">
                     {selectedPlayer.currentMatchStats.overs} overs • {selectedPlayer.currentMatchStats.wickets} wickets • {selectedPlayer.currentMatchStats.runsConceded} runs
                   </span>
                   {selectedPlayer.currentMatchStats.isBowlingNow && (
@@ -416,14 +416,14 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             {/* Bio */}
             <div className="mt-4 space-y-3">
               <div className="p-3.5 bg-[#0e0f12] rounded-xl border border-white/[0.08]">
-                <span className="text-[10px] text-stone-400 uppercase font-bold block">Style of Play</span>
-                <p className="text-xs text-stone-300 mt-1 leading-relaxed">
+                <span className="text-[10px] text-slate-400 uppercase font-bold block">Style of Play</span>
+                <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                   {selectedPlayer.profileBio}
                 </p>
               </div>
 
               <div className="p-3.5 bg-[#0e0f12] rounded-xl border border-white/[0.08]">
-                <span className="text-[10px] text-stone-400 uppercase font-bold block">Special Shot or Ball</span>
+                <span className="text-[10px] text-slate-400 uppercase font-bold block">Special Shot or Ball</span>
                 <p className="text-xs text-white font-semibold mt-1">
                   {selectedPlayer.signatureWeapon}
                 </p>
@@ -431,7 +431,7 @@ export const MatchStudioView: React.FC<MatchStudioViewProps> = ({ match, onBack 
             </div>
           </div>
 
-          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-stone-400">
+          <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400">
             <span>Tap any fielder on the ground to inspect</span>
             <button
               onClick={manualNextBall}

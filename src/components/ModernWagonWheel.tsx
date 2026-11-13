@@ -35,7 +35,7 @@ export const ModernWagonWheel: React.FC = () => {
           <h3 className="text-xl md:text-2xl text-white font-bold tracking-tight">
             The 360° Wagon Wheel
           </h3>
-          <p className="text-sm text-stone-400 mt-1">
+          <p className="text-sm text-slate-400 mt-1">
             Click any field sector to see where the runs were scored and which shots were played.
           </p>
         </div>
@@ -43,7 +43,7 @@ export const ModernWagonWheel: React.FC = () => {
         <div className="flex items-center gap-3 bg-[#0e0f12] px-4 py-2 rounded-xl border border-white/[0.08]">
           <Activity className="w-4 h-4 text-amber-400" />
           <div className="text-xs">
-            <span className="text-stone-400 uppercase block text-[10px] font-bold">Top Scoring Area</span>
+            <span className="text-slate-400 uppercase block text-[10px] font-bold">Top Scoring Area</span>
             <span className="text-white font-bold">Extra Cover • 1,040 Runs</span>
           </div>
         </div>
@@ -167,7 +167,7 @@ export const ModernWagonWheel: React.FC = () => {
               <span className="text-xs uppercase tracking-wider text-red-400 font-bold">
                 CHOSEN SECTOR
               </span>
-              <span className="font-mono text-xs text-stone-400">
+              <span className="font-mono text-xs text-slate-400">
                 {selectedZone.angle}° on the field
               </span>
             </div>
@@ -179,42 +179,42 @@ export const ModernWagonWheel: React.FC = () => {
             <div className="mt-4 p-3.5 bg-[#16181d] rounded-xl border border-white/[0.08] flex items-center gap-3">
               <Target className="w-5 h-5 text-red-500 shrink-0" />
               <div>
-                <div className="text-[10px] text-stone-400 uppercase font-bold">Best Shot Here</div>
+                <div className="text-[10px] text-slate-400 uppercase font-bold">Best Shot Here</div>
                 <div className="text-sm font-bold text-white">{selectedZone.favouriteShot}</div>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="p-4 bg-[#16181d] rounded-xl border border-white/[0.08]">
-                <span className="text-[11px] text-stone-400 uppercase font-bold">Total Runs</span>
+                <span className="text-[11px] text-slate-400 uppercase font-bold">Total Runs</span>
                 <div className="text-3xl font-bold text-white font-mono mt-1">
                   {selectedZone.runs}
                 </div>
-                <div className="text-[10px] text-stone-400 mt-1">
+                <div className="text-[10px] text-slate-400 mt-1">
                   {selectedZone.percentage}% of all runs
                 </div>
               </div>
 
               <div className="p-4 bg-[#16181d] rounded-xl border border-white/[0.08]">
-                <span className="text-[11px] text-stone-400 uppercase font-bold">Boundaries Hit</span>
+                <span className="text-[11px] text-slate-400 uppercase font-bold">Boundaries Hit</span>
                 <div className="flex items-baseline gap-2 mt-1">
                   <span className="text-2xl font-bold text-white font-mono">
                     {selectedZone.boundaries.fours}
                   </span>
-                  <span className="text-xs text-stone-400">fours</span>
+                  <span className="text-xs text-slate-400">fours</span>
                   <span className="text-2xl font-bold text-red-400 font-mono ml-2">
                     {selectedZone.boundaries.sixes}
                   </span>
-                  <span className="text-xs text-stone-400">sixes</span>
+                  <span className="text-xs text-slate-400">sixes</span>
                 </div>
-                <div className="text-[10px] text-stone-400 mt-1">
+                <div className="text-[10px] text-slate-400 mt-1">
                   {selectedZone.boundaries.fours * 4 + selectedZone.boundaries.sixes * 6} runs in boundaries
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-stone-400">
+          <div className="mt-8 pt-4 border-t border-white/[0.08] flex items-center justify-between text-xs text-slate-400">
             <span>Tap any dot around the rope to inspect</span>
             <span className="text-red-400 font-medium">360° Coverage</span>
           </div>

@@ -120,15 +120,15 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
       case 'wicket':
         return 'bg-red-600 border-red-400 text-white shadow-red-950/50';
       case 'four':
-        return 'bg-amber-500 border-amber-300 text-stone-950';
+        return 'bg-amber-500 border-amber-300 text-slate-950';
       case 'six':
         return 'bg-emerald-600 border-emerald-400 text-white';
       case 'edge':
         return 'bg-purple-600 border-purple-400 text-white';
       case 'single':
-        return 'bg-stone-600 border-stone-400 text-white';
+        return 'bg-slate-600 border-slate-400 text-white';
       default:
-        return 'bg-stone-800 border-stone-600 text-white';
+        return 'bg-slate-800 border-slate-600 text-white';
     }
   };
 
@@ -147,7 +147,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
           <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
             Pitch Map for {activeBowler}
           </h3>
-          <p className="text-xs text-stone-400 mt-1">
+          <p className="text-xs text-slate-400 mt-1">
             Click any numbered ball on the 22-yard pitch strip to see speed and ball details.
           </p>
         </div>
@@ -161,7 +161,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
               className={`px-3 py-1 rounded-lg uppercase text-[11px] transition-all cursor-pointer ${
                 filterLength === len
                   ? 'bg-red-600 text-white shadow-sm'
-                  : 'text-stone-400 hover:text-white'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
               {len}
@@ -174,24 +174,24 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
         {/* Left: Interactive Turf Pitch Strip */}
         <div className="md:col-span-6 flex flex-col items-center">
-          <div className="relative w-64 h-96 bg-[#231f18] border-2 border-stone-600 rounded-lg shadow-inner overflow-hidden select-none p-3 flex flex-col justify-between">
+          <div className="relative w-64 h-96 bg-[#231f18] border-2 border-slate-600/70 rounded-lg shadow-inner overflow-hidden select-none p-3 flex flex-col justify-between">
             {/* Short Pitch */}
-            <div className="absolute top-0 left-0 right-0 h-[35%] bg-amber-500/5 border-b border-dashed border-stone-700 flex items-center justify-start pl-2">
-              <span className="text-[9px] font-mono uppercase tracking-wider text-stone-500 font-bold">
+            <div className="absolute top-0 left-0 right-0 h-[35%] bg-amber-500/5 border-b border-dashed border-slate-700 flex items-center justify-start pl-2">
+              <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">
                 SHORT (8-10m)
               </span>
             </div>
 
             {/* Good Length */}
-            <div className="absolute top-[35%] left-0 right-0 h-[30%] bg-emerald-500/5 border-b border-dashed border-stone-700 flex items-center justify-start pl-2">
-              <span className="text-[9px] font-mono uppercase tracking-wider text-stone-400 font-bold">
+            <div className="absolute top-[35%] left-0 right-0 h-[30%] bg-emerald-500/5 border-b border-dashed border-slate-700 flex items-center justify-start pl-2">
+              <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">
                 GOOD LENGTH (6-8m)
               </span>
             </div>
 
             {/* Full Length */}
-            <div className="absolute top-[65%] left-0 right-0 h-[22%] bg-blue-500/5 border-b border-dashed border-stone-700 flex items-center justify-start pl-2">
-              <span className="text-[9px] font-mono uppercase tracking-wider text-stone-400 font-bold">
+            <div className="absolute top-[65%] left-0 right-0 h-[22%] bg-blue-500/5 border-b border-dashed border-slate-700 flex items-center justify-start pl-2">
+              <span className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">
                 FULL (2-4m)
               </span>
             </div>
@@ -213,7 +213,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
 
             {/* Popping Crease */}
             <div className="absolute bottom-6 left-0 right-0 h-0.5 bg-white/70 shadow-sm" />
-            <div className="absolute bottom-7 right-2 text-[8px] font-mono text-stone-400">CREASE</div>
+            <div className="absolute bottom-7 right-2 text-[8px] font-mono text-slate-400">CREASE</div>
 
             {/* Ball Markers */}
             {filteredBalls.map((b) => {
@@ -242,7 +242,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
           </div>
 
           {/* Legend */}
-          <div className="flex items-center gap-3 mt-3 text-[10px] text-stone-400">
+          <div className="flex items-center gap-3 mt-3 text-[10px] text-slate-400">
             <span className="flex items-center gap-1">
               <span className="w-2.5 h-2.5 rounded-full bg-red-600" /> Wicket
             </span>
@@ -253,7 +253,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
               <span className="w-2.5 h-2.5 rounded-full bg-purple-600" /> Edge
             </span>
             <span className="flex items-center gap-1">
-              <span className="w-2.5 h-2.5 rounded-full bg-stone-700 border border-stone-500" /> Dot
+              <span className="w-2.5 h-2.5 rounded-full bg-slate-700 border border-slate-500" /> Dot
             </span>
           </div>
         </div>
@@ -270,7 +270,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
                   <span className="text-sm font-bold text-white block">
                     Ball {selectedBall.over}
                   </span>
-                  <span className="text-xs text-stone-400">
+                  <span className="text-xs text-slate-400">
                     {selectedBall.bowler} to {selectedBall.batter}
                   </span>
                 </div>
@@ -284,11 +284,11 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
             {/* Metrics Grid */}
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div className="bg-[#16181d] p-3 rounded-xl border border-white/[0.08]">
-                <span className="text-stone-400 text-[10px] block uppercase font-bold">Length</span>
+                <span className="text-slate-400 text-[10px] block uppercase font-bold">Length</span>
                 <span className="text-white font-bold text-sm uppercase mt-0.5 block">{selectedBall.pitchZone}</span>
               </div>
               <div className="bg-[#16181d] p-3 rounded-xl border border-white/[0.08]">
-                <span className="text-stone-400 text-[10px] block uppercase font-bold">Line</span>
+                <span className="text-slate-400 text-[10px] block uppercase font-bold">Line</span>
                 <span className="text-white font-bold text-sm uppercase mt-0.5 block">{selectedBall.line.replace('-', ' ')}</span>
               </div>
             </div>
@@ -298,7 +298,7 @@ export const InteractivePitchMap: React.FC<{ activeBowler?: string }> = ({ activ
               <span className="text-[10px] uppercase text-red-400 font-bold block mb-1">
                 Ball Commentary
               </span>
-              <p className="text-xs text-stone-200 leading-relaxed">
+              <p className="text-xs text-slate-200 leading-relaxed">
                 "{selectedBall.description}"
               </p>
             </div>

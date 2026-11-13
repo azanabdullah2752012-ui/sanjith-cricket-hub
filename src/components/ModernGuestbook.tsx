@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, Heart, Trash2, Sparkles, MessageSquare } from 'lucide-react';
+import { Send, Heart, Trash2, Sparkles, MessageSquare, CheckCircle2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface WishMessage {
@@ -43,6 +43,7 @@ export const ModernGuestbook: React.FC = () => {
   const [name, setName] = useState('');
   const [badge, setBadge] = useState('Teammate / Brother');
   const [text, setText] = useState('');
+  const [submittedFeedback, setSubmittedFeedback] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('sanjith_broadcast_wishes', JSON.stringify(messages));
@@ -63,6 +64,7 @@ export const ModernGuestbook: React.FC = () => {
     setMessages([newMsg, ...messages]);
     setName('');
     setText('');
+    setSubmittedFeedback(true);
 
     confetti({
       particleCount: 100,
@@ -70,6 +72,10 @@ export const ModernGuestbook: React.FC = () => {
       origin: { y: 0.6 },
       colors: ['#dc2626', '#d97706', '#f8fafc', '#ef4444']
     });
+
+    setTimeout(() => {
+      setSubmittedFeedback(false);
+    }, 4500);
   };
 
   const handleDelete = (id: string) => {
@@ -108,8 +114,14 @@ export const ModernGuestbook: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Form */}
-        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06]">
+        <div className="lg:col-span-5 bg-[#121317] p-6 rounded-2xl border border-white/[0.06] flex flex-col justify-between">
           <form onSubmit={handleSubmit} className="space-y-4">
+            {submittedFeedback && (
+              <div className="p-3 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold flex items-center gap-2 animate-fade-in">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Note pinned to the board! 🏏</span>
+              </div>
+            )}
             <div>
               <label className="block text-[11px] text-[#94a3b8] uppercase tracking-wider mb-1 font-semibold">
                 Your Name

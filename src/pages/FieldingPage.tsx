@@ -197,6 +197,7 @@ export const FieldingPage: React.FC = () => {
           {/* Deep Natural Turf Oval Ground */}
           <div
             ref={fieldRef}
+            style={{ touchAction: 'none' }}
             className="relative w-full max-w-[500px] aspect-square rounded-full border-2 border-[#1e4525] bg-gradient-to-br from-[#0c2211] via-[#0e2914] to-[#0a1c0e] p-6 flex items-center justify-center shadow-2xl select-none overflow-hidden touch-none"
           >
             {/* 30-Yard Circle */}
