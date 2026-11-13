@@ -1,5 +1,6 @@
 import React from 'react';
 import { ModernGuestbook } from '../components/ModernGuestbook';
+import { InteractiveJerseyArtifact } from '../components/InteractiveJerseyArtifact';
 import { Sparkles, Trophy, Target, ArrowUpRight, Flame, Zap, Shield, Compass, Star } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -19,7 +20,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
 
   return (
     <div className="space-y-12 animate-fade-in">
-      {/* 1. Asymmetric Editorial Hero Showcase */}
+      {/* 1. Asymmetric Editorial Hero Showcase with Signature Interactive 3D Jersey Artifact */}
       <section className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#14151b] via-[#101115] to-[#0c0d10] border border-white/[0.08] shadow-2xl">
         {/* Architectural Diagonal Slash Background Accent */}
         <div className="absolute top-0 right-0 w-96 h-full bg-gradient-to-l from-red-600/[0.08] via-transparent to-transparent pointer-events-none" />
@@ -29,7 +30,7 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 lg:p-12 items-center relative z-10">
           {/* Left Column: Bold Editorial Typography */}
-          <div className="lg:col-span-8 space-y-5">
+          <div className="lg:col-span-7 space-y-5">
             <div className="flex flex-wrap items-center gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-red-600 text-white font-mono text-[11px] font-bold uppercase tracking-wider shadow-sm">
                 <Star className="w-3 h-3 fill-white" />
@@ -70,29 +71,9 @@ export const TributePage: React.FC<TributePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Right Column: High-Impact Jersey #10 Plaque */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <div className="w-full max-w-xs p-6 rounded-xl bg-[#171922] border-2 border-red-500/30 shadow-2xl relative overflow-hidden text-center">
-              <div className="text-[10px] font-mono uppercase tracking-widest text-red-400 font-bold mb-1">
-                ROYAL CHALLENGERS BENGALURU
-              </div>
-              <div className="font-editorial text-7xl font-black text-white tracking-tighter my-2">
-                #10
-              </div>
-              <div className="text-xs uppercase font-bold text-white tracking-wider">
-                THE SKIPPER'S DOSSIER
-              </div>
-              <div className="mt-4 pt-4 border-t border-white/[0.08] grid grid-cols-2 gap-2 text-left text-xs">
-                <div>
-                  <span className="text-[10px] text-[#94a3b8] uppercase font-mono block">STRIKE RATE</span>
-                  <span className="font-bold text-white text-base font-editorial">198.5</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-[#94a3b8] uppercase font-mono block">CAREER STATUS</span>
-                  <span className="font-bold text-red-400 text-base font-editorial">100* N.O.</span>
-                </div>
-              </div>
-            </div>
+          {/* Right Column: Signature 3D Interactive Spring Tilt Jersey Artifact */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <InteractiveJerseyArtifact />
           </div>
         </div>
       </section>

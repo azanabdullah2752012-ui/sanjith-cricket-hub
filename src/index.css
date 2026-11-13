@@ -28,6 +28,10 @@
   letter-spacing: -0.03em;
 }
 
+.perspective-1000 {
+  perspective: 1000px;
+}
+
 /* Modern Tasteful Dark Panels */
 .ald-card {
   background-color: #16181d;
