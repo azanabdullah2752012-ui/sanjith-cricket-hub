@@ -11,7 +11,9 @@ import {
   Ticket,
   Maximize2,
   MapPin,
-  Zap
+  Zap,
+  Gift,
+  X
 } from 'lucide-react';
 
 interface Note {
@@ -25,13 +27,22 @@ export function App() {
   const [activeTab, setActiveTab] = useState<'all' | 'rcb' | 'finishes'>('all');
   const [selectedImage, setSelectedImage] = useState<{ src: string; title: string; subtitle: string; tag: string } | null>(null);
 
+  // Special Birthday Welcome Envelope / Modal
+  const [showBirthdayModal, setShowBirthdayModal] = useState(true);
+
   const popRcbConfetti = () => {
     confetti({
-      particleCount: 140,
-      spread: 85,
-      origin: { y: 0.32 },
+      particleCount: 160,
+      spread: 90,
+      origin: { y: 0.35 },
       colors: ['#c85a32', '#d49b4b', '#a87343', '#5a3d28', '#ede2d3', '#e06038']
     });
+  };
+
+  // Trigger celebration confetti on modal open or dismiss
+  const handleOpenTribute = () => {
+    setShowBirthdayModal(false);
+    popRcbConfetti();
   };
 
   // Guestbook State - purely local, zero fake bot data
@@ -93,16 +104,84 @@ export function App() {
       <div className="fixed -top-40 -left-40 w-96 h-96 bg-[#c85a32]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="fixed top-1/2 -right-40 w-96 h-96 bg-[#d49b4b]/10 rounded-full blur-[160px] pointer-events-none" />
 
+      {/* SPECIAL BIRTHDAY OPENING MODAL / ENVELOPE (Shown to Sanjith when he taps link) */}
+      {showBirthdayModal && (
+        <div className="fixed inset-0 z-50 bg-[#150e09]/85 backdrop-blur-md p-4 sm:p-6 flex items-center justify-center animate-fadeIn">
+          <div className="max-w-lg w-full bg-[#36271e] border border-[#543e2e] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden space-y-6 text-center">
+            {/* Top Amber Accent Flare */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#d49b4b]/20 to-transparent pointer-events-none" />
+
+            {/* Close button in corner */}
+            <button
+              onClick={() => setShowBirthdayModal(false)}
+              className="absolute top-4 right-4 text-[#a89078] hover:text-white p-2 rounded-full cursor-pointer transition-colors"
+              title="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Official RCB Crest & Stand D Stamp */}
+            <div className="flex flex-col items-center justify-center space-y-3 pt-2">
+              <div className="relative">
+                <img 
+                  src="images/rcb_logo.png" 
+                  alt="Royal Challengers Bengaluru Logo" 
+                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]"
+                />
+              </div>
+
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#443126] border border-[#594233] text-[10px] font-black tracking-widest text-[#d49b4b] uppercase">
+                <span>STAND D • VIP BIRTHDAY PASS #10</span>
+              </div>
+            </div>
+
+            {/* Main Greeting */}
+            <div className="space-y-2">
+              <h2 className="font-display text-4xl sm:text-5xl text-[#ede2d3] uppercase tracking-wide leading-tight">
+                Yo Sanjith, <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#e06038] via-[#d49b4b] to-[#e8c187]">
+                  Happy Birthday Bro! 🎂💥
+                </span>
+              </h2>
+
+              <p className="text-xs sm:text-sm text-[#d4c3b0] leading-relaxed max-w-md mx-auto pt-1 font-normal">
+                I don't play cricket, but you talk about RCB and practice that wrist flick enough for the both of us. Built this custom matchday hub for you — full Stand D lore, the greats, and that legendary live shoelace moment.
+              </p>
+            </div>
+
+            {/* CTA to Enter Tribute */}
+            <div className="pt-2">
+              <button
+                onClick={handleOpenTribute}
+                className="w-full py-4 rounded-2xl bg-gradient-to-r from-[#c85a32] to-[#b54b25] hover:from-[#e06038] hover:to-[#c85a32] text-white font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg active:scale-95 transition-all"
+              >
+                <Sparkles className="w-4 h-4 text-amber-200" />
+                <span>Enter Matchday Hub • Ee Sala Cup Namde!</span>
+              </button>
+              <span className="text-[10px] text-[#a89078] block mt-2 font-medium">
+                From Azan with love & laughter 💥
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Rich Brown Masthead Header */}
-      <header className="border-b border-[#4a3629] bg-[#231812]/95 backdrop-blur-md sticky top-0 z-40 px-6 sm:px-12 py-4">
+      <header className="border-b border-[#4a3629] bg-[#231812]/95 backdrop-blur-md sticky top-0 z-40 px-6 sm:px-12 py-3.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="font-display text-3xl tracking-wider text-[#d49b4b]">#10</span>
-              <div className="w-2 h-2 rounded-full bg-[#c85a32]" />
-            </div>
+            {/* RCB Official Logo */}
+            <img 
+              src="images/rcb_logo.png" 
+              alt="RCB Crest" 
+              className="w-9 h-9 object-contain drop-shadow"
+            />
             <div className="h-4 w-px bg-[#4a3629]" />
-            <div className="flex flex-col">
+            <div className="flex items-center gap-2">
+              <span className="font-display text-2xl tracking-wider text-[#d49b4b]">#10</span>
+            </div>
+            <div className="h-4 w-px bg-[#4a3629] hidden sm:block" />
+            <div className="flex flex-col hidden sm:flex">
               <span className="text-[11px] font-black tracking-[0.2em] uppercase text-[#e0cfbe]">
                 RCB Stand D • Field Ledger
               </span>
@@ -133,8 +212,12 @@ export function App() {
             
             {/* Left Hero Title & Real Story from Azan */}
             <div className="lg:col-span-8 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#3d2c21] border border-[#543e2e] text-[11px] font-black tracking-widest text-[#d49b4b] uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#d49b4b]" />
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded-full bg-[#3d2c21] border border-[#543e2e] text-[11px] font-black tracking-widest text-[#d49b4b] uppercase">
+                <img 
+                  src="images/rcb_logo.png" 
+                  alt="RCB" 
+                  className="w-4 h-4 object-contain inline-block"
+                />
                 <span>CHINNASWAMY STAND D REGULAR</span>
                 <span className="text-[#876a52]">•</span>
                 <span>JERSEY #10</span>
@@ -157,7 +240,7 @@ export function App() {
               </div>
             </div>
 
-            {/* Right Hero: Rich Leather/Parchment Matchday Pass */}
+            {/* Right Hero: Rich Leather/Parchment Matchday Pass with RCB Crest */}
             <div className="lg:col-span-4 bg-[#36271e] border border-[#4f3a2c] rounded-3xl p-6 relative overflow-hidden shadow-xl flex flex-col justify-between space-y-6">
               {/* Warm Amber corner glow */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#d49b4b]/15 to-transparent pointer-events-none" />
@@ -171,9 +254,16 @@ export function App() {
                   <span className="font-num text-[11px] text-[#a89078] tracking-wider">SEC: D-10</span>
                 </div>
 
-                <div className="space-y-1">
-                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#a89078]">HOLDER NAME</span>
-                  <div className="font-display text-3xl text-[#ede2d3] tracking-wide">SANJITH #10</div>
+                <div className="flex items-center justify-between">
+                  <div className="space-y-0.5">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#a89078]">HOLDER NAME</span>
+                    <div className="font-display text-3xl text-[#ede2d3] tracking-wide">SANJITH #10</div>
+                  </div>
+                  <img 
+                    src="images/rcb_logo.png" 
+                    alt="RCB" 
+                    className="w-12 h-12 object-contain drop-shadow"
+                  />
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 pt-2 text-xs">
@@ -286,7 +376,7 @@ export function App() {
           <div className="p-4 sm:p-5 rounded-2xl bg-[#36271e] border border-[#4f3a2c] space-y-1.5">
             <div className="flex items-center justify-between text-[#a89078]">
               <span className="text-[10px] font-black uppercase tracking-wider">FRANCHISE</span>
-              <Trophy className="w-3.5 h-3.5 text-[#e06038]" />
+              <img src="images/rcb_logo.png" alt="RCB" className="w-4 h-4 object-contain inline" />
             </div>
             <p className="text-2xl font-black text-[#ede2d3]">RCB 💥</p>
             <span className="text-xs text-[#a89078] block">Royal Challengers Bengaluru</span>
@@ -796,6 +886,7 @@ export function App() {
       <footer className="border-t border-[#4a3629] px-6 sm:px-12 py-10 bg-[#231812] text-xs text-[#a89078] relative z-10">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
+            <img src="images/rcb_logo.png" alt="RCB" className="w-5 h-5 object-contain" />
             <span className="font-display text-2xl text-[#d49b4b]">SANJITH #10</span>
             <span className="text-[#594233]">•</span>
             <span className="text-[#ede2d3] font-bold">ROYAL CHALLENGERS BENGALURU</span>
