@@ -13,6 +13,39 @@
   font-family: 'Space Grotesk', system-ui, sans-serif;
 }
 
+/* 3D Transform Utilities */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1500 {
+  perspective: 1500px;
+}
+
+/* Holographic Foil Sheen */
+.holo-glare {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 220, 180, 0.4) 45%,
+    rgba(200, 240, 255, 0.6) 50%,
+    rgba(255, 200, 240, 0.4) 55%,
+    rgba(255, 255, 255, 0) 70%,
+    transparent 100%
+  );
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+}
+
 @keyframes pulse-ring {
   0% { transform: scale(0.95); opacity: 0.8; }
   50% { transform: scale(1.15); opacity: 0.3; }
@@ -27,7 +60,12 @@
 
 @keyframes float-ball {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-6px) rotate(180deg); }
+  50% { transform: translateY(-8px) rotate(180deg); }
+}
+
+@keyframes stadium-pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
 }
 
 .animate-pulse-ring {
@@ -36,6 +74,10 @@
 
 .animate-float-ball {
   animation: float-ball 3s ease-in-out infinite;
+}
+
+.animate-stadium-pulse {
+  animation: stadium-pulse 4s ease-in-out infinite;
 }
 
 .dash-animated {

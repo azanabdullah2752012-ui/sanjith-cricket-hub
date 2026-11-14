@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Sparkles, 
@@ -14,7 +14,12 @@ import {
   Shield,
   Zap,
   MapPin,
-  Clock
+  Volume2,
+  VolumeX,
+  RotateCw,
+  Target,
+  Maximize2,
+  Award
 } from 'lucide-react';
 
 interface Note {
@@ -23,7 +28,6 @@ interface Note {
   text: string;
 }
 
-// Interactive Wagon Wheel Shot Options mapped to Chinnaswamy & Sanjith's profile
 interface ShotConfig {
   id: string;
   name: string;
@@ -37,6 +41,7 @@ interface ShotConfig {
   controlY: number;
   endX: number;
   endY: number;
+  isWicket?: boolean;
 }
 
 const SHOTS: ShotConfig[] = [
@@ -59,7 +64,7 @@ const SHOTS: ShotConfig[] = [
     name: 'The Shoelace Boundary',
     category: 'Squad Folklore',
     standLocation: 'Deep Third Man',
-    description: "The edge trickling past into the boundary foam while Sanjith was bent down double-knotting his right sneaker.",
+    description: "The edge trickling past into the boundary rope while Sanjith was bent down double-knotting his right sneaker.",
     color: '#d97706',
     startX: 150,
     startY: 155,
@@ -80,7 +85,8 @@ const SHOTS: ShotConfig[] = [
     controlX: 150,
     controlY: 120,
     endX: 150,
-    endY: 165
+    endY: 165,
+    isWicket: true
   },
   {
     id: 'kohli-mcg',
@@ -127,24 +133,221 @@ const RCB_MILESTONES = [
 ];
 
 export function App() {
+  // Web Audio Synthesizer for Authentic Cricket Atmosphere
+  const audioCtxRef = useRef<AudioContext | null>(null);
+
+  const getAudioContext = () => {
+    if (!audioCtxRef.current) {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (AudioCtx) {
+        audioCtxRef.current = new AudioCtx();
+      }
+    }
+    if (audioCtxRef.current && audioCtxRef.current.state === 'suspended') {
+      audioCtxRef.current.resume();
+    }
+    return audioCtxRef.current;
+  };
+
+  const playSound = (type: 'bat' | 'stump' | 'cheer' | 'horn') => {
+    try {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      if (type === 'bat') {
+        // Deep resonant wood bat thud
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(160, now);
+        osc.frequency.exponentialRampToValueAtTime(45, now + 0.12);
+        gain.gain.setValueAtTime(0.9, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.15);
+      } else if (type === 'stump') {
+        // Timber clatter & bail rattle
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(320, now);
+        osc.frequency.exponentialRampToValueAtTime(90, now + 0.22);
+        gain.gain.setValueAtTime(0.7, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.25);
+      } else if (type === 'cheer') {
+        // Stadium crowd roar shimmer
+        const bufferSize = ctx.sampleRate * 0.7;
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+        const whiteNoise = ctx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.value = 1100;
+        filter.Q.value = 3;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.01, now);
+        gain.gain.linearRampToValueAtTime(0.35, now + 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+        whiteNoise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+        whiteNoise.start(now);
+      } else if (type === 'horn') {
+        // Cricket stadium horn: two-tone trumpet
+        const notes = [440, 554, 659];
+        notes.forEach((freq, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(freq, now + i * 0.1);
+          gain.gain.setValueAtTime(0.15, now + i * 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + (i + 1) * 0.18);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.1);
+          osc.stop(now + (i + 1) * 0.18);
+        });
+      }
+    } catch {
+      // Audio fallback
+    }
+  };
+
+  // 3D Card Tilt State on Mouse Move
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [cardTilt, setCardTilt] = useState({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50 });
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
+
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -12;
+    const rotateY = ((x - centerX) / centerX) * 12;
+    const glareX = (x / rect.width) * 100;
+    const glareY = (y / rect.height) * 100;
+
+    setCardTilt({ rotateX, rotateY, glareX, glareY });
+  };
+
+  const handleCardMouseLeave = () => {
+    setCardTilt({ rotateX: 0, rotateY: 0, glareX: 50, glareY: 50 });
+  };
+
+  // Interactive Mini-Game State: "The Wrist Flick Challenge"
+  const [gameActive, setGameActive] = useState(false);
+  const [ballPosition, setBallPosition] = useState(0); // 0 to 100 (bowling progress)
+  const [gameResult, setGameResult] = useState<string | null>(null);
+  const [scoreCount, setScoreCount] = useState(0);
+  const gameIntervalRef = useRef<number | null>(null);
+
+  const startBowling = () => {
+    setGameActive(true);
+    setGameResult(null);
+    setBallPosition(0);
+
+    const startTime = performance.now();
+    const duration = 1200; // 1.2s delivery
+
+    const step = (time: number) => {
+      const elapsed = time - startTime;
+      const progress = Math.min((elapsed / duration) * 100, 100);
+      setBallPosition(progress);
+
+      if (progress < 100) {
+        gameIntervalRef.current = requestAnimationFrame(step);
+      } else {
+        setGameActive(false);
+        setGameResult("Bowled! You missed the timing window. Try again!");
+        playSound('stump');
+      }
+    };
+
+    gameIntervalRef.current = requestAnimationFrame(step);
+  };
+
+  const hitShot = () => {
+    if (!gameActive) {
+      startBowling();
+      return;
+    }
+
+    if (gameIntervalRef.current) {
+      cancelAnimationFrame(gameIntervalRef.current);
+    }
+    setGameActive(false);
+
+    // Sweet spot is between 68% and 82%
+    if (ballPosition >= 70 && ballPosition <= 82) {
+      playSound('bat');
+      playSound('cheer');
+      setGameResult("🔥 PERFECT SWEET SPOT! MASSIVE SIX INTO STAND D! (Sanjith's Signature Wrist Flick!)");
+      setScoreCount(prev => prev + 6);
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { y: 0.5 },
+        colors: ['#c92a2a', '#eab308', '#ffffff']
+      });
+    } else if (ballPosition >= 55 && ballPosition < 70) {
+      playSound('bat');
+      setGameResult("🏏 A bit early! Driven along the ground to mid-on for 2 runs.");
+      setScoreCount(prev => prev + 2);
+    } else if (ballPosition > 82 && ballPosition <= 92) {
+      playSound('bat');
+      setGameResult("👟 The Shoelace Boundary! Sliced off the edge past deep third man for 4 runs while tying laces! 😂");
+      setScoreCount(prev => prev + 4);
+      confetti({
+        particleCount: 60,
+        spread: 50,
+        origin: { y: 0.6 },
+        colors: ['#d97706', '#c92a2a']
+      });
+    } else {
+      playSound('stump');
+      setGameResult("💥 Beaten by Mitchell Starc's 148k yorker! Timber shattered!");
+    }
+  };
+
   // Wagon Wheel Interactive State
   const [activeShot, setActiveShot] = useState<ShotConfig>(SHOTS[0]);
   const [animatingBall, setAnimatingBall] = useState(false);
-  const [ballPos, setBallPos] = useState({ x: SHOTS[0].endX, y: SHOTS[0].endY });
+  const [pitchBallPos, setPitchBallPos] = useState({ x: SHOTS[0].endX, y: SHOTS[0].endY });
 
   const triggerShotAnimation = (shot: ShotConfig) => {
     setActiveShot(shot);
     setAnimatingBall(true);
-    setBallPos({ x: shot.startX, y: shot.startY });
+    setPitchBallPos({ x: shot.startX, y: shot.startY });
 
-    const duration = 650; // ms
+    if (shot.isWicket) {
+      playSound('stump');
+    } else {
+      playSound('bat');
+      playSound('cheer');
+    }
+
+    const duration = 650;
     const startTime = performance.now();
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
       const t = Math.min(elapsed / duration, 1);
 
-      // Quadratic Bezier curve
       const x = Math.round(
         Math.pow(1 - t, 2) * shot.startX +
         2 * (1 - t) * t * shot.controlX +
@@ -156,7 +359,7 @@ export function App() {
         Math.pow(t, 2) * shot.endY
       );
 
-      setBallPos({ x, y });
+      setPitchBallPos({ x, y });
 
       if (t < 1) {
         requestAnimationFrame(animate);
@@ -170,15 +373,17 @@ export function App() {
 
   // Red & Gold RCB Confetti
   const popRcbConfetti = () => {
+    playSound('cheer');
+    playSound('horn');
     confetti({
-      particleCount: 160,
-      spread: 90,
+      particleCount: 180,
+      spread: 100,
       origin: { y: 0.4 },
       colors: ['#c92a2a', '#d97706', '#000000', '#ffffff', '#eab308']
     });
   };
 
-  // Guestbook: Starts completely clean, clears legacy bots
+  // Guestbook: Starts clean, wipes legacy test bots
   const [notes, setNotes] = useState<Note[]>(() => {
     try {
       localStorage.removeItem('sanjith_birthday_notes');
@@ -240,9 +445,8 @@ export function App() {
     <div className="min-h-screen bg-[#fbfbfa] text-[#1c1917] flex flex-col justify-between selection:bg-[#c92a2a] selection:text-white">
       {/* Top RCB Bar */}
       <header className="border-b border-[#e7e5e4] px-4 sm:px-6 py-4 bg-white/95 backdrop-blur sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto flex items-center justify-between">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            {/* RCB #10 Badge */}
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c92a2a] to-[#991b1b] flex items-center justify-center font-num font-black text-white text-lg shadow-sm border border-red-700/40">
               10
             </div>
@@ -253,15 +457,40 @@ export function App() {
                   RCB 12th Man
                 </span>
               </div>
-              <span className="text-[11px] text-[#78716c] block">Chinnaswamy Stand D • Birthday Special</span>
+              <span className="text-[11px] text-[#78716c] block">Chinnaswamy Stand D • Special Edition</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
+            {/* Interactive Soundboard Mini Buttons */}
+            <div className="hidden sm:flex items-center gap-1 bg-stone-100 p-1 rounded-xl border border-stone-200">
+              <button 
+                onClick={() => playSound('bat')}
+                className="px-2 py-1 text-[11px] font-bold text-stone-700 hover:bg-white rounded-lg transition-colors cursor-pointer"
+                title="Bat Crack Sound"
+              >
+                🏏 Bat
+              </button>
+              <button 
+                onClick={() => playSound('stump')}
+                className="px-2 py-1 text-[11px] font-bold text-stone-700 hover:bg-white rounded-lg transition-colors cursor-pointer"
+                title="Stump Shatter Sound"
+              >
+                💥 Stumps
+              </button>
+              <button 
+                onClick={() => playSound('horn')}
+                className="px-2 py-1 text-[11px] font-bold text-stone-700 hover:bg-white rounded-lg transition-colors cursor-pointer"
+                title="Stadium Horn"
+              >
+                🎺 Horn
+              </button>
+            </div>
+
             {/* Ee Sala Cup Namdu Chant Button */}
             <button
               onClick={popRcbConfetti}
-              className="px-3 sm:px-4 py-2 rounded-lg bg-[#c92a2a] hover:bg-[#b02525] text-white font-bold text-xs transition-transform flex items-center gap-1.5 cursor-pointer shadow-sm active:scale-95"
+              className="px-3 sm:px-4 py-2 rounded-xl bg-[#c92a2a] hover:bg-[#b02525] text-white font-bold text-xs transition-transform flex items-center gap-1.5 cursor-pointer shadow-sm active:scale-95"
             >
               <Trophy className="w-3.5 h-3.5 text-amber-300" />
               <span>Ee Sala Cup Namdu! 💥</span>
@@ -271,66 +500,255 @@ export function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10 w-full space-y-12">
-        {/* Hero Section */}
-        <section className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs font-bold">
-            <span className="w-2 h-2 rounded-full bg-[#c92a2a] animate-pulse"></span>
-            <span>ROYAL CHALLENGERS BENGALURU • STAND D</span>
-            <span>•</span>
-            <span>JERSEY #10</span>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-10 w-full space-y-14">
+        {/* HERO SECTION WITH 3D INTERACTIVE COLLECTIBLE TRADING CARD */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Left: Editorial Intro */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fef2f2] border border-[#fecaca] text-[#b91c1c] text-xs font-bold">
+              <span className="w-2 h-2 rounded-full bg-[#c92a2a] animate-pulse"></span>
+              <span>ROYAL CHALLENGERS BENGALURU • STAND D</span>
+              <span>•</span>
+              <span>#10</span>
+            </div>
+
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1c1917] leading-tight">
+              Happy Birthday, <br />
+              <span className="text-[#c92a2a]">Skipper Sanjith.</span>
+            </h1>
+
+            <p className="text-[#44403c] text-base sm:text-lg leading-relaxed font-normal">
+              A bespoke tribute to the finest batsman, fastest yorker bowler, and most dedicated Royal Challengers Bengaluru loyalist in the squad. Today we celebrate your passion for Chinnaswamy cricket, King Kohli's brilliance, and the legendary day you tied your shoelaces in the outfield.
+            </p>
+
+            {/* Key Attributes Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#e7e5e4] text-xs font-bold text-[#1c1917] shadow-2xs">
+                <Shield className="w-3.5 h-3.5 text-[#c92a2a]" />
+                RCB 12th Man Army
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#e7e5e4] text-xs font-bold text-[#1c1917] shadow-2xs">
+                <Zap className="w-3.5 h-3.5 text-amber-600" />
+                Trademark Wrist Flick
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#e7e5e4] text-xs font-bold text-[#1c1917] shadow-2xs">
+                <Flame className="w-3.5 h-3.5 text-sky-600" />
+                Starc 148k Yorker
+              </span>
+            </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#1c1917] leading-tight">
-            Happy Birthday, <span className="text-[#c92a2a]">Sanjith.</span>
-          </h1>
+          {/* Right: 3D Holographic Player Trading Card */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <div 
+              className="perspective-1000 w-full max-w-[320px] aspect-[1/1.45] cursor-pointer select-none"
+              onMouseMove={handleCardMouseMove}
+              onMouseLeave={handleCardMouseLeave}
+              onClick={() => setIsCardFlipped(!isCardFlipped)}
+              ref={cardRef}
+            >
+              <div 
+                className="w-full h-full relative preserve-3d transition-transform duration-500 rounded-3xl shadow-xl"
+                style={{
+                  transform: `rotateX(${cardTilt.rotateX}deg) rotateY(${cardTilt.rotateY + (isCardFlipped ? 180 : 0)}deg)`
+                }}
+              >
+                {/* FRONT OF THE CARD */}
+                <div className="absolute inset-0 backface-hidden rounded-3xl bg-gradient-to-b from-stone-900 via-[#181513] to-[#0a0908] p-5 text-white border-2 border-amber-400/40 flex flex-col justify-between overflow-hidden shadow-2xl">
+                  {/* Holographic light reflection sheen */}
+                  <div 
+                    className="absolute inset-0 holo-glare opacity-40 transition-opacity"
+                    style={{
+                      transform: `translate(${cardTilt.glareX - 50}%, ${cardTilt.glareY - 50}%)`
+                    }}
+                  />
 
-          <p className="text-[#44403c] text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-            To the truest Royal Challengers Bengaluru supporter in the squad. Today we celebrate your unwavering RCB loyalty through 17 years, King Kohli's brilliance, Mitchell Starc's yorkers, and the legendary match where you tied your shoelaces in the outfield.
-          </p>
+                  {/* Card Header */}
+                  <div className="flex items-center justify-between border-b border-amber-400/30 pb-3 z-10">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded-lg bg-[#c92a2a] flex items-center justify-center font-num font-black text-xs text-white">
+                        10
+                      </div>
+                      <span className="text-xs font-black tracking-widest text-amber-300 uppercase">
+                        RCB • SKIPPER
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest">
+                      LIMITED #10/10
+                    </span>
+                  </div>
+
+                  {/* Card Center: Player Emblem & Chinnaswamy Stadium Plate */}
+                  <div className="py-4 text-center space-y-3 z-10">
+                    <div className="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-tr from-[#c92a2a] to-amber-500 p-0.5 shadow-lg">
+                      <div className="w-full h-full rounded-2xl bg-stone-900 flex flex-col items-center justify-center">
+                        <span className="text-3xl font-num font-black text-white">#10</span>
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-amber-300">SANJITH</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-xl font-black text-white tracking-wide">
+                        SANJITH
+                      </h3>
+                      <p className="text-xs text-amber-300/90 font-medium">
+                        Stand D • Royal Challengers Bengaluru
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card Footer: Signature Stroke */}
+                  <div className="bg-white/10 backdrop-blur rounded-2xl p-3 border border-white/15 z-10 space-y-1">
+                    <div className="flex items-center justify-between text-[10px] text-amber-200 font-bold uppercase">
+                      <span>Trademark Shot</span>
+                      <span className="text-white">Wrist Flick</span>
+                    </div>
+                    <div className="flex items-center justify-between text-[10px] text-amber-200 font-bold uppercase">
+                      <span>Bowling Style</span>
+                      <span className="text-white">Starc Inswing</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* BACK OF THE CARD */}
+                <div 
+                  className="absolute inset-0 backface-hidden rounded-3xl bg-white p-5 text-stone-900 border-2 border-stone-200 flex flex-col justify-between overflow-hidden shadow-2xl"
+                  style={{ transform: 'rotateY(180deg)' }}
+                >
+                  <div className="border-b border-stone-200 pb-2 flex items-center justify-between">
+                    <span className="text-xs font-black uppercase text-[#c92a2a]">
+                      Player Dossier • #10
+                    </span>
+                    <span className="text-[10px] font-bold text-stone-400">AUTHENTIC</span>
+                  </div>
+
+                  <div className="space-y-3 py-2 text-xs">
+                    <div>
+                      <span className="text-[10px] font-bold text-stone-400 uppercase block">Franchise Loyalty</span>
+                      <p className="font-extrabold text-stone-800">Royal Challengers Bengaluru (RCB)</p>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] font-bold text-stone-400 uppercase block">Home Ground</span>
+                      <p className="font-extrabold text-stone-800">M. Chinnaswamy Stadium (Stand D)</p>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] font-bold text-stone-400 uppercase block">Cricket Idols</span>
+                      <p className="font-extrabold text-stone-800">Virat Kohli & Mitchell Starc</p>
+                    </div>
+
+                    <div>
+                      <span className="text-[10px] font-bold text-stone-400 uppercase block">Legendary Match</span>
+                      <p className="font-extrabold text-stone-800">The Shoelace Boundary Match 😂</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-stone-50 rounded-xl p-2.5 border border-stone-200 text-center">
+                    <span className="text-[11px] font-bold text-[#c92a2a] block">
+                      "Ee Sala Cup Namdu! 💥"
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1.5 text-xs text-[#78716c] font-medium mt-3">
+              <RotateCw className="w-3.5 h-3.5 text-[#c92a2a]" />
+              <span>Hover to tilt in 3D • Click card to flip</span>
+            </div>
+          </div>
         </section>
 
-        {/* RCB Profile Cards */}
-        <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-          <div className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-xs space-y-1 hover:border-red-200 transition-colors">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold tracking-wider">IPL Franchise</span>
-              <Shield className="w-3.5 h-3.5 text-[#c92a2a]" />
+        {/* INTERACTIVE MINI-GAME: "THE WRIST FLICK CHALLENGE" */}
+        <section className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-stone-900 via-[#1c1917] to-stone-900 text-white shadow-lg space-y-6 relative overflow-hidden">
+          {/* Subtle cricket ground pitch markings background */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2">
+                <Target className="w-4 h-4 text-amber-400" />
+                <span className="text-xs uppercase tracking-widest text-amber-400 font-bold">
+                  Interactive Mini-Game
+                </span>
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black text-white mt-1">
+                The Wrist Flick Challenge 🏏
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-300">
+                Can you time Sanjith's signature flick off the pads into Stand D?
+              </p>
             </div>
-            <p className="text-sm sm:text-base font-extrabold text-[#1c1917]">RCB 💥</p>
-            <span className="text-[11px] text-[#78716c] block">Royal Challengers</span>
+
+            <div className="bg-white/10 backdrop-blur px-4 py-2 rounded-2xl border border-white/20 self-start sm:self-auto flex items-center gap-3">
+              <span className="text-xs text-stone-300 font-medium">Squad Score:</span>
+              <span className="text-xl font-num font-black text-amber-400">{scoreCount} Runs</span>
+            </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-xs space-y-1 hover:border-red-200 transition-colors">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold tracking-wider">Squad Number</span>
-              <span className="text-[10px] font-bold text-[#c92a2a] bg-red-50 px-1.5 py-0.5 rounded">SKIPPER</span>
-            </div>
-            <p className="text-sm sm:text-base font-extrabold text-[#1c1917]">Jersey #10</p>
-            <span className="text-[11px] text-[#78716c] block">Sanjith</span>
-          </div>
+          {/* The Pitch Bowling Track */}
+          <div className="space-y-3">
+            <div className="relative h-12 bg-stone-800 rounded-2xl border border-stone-700 p-1 flex items-center overflow-hidden">
+              {/* Timing Zones */}
+              <div className="absolute inset-y-0 left-0 w-[55%] bg-stone-700/30 flex items-center justify-center text-[10px] text-stone-400 font-bold">
+                Run-Up
+              </div>
+              <div className="absolute inset-y-0 left-[55%] w-[15%] bg-blue-500/20 border-l border-blue-500/40 flex items-center justify-center text-[9px] text-blue-300 font-bold">
+                Drive (2)
+              </div>
+              <div className="absolute inset-y-0 left-[70%] w-[12%] bg-emerald-500/30 border-x border-emerald-400 flex items-center justify-center text-[10px] text-emerald-300 font-black animate-pulse">
+                FLICK (6) 💥
+              </div>
+              <div className="absolute inset-y-0 left-[82%] w-[10%] bg-amber-500/30 border-r border-amber-400 flex items-center justify-center text-[9px] text-amber-300 font-bold">
+                Shoelace (4)
+              </div>
 
-          <div className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-xs space-y-1 hover:border-red-200 transition-colors">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold tracking-wider">Home Fortress</span>
-              <MapPin className="w-3.5 h-3.5 text-[#c92a2a]" />
+              {/* The Bowling Cricket Ball */}
+              <div 
+                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gradient-to-br from-[#c92a2a] to-red-900 border-2 border-white shadow-md flex items-center justify-center transition-all duration-75"
+                style={{ left: `calc(${ballPosition}% - 12px)` }}
+              >
+                <div className="w-full h-0.5 bg-white/60 rotate-45" />
+              </div>
             </div>
-            <p className="text-sm sm:text-base font-extrabold text-[#1c1917]">Stand D</p>
-            <span className="text-[11px] text-[#78716c] block">M. Chinnaswamy</span>
-          </div>
 
-          <div className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-xs space-y-1 hover:border-red-200 transition-colors">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-[#78716c] uppercase font-bold tracking-wider">Signature Shot</span>
-              <Zap className="w-3.5 h-3.5 text-amber-600" />
+            {/* Game Controls & Feedback */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-1">
+              <div className="text-xs font-semibold text-stone-300">
+                {gameResult ? (
+                  <span className="text-amber-300 font-bold text-sm">{gameResult}</span>
+                ) : (
+                  <span>Click "Bowl Delivery", then time your click inside the green FLICK zone!</span>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                <button
+                  onClick={startBowling}
+                  disabled={gameActive}
+                  className={`w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-xs transition-transform cursor-pointer flex items-center justify-center gap-1.5 ${
+                    gameActive 
+                      ? 'bg-stone-700 text-stone-400 cursor-not-allowed'
+                      : 'bg-white hover:bg-stone-100 text-stone-900 shadow-sm active:scale-95'
+                  }`}
+                >
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                  <span>Bowl Delivery</span>
+                </button>
+
+                <button
+                  onClick={hitShot}
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-[#c92a2a] hover:bg-[#b02525] text-white font-black text-xs transition-transform cursor-pointer shadow-sm active:scale-95 flex items-center justify-center gap-1.5"
+                >
+                  <Zap className="w-3.5 h-3.5 text-amber-300 fill-current" />
+                  <span>WHIP FLICK! 🏏</span>
+                </button>
+              </div>
             </div>
-            <p className="text-sm sm:text-base font-extrabold text-[#1c1917]">The Wrist Flick</p>
-            <span className="text-[11px] text-[#78716c] block">Off the pads</span>
           </div>
         </section>
 
         {/* Real Chinnaswamy Stadium Photo Plate */}
-        <section className="overflow-hidden rounded-2xl border border-[#e7e5e4] shadow-sm bg-white">
+        <section className="overflow-hidden rounded-3xl border border-[#e7e5e4] shadow-sm bg-white">
           <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden bg-stone-100">
             <img 
               src="images/chinnaswamy_stadium.jpg" 
@@ -520,7 +938,7 @@ export function App() {
         </section>
 
         {/* Real RCB Historic Matchday Milestones */}
-        <section className="p-6 sm:p-7 rounded-2xl bg-white border border-[#e7e5e4] shadow-xs space-y-5">
+        <section className="p-6 sm:p-7 rounded-3xl bg-white border border-[#e7e5e4] shadow-xs space-y-5">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2">
@@ -543,7 +961,7 @@ export function App() {
             {RCB_MILESTONES.map((item, idx) => (
               <div 
                 key={idx} 
-                className="p-4 rounded-xl bg-[#fbfbfa] border border-[#e7e5e4] space-y-1.5 hover:border-red-200 transition-colors"
+                className="p-4 rounded-2xl bg-[#fbfbfa] border border-[#e7e5e4] space-y-1.5 hover:border-red-200 transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[11px] font-num font-extrabold text-[#c92a2a] bg-red-50 px-2 py-0.5 rounded border border-red-100">
@@ -566,7 +984,7 @@ export function App() {
         </section>
 
         {/* Interactive Animated Wagon Wheel mapped to Chinnaswamy Field */}
-        <section className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e7e5e4] shadow-sm space-y-6">
+        <section className="p-6 sm:p-8 rounded-3xl bg-white border border-[#e7e5e4] shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
@@ -629,8 +1047,8 @@ export function App() {
 
                   {/* Animated Cricket Ball */}
                   <circle
-                    cx={ballPos.x}
-                    cy={ballPos.y}
+                    cx={pitchBallPos.x}
+                    cy={pitchBallPos.y}
                     r="5"
                     fill="#c92a2a"
                     stroke="#ffffff"
@@ -649,7 +1067,7 @@ export function App() {
                     <button
                       key={shot.id}
                       onClick={() => triggerShotAnimation(shot)}
-                      className={`w-full text-left p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
+                      className={`w-full text-left p-3 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
                         isSelected
                           ? 'bg-[#fef2f2] border-[#c92a2a] shadow-xs'
                           : 'bg-white border-[#e7e5e4] hover:bg-[#fbfbfa]'
@@ -680,7 +1098,7 @@ export function App() {
               </div>
 
               {/* Shot Details Box */}
-              <div className="p-3.5 rounded-xl bg-[#fbfbfa] border border-[#e7e5e4]">
+              <div className="p-3.5 rounded-2xl bg-[#fbfbfa] border border-[#e7e5e4]">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-[#78716c] block mb-1">
                   Chinnaswamy Pitch Trajectory
                 </span>
@@ -693,7 +1111,7 @@ export function App() {
         </section>
 
         {/* Squad Folklore: The True Shoelace Incident */}
-        <section className="p-6 sm:p-8 rounded-2xl bg-[#fffbeb] border border-[#fde68a] space-y-3 shadow-xs">
+        <section className="p-6 sm:p-8 rounded-3xl bg-[#fffbeb] border border-[#fde68a] space-y-3 shadow-xs">
           <div className="text-xs uppercase tracking-widest text-[#b45309] font-bold">
             Squad Folklore
           </div>
@@ -725,7 +1143,7 @@ export function App() {
             </p>
           </div>
 
-          <form onSubmit={handlePost} className="p-5 rounded-2xl bg-white border border-[#e7e5e4] shadow-xs space-y-3">
+          <form onSubmit={handlePost} className="p-5 sm:p-6 rounded-3xl bg-white border border-[#e7e5e4] shadow-xs space-y-3">
             <div>
               <input
                 type="text"
@@ -759,7 +1177,7 @@ export function App() {
 
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl bg-[#c92a2a] hover:bg-[#b02525] text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-transform shadow-xs active:scale-95"
+                className="px-5 py-2.5 rounded-xl bg-[#c92a2a] hover:bg-[#b02525] text-white font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-transform shadow-xs active:scale-95"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Post Note</span>
@@ -770,14 +1188,14 @@ export function App() {
           {/* Notes list */}
           <div className="space-y-3">
             {notes.length === 0 ? (
-              <div className="p-6 text-center rounded-xl bg-white border border-[#e7e5e4] text-[#78716c] text-xs">
+              <div className="p-6 text-center rounded-2xl bg-white border border-[#e7e5e4] text-[#78716c] text-xs">
                 No messages yet. Be the first to leave a birthday note for Sanjith!
               </div>
             ) : (
               notes.map(note => (
                 <div 
                   key={note.id} 
-                  className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-2xs space-y-1 flex items-start justify-between gap-3 group"
+                  className="p-4 rounded-2xl bg-white border border-[#e7e5e4] shadow-2xs space-y-1 flex items-start justify-between gap-3 group"
                 >
                   <div className="space-y-1">
                     <span className="text-xs font-bold text-[#1c1917] block">{note.from}</span>
@@ -802,7 +1220,7 @@ export function App() {
 
       {/* Clean RCB Footer */}
       <footer className="border-t border-[#e7e5e4] px-6 py-8 text-center text-xs text-[#78716c] bg-white">
-        <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="font-bold text-[#1c1917]">RCB 12th Man Stand D</span>
             <span>•</span>
