@@ -34,8 +34,8 @@ const SHOTS: ShotConfig[] = [
   {
     id: 'wrist-flick',
     name: 'The Wrist Flick',
-    subtitle: "Sanjith's Go-To Shot",
-    description: "His favorite shot in the book. Waiting for anything full on leg stump and whipping it high over mid-wicket into Stand D.",
+    subtitle: "Sanjith's Favorite Shot",
+    description: "His signature shot. Waiting for anything on the pads and whipping it high over mid-wicket into Stand D.",
     color: '#c92a2a',
     startX: 150,
     startY: 155,
@@ -47,8 +47,8 @@ const SHOTS: ShotConfig[] = [
   {
     id: 'shoelace',
     name: 'The Shoelace Four',
-    subtitle: 'Classic Squad Moment',
-    description: "The batsman edges it past slip while Sanjith is bent down tying his laces in the deep. Ball trickles right past for four.",
+    subtitle: 'Classic Match Moment',
+    description: "The ball rolling past to the boundary while Sanjith is bent down tying his laces in the deep.",
     color: '#b45309',
     startX: 150,
     startY: 155,
@@ -60,8 +60,8 @@ const SHOTS: ShotConfig[] = [
   {
     id: 'starc-yorker',
     name: 'The Starc Yorker',
-    subtitle: 'Death Overs Weapon',
-    description: "Trying to bowl like Mitchell Starc back when he played for RCB — full at the toes, aiming straight at middle stump.",
+    subtitle: 'The Delivery He Tries to Bowl',
+    description: "Trying to copy Mitchell Starc from his RCB days — steaming in and aiming straight at the base of middle stump.",
     color: '#0284c7',
     startX: 150,
     startY: 70,
@@ -73,8 +73,8 @@ const SHOTS: ShotConfig[] = [
   {
     id: 'kohli-mcg',
     name: 'Kohli vs Rauf (MCG)',
-    subtitle: 'Favorite Chase Ever',
-    description: "That back-foot straight six over Haris Rauf in the 19th over. Sanjith has probably watched this replay a hundred times.",
+    subtitle: "The Knock He Never Stops Rewatching",
+    description: "That ridiculous back-foot straight six over Haris Rauf. Sanjith has shown everyone this replay at least a dozen times.",
     color: '#c92a2a',
     startX: 150,
     startY: 155,
@@ -138,7 +138,7 @@ export function App() {
     try {
       localStorage.removeItem('sanjith_birthday_notes');
       localStorage.removeItem('sanjith_birthday_notes_v3');
-      const saved = localStorage.getItem('sanjith_real_notes');
+      const saved = localStorage.getItem('sanjith_real_notes_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) return parsed;
@@ -155,7 +155,7 @@ export function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('sanjith_real_notes', JSON.stringify(notes));
+      localStorage.setItem('sanjith_real_notes_v2', JSON.stringify(notes));
     } catch {
       // ignore
     }
@@ -218,7 +218,7 @@ export function App() {
             <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#c92a2a] uppercase">
               <span>RCB Fan</span>
               <span>•</span>
-              <span>Stand D</span>
+              <span>Stand D Regular</span>
               <span>•</span>
               <span>Jersey #10</span>
             </div>
@@ -229,7 +229,7 @@ export function App() {
             </h1>
 
             <p className="text-base sm:text-lg text-stone-700 max-w-2xl font-normal leading-relaxed pt-1">
-              Made this for your birthday bro. Celebrating your die-hard love for RCB, defending Virat Kohli in every argument, trying to bowl 150k yorkers like Starc, and of course, that match where you gave away four runs tying your shoelaces.
+              I don't play cricket, but nobody can spend five minutes around you without hearing about RCB, arguing over Virat Kohli, or hearing about your wrist flick. Made this page for your birthday bro.
             </p>
           </div>
 
@@ -246,7 +246,7 @@ export function App() {
             <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8 text-white flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <div className="space-y-1 max-w-xl">
                 <span className="text-[10px] font-bold uppercase tracking-wider bg-[#c92a2a] px-2 py-0.5 rounded text-white inline-block">
-                  RCB Fortress
+                  Sanjith's Second Home
                 </span>
                 <h2 className="text-xl sm:text-2xl font-bold text-white">
                   M. Chinnaswamy Stadium, Bengaluru
@@ -272,19 +272,19 @@ export function App() {
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Squad Number</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Favorite Jersey</span>
             <p className="text-base sm:text-lg font-bold text-[#141210]">#10</p>
-            <span className="text-xs text-stone-500">The Skipper</span>
+            <span className="text-xs text-stone-500">Sanjith</span>
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Signature Shot</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">His Signature Shot</span>
             <p className="text-base sm:text-lg font-bold text-[#141210]">The Wrist Flick</p>
-            <span className="text-xs text-stone-500">Whipping balls off the pads</span>
+            <span className="text-xs text-stone-500">Whipping balls off his pads</span>
           </div>
 
           <div className="space-y-0.5">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Bowling Weapon</span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-stone-400 block">Bowling Style</span>
             <p className="text-base sm:text-lg font-bold text-[#141210]">Starc-Style Yorker</p>
             <span className="text-xs text-stone-500">Fast inswinger at the toes</span>
           </div>
@@ -294,10 +294,10 @@ export function App() {
         <section className="space-y-8">
           <div className="border-b border-stone-200 pb-3">
             <span className="text-xs font-bold tracking-wider text-[#c92a2a] uppercase block">
-              The Idols
+              His Cricket Idols
             </span>
             <h2 className="font-display text-4xl sm:text-5xl text-[#141210] uppercase tracking-wide">
-              Players You Always Back
+              The Players Sanjith Will Defend Forever
             </h2>
           </div>
 
@@ -325,15 +325,15 @@ export function App() {
               </h3>
 
               <p className="text-sm sm:text-base text-stone-700 leading-relaxed font-normal">
-                The man you will defend no matter what. Nobody can say a single bad thing about Kohli around you without getting into a 2-hour debate. King of the run chase and the heart of RCB.
+                I don't even follow cricket that closely, but I know better than to ever debate Sanjith about Virat Kohli. He will defend him for two hours straight no matter what.
               </p>
 
               <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
                 <span className="text-xs font-bold text-[#c92a2a] uppercase tracking-wider block">
-                  Favorite Knock: 82* vs Pakistan (MCG 2022)
+                  His Favorite Knock: 82* vs Pakistan (MCG 2022)
                 </span>
                 <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                  That straight six off Haris Rauf back over his head. You've probably watched the highlights a hundred times.
+                  That straight six off Haris Rauf back over the bowler's head that Sanjith has made everyone rewatch.
                 </p>
               </div>
             </div>
@@ -351,7 +351,7 @@ export function App() {
               </h3>
 
               <p className="text-sm sm:text-base text-stone-700 leading-relaxed font-normal">
-                Your favorite bowler to copy. Back when Starc was steaming in for RCB at Chinnaswamy and bowling 150k thunderbolts. Every time you bowl in the last over, this is the delivery you try to pull off.
+                Every time Sanjith talks about fast bowling, Starc comes up. Back when Starc was steaming in for RCB at Chinnaswamy and bowling 150k thunderbolts. Sanjith still tries to copy that exact bowling action.
               </p>
 
               <div className="p-4 rounded-2xl bg-stone-50 border border-stone-200 space-y-1">
@@ -359,7 +359,7 @@ export function App() {
                   Signature Ball: The Inswinging Yorker
                 </span>
                 <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                  Fast, curving in late at the base of middle and leg.
+                  Fast, curving in late at the toes.
                 </p>
               </div>
             </div>
@@ -401,7 +401,7 @@ export function App() {
                     AB de Villiers
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    The reason you try audacious ramp shots in gully cricket and occasionally miss. A pure Chinnaswamy favorite.
+                    The reason Sanjith tries ridiculous ramp shots and occasionally misses. A pure Chinnaswamy favorite.
                   </p>
                 </div>
               </div>
@@ -434,13 +434,13 @@ export function App() {
                     Ben Stokes
                   </h4>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    Your favorite finish outside RCB. 73 runs with Jack Leach, smashing Australia everywhere to steal the match from nowhere.
+                    His favorite finish outside RCB. 73 runs with Jack Leach, smashing Australia everywhere to steal the match from nowhere.
                   </p>
                 </div>
               </div>
               <div className="p-6 pt-0">
                 <span className="text-xs font-medium text-stone-700 bg-stone-50 p-2.5 rounded-xl border border-stone-200 block">
-                  ✦ The greatest Test finish of our lifetime
+                  ✦ The finish Sanjith constantly rewatches
                 </span>
               </div>
             </div>
@@ -455,7 +455,7 @@ export function App() {
                 The Pitch
               </span>
               <h2 className="font-display text-4xl text-[#141210] uppercase tracking-wide">
-                Signature Shots & Trajectories
+                Sanjith's Signature Shots & Balls
               </h2>
             </div>
             <span className="text-xs font-bold text-[#c92a2a] bg-red-50 px-3 py-1 rounded-full border border-red-200">
@@ -560,19 +560,19 @@ export function App() {
         {/* The Real Story: The Shoelace Incident */}
         <section className="bg-amber-50/70 p-6 sm:p-10 rounded-3xl border border-amber-200 space-y-3">
           <div className="text-xs font-bold tracking-wider text-amber-800 uppercase">
-            Squad Folklore
+            Classic Story
           </div>
 
           <h3 className="font-display text-4xl text-amber-950 uppercase">
-            The Time You Tied Your Shoelaces During a Match 😂
+            The Time Sanjith Tied His Shoelaces During Live Play 😂
           </h3>
 
           <p className="text-sm sm:text-base text-amber-900 leading-relaxed font-normal">
-            We will never let you forget this one. The bowler starts running in to bowl. You're out in the deep, and for some reason decide that exact second is the time to bend down and double-knot your shoes. The bowler delivers, the batsman slices it straight at you, and the ball rolls past you into the boundary for four while your head is completely down.
+            I don't play cricket, but this story will never get old. The bowler is running in to bowl. Sanjith is out in the deep, and for some reason decides that exact second is the time to bend down and double-knot his sneakers. The bowler bowls, the batsman slices it right in Sanjith's direction, and the ball rolls past him for four while his head is completely down.
           </p>
 
           <p className="text-xs sm:text-sm font-bold text-amber-950 pt-1">
-            "Runs saved: 0. Shoes tied: 100%."
+            "Runs saved: 0. Shoes tied: 100%. Legend behavior."
           </p>
         </section>
 
@@ -600,7 +600,7 @@ export function App() {
               </label>
               <input
                 type="text"
-                placeholder="e.g. Azan, Squad Friend..."
+                placeholder="e.g. Azan, Friend..."
                 value={fromName}
                 onChange={(e) => setFromName(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-sm text-[#141210] placeholder:text-stone-400 focus:outline-none focus:border-[#c92a2a] focus:bg-white transition-colors"
@@ -613,7 +613,7 @@ export function App() {
                 Message or Roast
               </label>
               <textarea
-                placeholder="Write a birthday wish, inside joke, or match memory for Sanjith..."
+                placeholder="Write a birthday wish, inside joke, or memory for Sanjith..."
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 rows={3}
