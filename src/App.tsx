@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { Sparkles, Heart, Send, Check } from 'lucide-react';
+import { Sparkles, Heart, Send, Check, Shield, Flame } from 'lucide-react';
 
 interface Note {
   id: number;
@@ -99,10 +99,104 @@ export function App() {
           </p>
         </section>
 
+        {/* Stadium Photo Feature Plate */}
+        <section className="overflow-hidden rounded-2xl border border-[#e7e5e4] shadow-sm bg-white">
+          <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-100">
+            <img 
+              src="images/chinnaswamy_stadium.jpg" 
+              alt="M. Chinnaswamy Stadium Bengaluru - Home of RCB" 
+              className="w-full h-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 text-white">
+              <span className="text-[10px] font-bold uppercase tracking-wider bg-[#c92a2a] px-2 py-0.5 rounded text-white">
+                HOME OF RCB 💥
+              </span>
+              <h3 className="text-lg sm:text-xl font-bold mt-1">
+                M. Chinnaswamy Stadium, Bengaluru
+              </h3>
+              <p className="text-xs text-stone-300">
+                The fortress of the 12th Man Army where Sanjith cheers for every ball.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* The Two Idols (With Real Photos) */}
+        <section className="space-y-4">
+          <div className="flex items-center gap-2">
+            <Flame className="w-4 h-4 text-[#c92a2a]" />
+            <h2 className="text-xs uppercase tracking-widest text-[#78716c] font-bold">
+              Sanjith's Cricket Idols
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Virat Kohli Card */}
+            <div className="rounded-xl bg-white border border-[#e7e5e4] overflow-hidden shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-100">
+                  <img 
+                    src="images/virat_kohli.jpg" 
+                    alt="Virat Kohli" 
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-[#b91c1c] uppercase tracking-wide">The GOAT Batter</span>
+                    <span className="text-xs text-[#78716c] font-medium">India & RCB</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-[#1c1917]">Virat Kohli</h3>
+                  <p className="text-xs text-[#78716c] leading-relaxed">
+                    The player Sanjith defends with his life in every single cricket debate. King of the run chase and creator of the Melbourne 82* miracle.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 pt-0">
+                <span className="text-[11px] font-semibold text-[#1c1917] bg-[#fbfbfa] p-2 rounded-lg border border-[#e7e5e4] block">
+                  ✦ Iconic Finish: 82* vs Pakistan (MCG 2022)
+                </span>
+              </div>
+            </div>
+
+            {/* Mitchell Starc Card */}
+            <div className="rounded-xl bg-white border border-[#e7e5e4] overflow-hidden shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-100">
+                  <img 
+                    src="images/mitchell_starc.jpg" 
+                    alt="Mitchell Starc" 
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-4 space-y-1">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-bold text-[#b91c1c] uppercase tracking-wide">The Death Bowling Idol</span>
+                    <span className="text-xs text-[#78716c] font-medium">150 km/h Pacer</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-[#1c1917]">Mitchell Starc</h3>
+                  <p className="text-xs text-[#78716c] leading-relaxed">
+                    Former RCB spearhead and World Cup weapon. Sanjith's weapon of choice when 6 runs are needed in the 20th over.
+                  </p>
+                </div>
+              </div>
+              <div className="p-4 pt-0">
+                <span className="text-[11px] font-semibold text-[#1c1917] bg-[#fbfbfa] p-2 rounded-lg border border-[#e7e5e4] block">
+                  ✦ Weapon: 148k Inswinging Laser Yorker
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Quick Facts */}
         <section className="space-y-4">
           <h2 className="text-xs uppercase tracking-widest text-[#78716c] font-bold">
-            Player Profile
+            Player Profile & Signature Shot
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -123,19 +217,9 @@ export function App() {
             </div>
 
             <div className="p-5 rounded-xl bg-white border border-[#e7e5e4] shadow-sm space-y-1">
-              <span className="text-[11px] text-[#78716c] uppercase font-semibold">Death Bowling Weapon</span>
-              <p className="text-base font-bold text-[#1c1917]">Mitchell Starc 148k Yorker</p>
-              <p className="text-xs text-[#78716c]">Toe-crusher aimed at the base of off-stump.</p>
-            </div>
-
-            <div className="p-5 rounded-xl bg-white border border-[#e7e5e4] shadow-sm space-y-1 sm:col-span-2">
-              <span className="text-[11px] text-[#78716c] uppercase font-semibold">The Two All-Time Finishes</span>
-              <p className="text-base font-bold text-[#1c1917]">
-                Virat Kohli 82* vs Pakistan (MCG 2022) & Ben Stokes 135* vs Australia (Headingley 2019)
-              </p>
-              <p className="text-xs text-[#78716c]">
-                The greatest T20 chase under pressure alongside the most stubborn 73-run last wicket miracle.
-              </p>
+              <span className="text-[11px] text-[#78716c] uppercase font-semibold">The Other Epic Finish</span>
+              <p className="text-base font-bold text-[#1c1917]">Ben Stokes 135* vs Australia</p>
+              <p className="text-xs text-[#78716c]">Headingley 2019 • 73-run last wicket miracle.</p>
             </div>
           </div>
         </section>
