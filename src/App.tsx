@@ -9,15 +9,13 @@ import {
   Compass,
   Play,
   Quote,
-  Shield,
-  Award
+  Trash2
 } from 'lucide-react';
 
 interface Note {
   id: number;
   from: string;
   text: string;
-  date?: string;
 }
 
 // Interactive Wagon Wheel Shot Options (Only Sanjith's confirmed cricket profile)
@@ -132,26 +130,29 @@ export function App() {
     requestAnimationFrame(animate);
   };
 
-  // Real Guestbook Notes: Only Azan's real message by default, plus user additions
-  const defaultNotes: Note[] = [
-    {
-      id: 1,
-      from: 'Azan',
-      text: 'Happy Birthday Sanjith! Always got your back at the crease. Keep hitting that clean wrist flick and never change bro.'
-    }
-  ];
-
+  // Completely clean messages: all fake/mock messages removed
   const [notes, setNotes] = useState<Note[]>(() => {
     try {
-      const saved = localStorage.getItem('sanjith_birthday_notes');
+      // Purge legacy storage
+      localStorage.removeItem('sanjith_birthday_notes');
+      const saved = localStorage.getItem('sanjith_birthday_notes_v3');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed)) {
+          return parsed.filter(n => 
+            !n.from?.includes('Squad XI') &&
+            !n.from?.includes('Bowler') &&
+            !n.from?.includes('12th Man') &&
+            !n.text?.includes('Always got your back') &&
+            !n.text?.includes('shoelaces') &&
+            !n.text?.includes('Eesala Cup Namde')
+          );
+        }
       }
     } catch {
       // ignore
     }
-    return defaultNotes;
+    return [];
   });
 
   const [fromName, setFromName] = useState('');
@@ -160,7 +161,7 @@ export function App() {
 
   useEffect(() => {
     try {
-      localStorage.setItem('sanjith_birthday_notes', JSON.stringify(notes));
+      localStorage.setItem('sanjith_birthday_notes_v3', JSON.stringify(notes));
     } catch {
       // ignore
     }
@@ -191,6 +192,10 @@ export function App() {
     setSaved(true);
     popConfetti();
     setTimeout(() => setSaved(false), 2500);
+  };
+
+  const handleDeleteNote = (id: number) => {
+    setNotes(prev => prev.filter(n => n.id !== id));
   };
 
   return (
@@ -242,7 +247,7 @@ export function App() {
           </p>
         </section>
 
-        {/* Real Profile Attributes (Only confirmed data) */}
+        {/* Real Profile Attributes */}
         <section className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
           <div className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-xs space-y-1">
             <span className="text-[11px] text-[#78716c] uppercase font-bold tracking-wider block">Favorite Team</span>
@@ -293,7 +298,7 @@ export function App() {
           </div>
         </section>
 
-        {/* Interactive Animated Wagon Wheel (Only confirmed shots) */}
+        {/* Interactive Animated Wagon Wheel */}
         <section className="p-6 sm:p-8 rounded-2xl bg-white border border-[#e7e5e4] shadow-sm space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div>
@@ -538,7 +543,7 @@ export function App() {
           </p>
         </section>
 
-        {/* Real Guestbook (No fake bots or generated commentators) */}
+        {/* Real Guestbook (No fake bots or preloaded messages) */}
         <section className="space-y-5">
           <div>
             <div className="flex items-center gap-2">
@@ -594,19 +599,35 @@ export function App() {
             </div>
           </form>
 
-          {/* Real Notes list */}
+          {/* Notes list */}
           <div className="space-y-3">
-            {notes.map(note => (
-              <div 
-                key={note.id} 
-                className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-2xs space-y-1"
-              >
-                <span className="text-xs font-bold text-[#1c1917] block">{note.from}</span>
-                <p className="text-xs sm:text-sm text-[#44403c] leading-relaxed">
-                  "{note.text}"
-                </p>
+            {notes.length === 0 ? (
+              <div className="p-6 text-center rounded-xl bg-white border border-[#e7e5e4] text-[#78716c] text-xs">
+                No messages yet. Be the first to leave a birthday note for Sanjith!
               </div>
-            ))}
+            ) : (
+              notes.map(note => (
+                <div 
+                  key={note.id} 
+                  className="p-4 rounded-xl bg-white border border-[#e7e5e4] shadow-2xs space-y-1 flex items-start justify-between gap-3 group"
+                >
+                  <div className="space-y-1">
+                    <span className="text-xs font-bold text-[#1c1917] block">{note.from}</span>
+                    <p className="text-xs sm:text-sm text-[#44403c] leading-relaxed">
+                      "{note.text}"
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => handleDeleteNote(note.id)}
+                    className="text-stone-300 hover:text-red-500 p-1 transition-colors cursor-pointer"
+                    title="Delete message"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))
+            )}
           </div>
         </section>
       </main>
